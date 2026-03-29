@@ -111,7 +111,7 @@ export function Navbar() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`${textColor} ${hoverColor} transition-colors duration-200 text-sm font-bold uppercase tracking-wider whitespace-nowrap`}
+                  className={`${textColor} ${hoverColor} cursor-pointer transition-colors duration-200 text-sm font-bold uppercase tracking-wider whitespace-nowrap`}
                 >
                   {item.label}
                 </button>
@@ -122,7 +122,7 @@ export function Navbar() {
             <div className="flex items-center justify-end w-32 lg:w-40 gap-4">
               <button
                 onClick={() => scrollToSection('contact')}
-                className="hidden lg:block bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:scale-105 transform text-white px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
+                className="hidden lg:block cursor-pointer bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:scale-105 transform text-white px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
               >
                 Contact
               </button>

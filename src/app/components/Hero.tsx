@@ -20,9 +20,8 @@ export function Hero() {
     <>
       <section
         id="hero"
-        className="relative min-h-screen flex items-center justify-center bg-[#0a1628] overflow-hidden"
+        className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center bg-[#0a1628] overflow-hidden"
       >
-        {/* Background Video */}
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -70,7 +69,7 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <button
                 onClick={() => scrollToSection('contact')}
-                className="group bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:scale-105 transform text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl"
+                className="group cursor-pointer bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:scale-105 transform text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl"
               >
                 Get Emergency Service
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -92,7 +91,7 @@ export function Hero() {
           <div className="flex w-max animate-marquee2 whitespace-nowrap text-sm font-bold uppercase tracking-wider items-center">
             {[...Array(2)].map((_, i) => (
               <div key={i} className="flex gap-12 items-center px-6">
-                <span className="flex items-center gap-2"><Award className="w-4 h-4" /> 10+ Years Experience</span>
+                <span className="flex items-center gap-2"><Award className="w-4 h-4" /> 12+ Years Experience</span>
                 <span className="flex items-center gap-2"><Clock className="w-4 h-4" /> 24/7 Support Available</span>
                 <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4" /> 100% Client Satisfaction</span>
                 <span className="flex items-center gap-2"><Wrench className="w-4 h-4" /> 500+ Projects Completed</span>

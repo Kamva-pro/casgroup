@@ -1,10 +1,10 @@
-import { Clock, Wrench, Gauge, Settings, FileSearch } from 'lucide-react';
+import { Clock, Wrench, Gauge, Settings, FileSearch, ClipboardCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import op7 from '@/assets/operation-7.jpg';
-import op2 from '@/assets/operation-2.jpg';
+import op2 from '@/assets/operation-14.jpg';
 import op4 from '@/assets/operation-4.jpg';
 import op5 from '@/assets/operation-5.jpg';
-import op6 from '@/assets/operation-6.jpg';
+import op16 from '@/assets/operation-16.jpg';
 
 export function Services() {
   const services = [
@@ -23,10 +23,17 @@ export function Services() {
       accent: '#dc2626'
     },
     {
+      icon: ClipboardCheck, // Make sure to import this icon at the top of your file!
+      title: 'Site Inspections',
+      description: 'Thorough on-site evaluations of your compressor systems to ensure optimal placement, safety, and operational readiness.',
+      image: op4,
+      accent: '#3b82f6' // Added a clean industrial blue for variety
+    },
+    {
       icon: Gauge,
       title: 'Pressure Testing',
       description: 'Comprehensive pressure testing and certification services ensuring compliance with industry safety standards.',
-      image: op4,
+      image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       accent: '#fbbf24'
     },
     {
@@ -40,16 +47,15 @@ export function Services() {
       icon: FileSearch,
       title: 'Air Audits',
       description: 'Detailed air system audits to identify inefficiencies, optimize performance, and reduce operational costs.',
-      image: op6,
+      image: op16,
       accent: '#0a1628'
     }
   ];
-
   return (
     <section id="services" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -63,7 +69,7 @@ export function Services() {
             Comprehensive Industrial Solutions
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            From emergency repairs to preventive maintenance, we provide end-to-end services 
+            From emergency repairs to preventive maintenance, we provide end-to-end services
             for all your industrial air and compressor needs.
           </p>
         </motion.div>
@@ -73,23 +79,23 @@ export function Services() {
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <motion.div 
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
+                className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
               >
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden">
-                  <img 
+                  <img
                     src={service.image}
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/80 to-transparent" />
-                  <div 
+                  <div
                     className="absolute top-4 right-4 w-12 h-12 rounded-lg flex items-center justify-center"
                     style={{ backgroundColor: service.accent }}
                   >
@@ -112,7 +118,7 @@ export function Services() {
         </div>
 
         {/* Bottom CTA */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -124,7 +130,7 @@ export function Services() {
               <p className="font-bold text-lg">Need a custom solution?</p>
               <p className="text-sm text-gray-300">Contact us for tailored industrial air services</p>
             </div>
-            <a 
+            <a
               href="tel:053-832-1249"
               className="bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:scale-105 transform px-6 py-3 rounded-lg font-medium transition-all whitespace-nowrap"
             >

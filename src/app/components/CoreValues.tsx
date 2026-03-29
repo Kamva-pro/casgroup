@@ -16,7 +16,7 @@ export function CoreValues() {
     {
       icon: Shield,
       title: 'Integrity',
-      description: 'Honest, transparent business practices'
+      description: 'Operating with honesty and delivering on promises consistently'
     },
     {
       icon: Target,
@@ -34,7 +34,7 @@ export function CoreValues() {
     <section id="values" className="py-20 bg-gradient-to-r from-[#0a1628] via-[#1a2740] to-[#0a1628]">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -54,13 +54,13 @@ export function CoreValues() {
           {values.map((value, index) => {
             const Icon = value.icon;
             return (
-              <motion.div 
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative bg-white/5 backdrop-blur-sm hover:bg-white/10 p-6 rounded-xl transition-all duration-300 border border-white/10 hover:border-[#dc2626]/50 text-center"
+                className="group relative cursor-pointer bg-white/5 backdrop-blur-sm hover:bg-white/10 p-6 rounded-xl transition-all duration-300 border border-white/10 hover:border-[#dc2626]/50 text-center"
               >
                 {/* Icon */}
                 <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-[#dc2626] to-[#f97316] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

@@ -29,11 +29,11 @@ function CountUp({ end, suffix = '' }: { end: number; suffix?: string }) {
   const startAnimation = () => {
     // If it already animated, don't restart
     if (count > 0) return;
-    
+
     let start = 0;
     const duration = 2500; // 2.5 seconds
     const increment = end / (duration / 16);
-    
+
     const timer = setInterval(() => {
       start += increment;
       if (start >= end) {
@@ -46,7 +46,7 @@ function CountUp({ end, suffix = '' }: { end: number; suffix?: string }) {
   };
 
   return (
-    <motion.span 
+    <motion.span
       onViewportEnter={startAnimation}
       viewport={{ once: true, amount: "some" }}
       className="inline-block tabular-nums"
@@ -59,64 +59,44 @@ function CountUp({ end, suffix = '' }: { end: number; suffix?: string }) {
 export function Operations() {
   const images = [
     {
-      src: op8,
-      alt: 'Industrial Air System',
-      caption: 'Main Plant Operations'
+      src: op15, // Team at the gate
+      alt: 'CAS Team at Headquarters',
+      caption: 'Head Office Personnel'
     },
     {
-      src: op9,
-      alt: 'Compressor Maintenance',
-      caption: 'Routine Servicing'
+      src: op8, // The two Hilux bakkies
+      alt: 'CAS Fleet Vehicles',
+      caption: 'Rapid Response Fleet'
     },
     {
-      src: op10,
-      alt: 'System Installation',
-      caption: 'Phase 1 Installation'
+      src: op13, // Compressor on trailer at Spilhaus
+      alt: 'Industrial Compressor Delivery',
+      caption: 'Equipment Supply & Logistics'
     },
     {
-      src: op11,
-      alt: 'Control Panels',
-      caption: 'Advanced Control Systems'
+      src: op12, // Two techs by the bakkie
+      alt: 'CAS Field Technicians',
+      caption: '24/7 Field Technicians'
     },
     {
-      src: op12,
-      alt: 'Piping Layout',
-      caption: 'Precision Piping'
+      src: op14, // Woman working at desk with papers
+      alt: 'Office Operations',
+      caption: 'Finance & Procurement'
     },
     {
-      src: op13,
-      alt: 'Large Scale Compressor',
-      caption: 'Industrial Units'
+      src: op10, // Closer shot of compressor on trailer
+      alt: 'Compressor Unit Preparation',
+      caption: 'New Unit Dispatch'
     },
     {
-      src: op14,
-      alt: 'Quality Check',
-      caption: 'Quality Assurance'
+      src: op16, // Smiling woman at laptop
+      alt: 'Sales Administrator',
+      caption: 'Sales & Client Support'
     },
     {
-      src: op15,
-      alt: 'Project Completion',
-      caption: 'Mining Project Lead'
-    },
-    {
-      src: op16,
-      alt: 'Team Collaboration',
-      caption: 'On-site Technical Support'
-    },
-    {
-      src: op17,
-      alt: 'Workshop Tools',
-      caption: 'Specialized Workshop Tools'
-    },
-    {
-      src: op18,
-      alt: 'Final Inspection',
-      caption: 'Safety Inspections'
-    },
-    {
-      src: op19,
-      alt: 'Agricultural Unit',
-      caption: 'Farmer Support Systems'
+      src: op17, // Indoor team photo
+      alt: 'CAS Core Team',
+      caption: 'Strategic & Technical Experts'
     }
   ];
 
@@ -133,7 +113,7 @@ export function Operations() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -147,7 +127,7 @@ export function Operations() {
             Our Team & Fleet in Action
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            A glimpse into our operations, showcasing our dedicated team, modern fleet, 
+            A glimpse into our operations, showcasing our dedicated team, modern fleet,
             and state-of-the-art facilities serving industries across the region.
           </p>
         </motion.div>
@@ -161,11 +141,11 @@ export function Operations() {
         >
           <Masonry columnsCount={3} gutter="16px">
             {images.map((image, index) => (
-              <div 
+              <div
                 key={index}
                 className="group relative overflow-hidden rounded-lg cursor-pointer"
               >
-                <img 
+                <img
                   src={image.src}
                   alt={image.alt}
                   className="w-full h-auto transition-transform duration-500 group-hover:scale-110"
@@ -184,7 +164,7 @@ export function Operations() {
         </motion.div>
 
         {/* Bottom stat bar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -193,7 +173,7 @@ export function Operations() {
         >
           {[
             { label: 'Field Technicians', end: 15, suffix: '+' },
-            { label: 'Years Experience', end: 10, suffix: '+' },
+            { label: 'Years Experience', end: 12, suffix: '+' },
             { label: 'Workshop Bays', end: 4, suffix: '' },
             { label: 'Active Clients', end: 50, suffix: '+' }
           ].map((stat, index) => (

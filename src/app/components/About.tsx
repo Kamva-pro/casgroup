@@ -1,5 +1,5 @@
 import { Award, Users, Target, Shield } from 'lucide-react';
-import teamPhoto from '@/assets/operation-3.jpg';
+import teamPhoto from '@/assets/operation-17.jpg';
 import { motion } from 'framer-motion';
 
 export function About() {
@@ -31,7 +31,7 @@ export function About() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left - Image */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -39,7 +39,7 @@ export function About() {
             className="relative h-full min-h-[400px]"
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-[#dc2626] to-[#f97316] rounded-2xl opacity-20 blur-xl" />
-            <img 
+            <img
               src={teamPhoto}
               alt="CAS Team"
               className="relative rounded-2xl shadow-2xl w-full h-full object-cover"
@@ -49,7 +49,7 @@ export function About() {
           </motion.div>
 
           {/* Right - Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -64,8 +64,8 @@ export function About() {
                 Engineering-Driven Excellence Since 2014
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Central Air Solutions (CAS) PTY LTD is a proudly 100% black-owned company specializing in 
-                industrial air and compressor systems. We deliver comprehensive solutions to the mining and 
+                Central Air Solutions (CAS) PTY LTD is a proudly 100% black-owned company specializing in
+                industrial air and compressor systems. We deliver comprehensive solutions to the mining and
                 agricultural sectors with unwavering commitment to quality, safety, and innovation.
               </p>
             </div>
@@ -74,13 +74,13 @@ export function About() {
               {highlights.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-100"
+                    className="bg-white cursor-pointer p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-100"
                   >
                     <div className="w-12 h-12 bg-gradient-to-br from-[#dc2626] to-[#f97316] rounded-lg flex items-center justify-center mb-4">
                       <Icon className="w-6 h-6 text-white" />
@@ -93,10 +93,10 @@ export function About() {
             </div>
 
             <div className="pt-4">
-              <div className="bg-[#0a1628] text-white p-6 rounded-xl relative overflow-hidden group">
+              <div className="bg-[#0a1628] cursor-pointer text-white p-6 rounded-xl relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#dc2626]/20 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700"></div>
                 <p className="text-lg font-medium relative z-10">
-                  "Delivering reliability and excellence to our clients through cutting-edge technology 
+                  "Delivering reliability and excellence to our clients through cutting-edge technology
                   and unmatched technical expertise."
                 </p>
                 <p className="text-[#fbbf24] mt-2 font-medium relative z-10">— CAS Leadership Team</p>
