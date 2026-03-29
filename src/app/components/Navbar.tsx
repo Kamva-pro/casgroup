@@ -41,6 +41,8 @@ export function Navbar() {
         top: offsetPosition,
         behavior: 'smooth'
       });
+    } else {
+      window.location.href = import.meta.env.BASE_URL;
     }
     setMobileMenuOpen(false);
   };

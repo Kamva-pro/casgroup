@@ -30,7 +30,7 @@ export function Hero() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/mining-video-6.mp4" type="video/mp4" />
+            <source src={`${import.meta.env.BASE_URL}mining-video-6.mp4`} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           {/* Overlay to preserve the #0a1628 feel and ensure text readability */}
