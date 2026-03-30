@@ -4,7 +4,7 @@ import { MapPin } from 'lucide-react';
 export function Map() {
   return (
     <section className="bg-gray-50 py-16 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

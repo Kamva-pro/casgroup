@@ -4,7 +4,7 @@ import casLogo from '@/assets/logo.png';
 export function Footer() {
   return (
     <footer id="contact" className="bg-[#0a1628] text-white pt-20 pb-8">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           {/* Company Info */}
           <div>

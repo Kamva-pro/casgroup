@@ -20,7 +20,7 @@ export function Hero() {
     <>
       <section
         id="hero"
-        className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center bg-[#0a1628] overflow-hidden"
+        className="relative min-h-[85vh] lg:min-h-[100vh] flex items-center justify-center bg-[#0a1628] overflow-hidden"
       >
         <div className="absolute inset-0 z-0">
           <video
@@ -42,7 +42,7 @@ export function Hero() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#f97316] rounded-full blur-[120px] opacity-10" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#dc2626] rounded-full blur-[120px] opacity-10" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-32 text-center">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 py-32 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

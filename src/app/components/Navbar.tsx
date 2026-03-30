@@ -66,22 +66,6 @@ export function Navbar() {
         }
       `}</style>
 
-      {/* Top Info Bar - Marquee */}
-      {/* <div className="fixed top-0 left-0 right-0 z-50 bg-[#0a1628] text-[#fbbf24] py-1.5 overflow-hidden border-b border-[#dc2626]/20 shadow-sm">
-        <div className="flex w-max animate-marquee whitespace-nowrap text-xs md:text-sm font-semibold tracking-wide items-center hover:![animation-play-state:paused]">
-          {[...Array(2)].map((_, i) => (
-            <div key={i} className="flex gap-8 items-center px-4">
-              <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#dc2626]" /> 100% Black Owned</span>
-              <span className="flex items-center gap-2"><Factory className="w-4 h-4 text-[#dc2626]" /> Industrial Air & Compressor Specialists</span>
-              <span className="flex items-center gap-2"><Phone className="w-4 h-4 text-[#dc2626]" /> 24/7 Emergency Service: 053-832-1249</span>
-              <span className="text-white/60">|</span>
-              <span>admin@casgroup.co.za</span>
-              <span className="text-white/60">|</span>
-            </div>
-          ))}
-        </div>
-      </div> */}
-
       {/* Main Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-40 lg:px-8 lg:pt-4 pointer-events-none">
         <div

@@ -32,7 +32,7 @@ export function CoreValues() {
 
   return (
     <section id="values" className="py-20 bg-gradient-to-r from-[#0a1628] via-[#1a2740] to-[#0a1628]">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -111,7 +111,7 @@ export function Operations() {
         }} />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
