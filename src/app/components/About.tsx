@@ -22,7 +22,7 @@ export function About() {
     {
       icon: Shield,
       title: 'Pressure Testing',
-      description: 'Certified Excellence'
+      description: 'Ensuring equipment safety and full industry compliance'
     }
   ];
 

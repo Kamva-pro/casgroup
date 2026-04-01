@@ -5,6 +5,10 @@ import op2 from '@/assets/operation-14.jpg';
 import op4 from '@/assets/operation-4.jpg';
 import op5 from '@/assets/operation-5.jpg';
 import op16 from '@/assets/operation-16.jpg';
+import op20 from '@/assets/op20.jpeg';
+import op21 from '@/assets/op21.jpeg';
+import op22 from '@/assets/op22.jpeg';
+import op23 from '@/assets/op23.jpeg';
 
 export function Services() {
   const services = [
@@ -23,34 +27,35 @@ export function Services() {
       accent: '#dc2626'
     },
     {
-      icon: ClipboardCheck, // Make sure to import this icon at the top of your file!
+      icon: ClipboardCheck,
       title: 'Site Inspections',
       description: 'Thorough on-site evaluations of your compressor systems to ensure optimal placement, safety, and operational readiness.',
-      image: op4,
-      accent: '#3b82f6' // Added a clean industrial blue for variety
+      image: op20,
+      accent: '#3b82f6'
     },
     {
       icon: Gauge,
       title: 'Pressure Testing',
       description: 'Comprehensive pressure testing and certification services ensuring compliance with industry safety standards.',
-      image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: op21,
       accent: '#fbbf24'
     },
     {
       icon: Settings,
       title: 'Workshop Overhauls',
       description: 'Complete compressor overhauls and rebuilds in our fully-equipped workshop facility by certified technicians.',
-      image: op5,
+      image: op22,
       accent: '#64748b'
     },
     {
       icon: FileSearch,
       title: 'Air Audits',
       description: 'Detailed air system audits to identify inefficiencies, optimize performance, and reduce operational costs.',
-      image: op16,
+      image: op23,
       accent: '#0a1628'
     }
   ];
+
   return (
     <section id="services" className="py-24 bg-white">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
@@ -87,16 +92,15 @@ export function Services() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
               >
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-72 overflow-hidden bg-gray-100">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover object-[50%_30%] group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/80 to-transparent" />
                   <div
-                    className="absolute top-4 right-4 w-12 h-12 rounded-lg flex items-center justify-center"
+                    className="absolute top-4 right-4 w-12 h-12 rounded-lg flex items-center justify-center shadow-md"
                     style={{ backgroundColor: service.accent }}
                   >
                     <Icon className="w-6 h-6 text-white" />
