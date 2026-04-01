@@ -62,7 +62,7 @@ export function Hero() {
             </p>
 
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Serving the mining and agricultural sectors with precision, integrity, and expertise since 2014.
+              Serving the mining, industrial, and agricultural sectors with precision, integrity, and expertise since 2014.
             </p>
 
             {/* CTAs */}

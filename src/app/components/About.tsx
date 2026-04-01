@@ -21,8 +21,8 @@ export function About() {
     },
     {
       icon: Shield,
-      title: 'Certified Excellence',
-      description: 'SANAS compliance and quality assurance'
+      title: 'Pressure Testing',
+      description: 'Certified Excellence'
     }
   ];
 
@@ -64,8 +64,7 @@ export function About() {
                 Engineering-Driven Excellence Since 2014
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Central Air Solutions (CAS) PTY LTD is a proudly 100% black-owned company specializing in
-                industrial air and compressor systems. We deliver comprehensive solutions to the mining and
+                Central Air Solutions (CAS) PTY LTD is a proudly 100% black-owned company specializing industrial, and
                 agricultural sectors with unwavering commitment to quality, safety, and innovation.
               </p>
             </div>

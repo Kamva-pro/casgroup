@@ -16,7 +16,7 @@ export function Footer() {
               />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Industrial Air & Compressor Specialists serving the mining and agricultural
+              Industrial Air & Compressor Specialists serving the mining, industrial, and agricultural
               sectors with 24/7 technical support and engineering-driven solutions.
             </p>
           </div>
@@ -58,6 +58,15 @@ export function Footer() {
                     className="text-gray-300 text-sm hover:text-[#dc2626] transition-colors"
                   >
                     admin@casgroup.co.za
+
+                  </a>
+                  <br></br>
+                  <a
+                    href="mailto:reception@casgroup.co.za"
+                    className="text-gray-300 text-sm hover:text-[#dc2626] transition-colors"
+                  >
+                    reception@casgroup.co.za
+
                   </a>
                 </div>
               </div>
@@ -75,7 +84,6 @@ export function Footer() {
                 'Workshop Overhauls',
                 'Air Audits',
                 'Field Services',
-                'SANAS Compliance'
               ].map((service, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-[#dc2626] rounded-full" />

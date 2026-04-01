@@ -172,9 +172,9 @@ export function Operations() {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-t border-white/10"
         >
           {[
-            { label: 'Field Technicians', end: 15, suffix: '+' },
+            { label: 'Field Technicians', end: 2, suffix: '+' },
             { label: 'Years Experience', end: 12, suffix: '+' },
-            { label: 'Workshop Bays', end: 4, suffix: '' },
+            { label: 'Workshop Bays', end: 1, suffix: '' },
             { label: 'Active Clients', end: 50, suffix: '+' }
           ].map((stat, index) => (
             <div key={index} className="text-center">
