@@ -9,6 +9,7 @@ import op20 from '@/assets/op20.jpeg';
 import op21 from '@/assets/op21.jpeg';
 import op22 from '@/assets/op22.jpeg';
 import op23 from '@/assets/op23.jpeg';
+import pressureTesting from '@/assets/pressure-testing.jpg';
 
 export function Services() {
   const services = [
@@ -37,7 +38,7 @@ export function Services() {
       icon: Gauge,
       title: 'Pressure Testing',
       description: 'Comprehensive pressure testing and certification services ensuring compliance with industry safety standards.',
-      image: op21,
+      image: pressureTesting,
       accent: '#fbbf24'
     },
     {
