@@ -10,6 +10,7 @@ import op21 from '@/assets/op21.jpeg';
 import op22 from '@/assets/op22.jpeg';
 import op23 from '@/assets/op23.jpeg';
 import pressureTesting from '@/assets/pressure-testing.jpg';
+import air from '@/assets/air.png';
 
 export function Services() {
   const services = [
@@ -52,7 +53,7 @@ export function Services() {
       icon: FileSearch,
       title: 'Air Audits',
       description: 'Detailed air system audits to identify inefficiencies, optimize performance, and reduce operational costs.',
-      image: op23,
+      image: air,
       accent: '#0a1628'
     }
   ];
