@@ -9,8 +9,9 @@ import op20 from '@/assets/op20.jpeg';
 import op21 from '@/assets/op21.jpeg';
 import op22 from '@/assets/op22.jpeg';
 import op23 from '@/assets/op23.jpeg';
-import pressureTesting from '@/assets/pressure-testing.jpg';
-import air from '@/assets/air.png';
+import pressureTesting from '@/assets/pressure-testing.png';
+import air from '@/assets/air-aud.png';
+
 
 export function Services() {
   const services = [
@@ -94,7 +95,7 @@ export function Services() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
               >
-                <div className="relative h-72 overflow-hidden bg-gray-100">
+                <div className="relative h-80 overflow-hidden bg-gray-100">
                   <img
                     src={service.image}
                     alt={service.title}
