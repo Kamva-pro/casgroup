@@ -11,7 +11,7 @@ export function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = ['hero', 'about', 'services', 'operations', 'values'];
+      const sections = ['hero', 'about', 'services', 'products', 'operations', 'values'];
       const scrollPosition = window.scrollY + 60;
 
       for (const section of sections) {
@@ -92,6 +92,7 @@ export function Navbar() {
                 { id: 'hero', label: 'Home' },
                 { id: 'about', label: 'About' },
                 { id: 'services', label: 'Services' },
+                { id: 'products', label: 'Products' },
                 { id: 'operations', label: 'Our Work' }
               ].map((item) => (
                 <button
@@ -132,6 +133,7 @@ export function Navbar() {
                 { id: 'hero', label: 'Home' },
                 { id: 'about', label: 'About' },
                 { id: 'services', label: 'Services' },
+                { id: 'products', label: 'Products' },
                 { id: 'operations', label: 'Our Work' },
                 { id: 'contact', label: 'Contact' }
               ].map((item) => (
