@@ -50,51 +50,59 @@ export function Hero() {
             className="space-y-8"
           >
 
+            {/* Subheadline Pill */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-xs md:text-sm font-semibold text-[#fbbf24] uppercase tracking-widest mb-4">
+              Authorised BAOFN Distributor & Equipment Supplier
+            </div>
+
             {/* Main Headline */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-              Industrial Air & <br />
-              <span className="text-[#f97316]">Compressor Specialists</span>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight uppercase tracking-tight">
+              Industrial Compressed Air <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f97316] to-[#fbbf24]">
+                Solutions & Supply
+              </span>
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-              24/7 Technical Support | Engineering-Driven Solutions
+            {/* Commercial Positioning Subheadline */}
+            <p className="text-lg md:text-2xl text-gray-200 font-semibold max-w-4xl mx-auto tracking-wide">
+              BAOFN Distributor &nbsp;|&nbsp; Compressors &nbsp;|&nbsp; Air Dryers &nbsp;|&nbsp; Air Treatment &nbsp;|&nbsp; Installation &nbsp;|&nbsp; Service
             </p>
 
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Serving the mining, industrial, and agricultural sectors with precision, integrity, and expertise since 2014.
+            <p className="text-base md:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Central Air Solutions (CAS) supplies industrial compressed-air equipment and engineers end-to-end solutions for mining, manufacturing, agriculture, and engineering applications.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <button
-                onClick={() => scrollToSection('contact')}
-                className="group cursor-pointer bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:scale-105 transform text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl"
+                onClick={() => scrollToSection('products')}
+                className="group cursor-pointer bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:scale-105 transform text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-2xl"
               >
-                Get Emergency Service
+                <span>View Products</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <a
-                href="tel:053-832-1249"
-                className="group bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 border border-white/20"
+              
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="group cursor-pointer bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border border-white/30"
               >
-                <Phone className="w-5 h-5" />
-                053-832-1249
-              </a>
+                <Settings className="w-5 h-5 text-[#f97316]" />
+                <span>Request a Quote</span>
+              </button>
             </div>
-
-
           </motion.div>
         </div>
+
         {/* Moving Bar Docked to Bottom of Hero */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-r from-[#dc2626] to-[#f97316] text-white py-2.5 overflow-hidden shadow-[0_-4px_20px_rgba(0,0,0,0.2)]">
-          <div className="flex w-max animate-marquee2 whitespace-nowrap text-sm font-bold uppercase tracking-wider items-center">
+        <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-r from-[#dc2626] via-[#ea580c] to-[#f97316] text-white py-3 overflow-hidden shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
+          <div className="flex w-max animate-marquee2 whitespace-nowrap text-xs md:text-sm font-extrabold uppercase tracking-widest items-center">
             {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex gap-12 items-center px-6">
-                <span className="flex items-center gap-2"><Award className="w-4 h-4" /> 12+ Years Experience</span>
-                <span className="flex items-center gap-2"><Clock className="w-4 h-4" /> 24/7 Support Available</span>
-                <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4" /> 100% Client Satisfaction</span>
-                <span className="flex items-center gap-2"><Wrench className="w-4 h-4" /> 500+ Projects Completed</span>
+              <div key={i} className="flex gap-10 items-center px-6">
+                <span className="flex items-center gap-2"><Award className="w-4 h-4 text-[#fbbf24]" /> BAOFN Official Distributor</span>
+                <span className="flex items-center gap-2"><Settings className="w-4 h-4 text-[#fbbf24]" /> Equipment Supply & Integration</span>
+                <span className="flex items-center gap-2"><Wrench className="w-4 h-4 text-[#fbbf24]" /> Installation & Commissioning</span>
+                <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-[#fbbf24]" /> Pressure Testing & Certification</span>
+                <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-[#fbbf24]" /> Lifecycle After-Sales Support</span>
               </div>
             ))}
           </div>

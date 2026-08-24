@@ -11,7 +11,7 @@ export function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = ['hero', 'about', 'services', 'products', 'operations', 'values'];
+      const sections = ['hero', 'baofn-distributor', 'products', 'solutions', 'services', 'industries', 'about', 'operations'];
       const scrollPosition = window.scrollY + 60;
 
       for (const section of sections) {
@@ -47,9 +47,18 @@ export function Navbar() {
     setMobileMenuOpen(false);
   };
 
-  const isDarkSection = currentSection === 'hero' || currentSection === 'operations';
+  const isDarkSection = currentSection === 'hero' || currentSection === 'baofn-distributor' || currentSection === 'industries' || currentSection === 'operations';
   const textColor = scrolled ? 'text-[#0a1628]' : (isDarkSection ? 'text-white' : 'text-[#0a1628]');
   const hoverColor = 'hover:text-[#dc2626]';
+
+  const navItems = [
+    { id: 'hero', label: 'Home' },
+    { id: 'products', label: 'Products' },
+    { id: 'solutions', label: 'Solutions' },
+    { id: 'services', label: 'Service & Support' },
+    { id: 'industries', label: 'Industries' },
+    { id: 'about', label: 'About' }
+  ];
 
   return (
     <>
@@ -67,38 +76,32 @@ export function Navbar() {
       `}</style>
 
       {/* Main Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-40 lg:px-8 lg:pt-4 pointer-events-none">
+      <nav className="fixed top-0 left-0 right-0 z-40 lg:px-6 lg:pt-4 pointer-events-none">
         <div
-          className={`mx-auto transition-all duration-300 pointer-events-auto w-full lg:max-w-6xl ${scrolled
+          className={`mx-auto transition-all duration-300 pointer-events-auto w-full lg:max-w-7xl ${scrolled
             ? 'backdrop-blur-xl bg-[#f1f5f9]/95 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] lg:border border-b border-white/40 py-2 lg:rounded-full'
-            : 'bg-transparent shadow-none backdrop-blur-none border-transparent py-2 lg:py-4 lg:rounded-full'
+            : 'bg-transparent shadow-none backdrop-blur-none border-transparent py-2 lg:py-3 lg:rounded-full'
             }`}
         >
           <div className="flex items-center justify-between h-12 lg:h-14 px-4 lg:px-8">
             <div className="flex-shrink-0 flex items-center">
-              <div className={`transition-all duration-300 ${scrolled ? 'p-1' : 'bg-white/95 px-6 py-1 lg:px-10 lg:py-1.5 rounded-full flex items-center justify-center shadow-md border border-gray-100'}`}>
+              <div className={`transition-all duration-300 ${scrolled ? 'p-1' : 'bg-white/95 px-5 py-1 lg:px-8 lg:py-1.5 rounded-full flex items-center justify-center shadow-md border border-gray-100'}`}>
                 <img
                   src={casLogo}
                   alt="Central Air Solutions"
-                  className={`w-auto cursor-pointer transition-all duration-300 ${scrolled ? 'h-6 lg:h-7' : 'h-8 lg:h-10'}`}
+                  className={`w-auto cursor-pointer transition-all duration-300 ${scrolled ? 'h-6 lg:h-7' : 'h-7 lg:h-9'}`}
                   onClick={() => scrollToSection('hero')}
                 />
               </div>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center justify-center flex-1 gap-10">
-              {[
-                { id: 'hero', label: 'Home' },
-                { id: 'about', label: 'About' },
-                { id: 'services', label: 'Services' },
-                { id: 'products', label: 'Products' },
-                { id: 'operations', label: 'Our Work' }
-              ].map((item) => (
+            <div className="hidden lg:flex items-center justify-center flex-1 gap-6 lg:gap-8">
+              {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`${textColor} ${hoverColor} cursor-pointer transition-colors duration-200 text-sm font-bold uppercase tracking-wider whitespace-nowrap`}
+                  className={`${textColor} ${hoverColor} cursor-pointer transition-colors duration-200 text-xs lg:text-sm font-bold uppercase tracking-wider whitespace-nowrap`}
                 >
                   {item.label}
                 </button>
@@ -106,12 +109,12 @@ export function Navbar() {
             </div>
 
             {/* CTA and Mobile Menu */}
-            <div className="flex items-center justify-end w-32 lg:w-40 gap-4">
+            <div className="flex items-center justify-end w-32 lg:w-44 gap-4">
               <button
                 onClick={() => scrollToSection('contact')}
-                className="hidden lg:block cursor-pointer bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:scale-105 transform text-white px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
+                className="hidden lg:block cursor-pointer bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:scale-105 transform text-white px-5 py-2 rounded-full text-xs lg:text-sm font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
               >
-                Contact
+                Request Quote
               </button>
 
               {/* Mobile Menu Button */}
@@ -130,17 +133,13 @@ export function Navbar() {
           <div className="lg:hidden mt-4 mx-auto max-w-7xl bg-[#f1f5f9]/95 backdrop-blur-md rounded-2xl border border-white/40 shadow-xl pointer-events-auto overflow-hidden">
             <div className="px-6 py-6 space-y-3">
               {[
-                { id: 'hero', label: 'Home' },
-                { id: 'about', label: 'About' },
-                { id: 'services', label: 'Services' },
-                { id: 'products', label: 'Products' },
-                { id: 'operations', label: 'Our Work' },
-                { id: 'contact', label: 'Contact' }
+                ...navItems,
+                { id: 'contact', label: 'Request Quote / Contact' }
               ].map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left text-[#0a1628] hover:text-[#dc2626] transition-colors py-3 px-2 font-medium rounded-md hover:bg-white/50"
+                  className="block w-full text-left text-[#0a1628] hover:text-[#dc2626] transition-colors py-3 px-2 font-bold uppercase text-xs tracking-wider rounded-md hover:bg-white/50"
                 >
                   {item.label}
                 </button>

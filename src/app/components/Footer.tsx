@@ -16,8 +16,7 @@ export function Footer() {
               />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Industrial Air & Compressor Specialists serving the mining, industrial, and agricultural
-              sectors with 24/7 technical support and engineering-driven solutions.
+              Industrial compressed-air solutions provider & BAOFN distributor supplying equipment, system engineering, installation, commissioning, and after-sales support to the mining, manufacturing, and industrial sectors.
             </p>
           </div>
 
@@ -58,7 +57,6 @@ export function Footer() {
                     className="text-gray-300 text-sm hover:text-[#dc2626] transition-colors"
                   >
                     admin@casgroup.co.za
-
                   </a>
                   <br></br>
                   <a
@@ -66,30 +64,30 @@ export function Footer() {
                     className="text-gray-300 text-sm hover:text-[#dc2626] transition-colors"
                   >
                     reception@casgroup.co.za
-
                   </a>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Services Quick Links */}
+          {/* Navigation Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-[#fbbf24]">Our Services</h3>
+            <h3 className="text-xl font-bold mb-6 text-[#fbbf24]">Equipment & Solutions</h3>
             <ul className="space-y-3">
               {[
-                '24/7 Emergency Service',
-                'Maintenance Plans',
-                'Pressure Testing',
-                'Workshop Overhauls',
-                'Air Audits',
-                'Field Services',
-              ].map((service, index) => (
+                { name: 'BAOFN Compressor Range', target: 'products' },
+                { name: 'Rotary Screw & VSD Units', target: 'products' },
+                { name: 'Air Dryers & Treatment', target: 'products' },
+                { name: 'Air System Design & Supply', target: 'solutions' },
+                { name: 'Installation & Commissioning', target: 'solutions' },
+                { name: 'Preventative Maintenance', target: 'services' },
+                { name: 'Pressure Testing & Certification', target: 'services' },
+              ].map((link, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-[#dc2626] rounded-full" />
                   <button
                     onClick={() => {
-                      const element = document.getElementById('services');
+                      const element = document.getElementById(link.target);
                       if (element) {
                         const offset = 80;
                         const elementPosition = element.getBoundingClientRect().top;
@@ -99,7 +97,7 @@ export function Footer() {
                     }}
                     className="text-gray-300 text-sm hover:text-[#dc2626] transition-colors cursor-pointer text-left"
                   >
-                    {service}
+                    {link.name}
                   </button>
                 </li>
               ))}

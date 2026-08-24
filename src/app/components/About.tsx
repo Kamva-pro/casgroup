@@ -1,33 +1,33 @@
-import { Award, Users, Target, Shield } from 'lucide-react';
+import { Award, Users, ShieldCheck, Cpu } from 'lucide-react';
 import teamPhoto from '@/assets/operation-17.jpg';
 import { motion } from 'framer-motion';
 
 export function About() {
   const highlights = [
     {
+      icon: Cpu,
+      title: 'BAOFN Distributor',
+      description: 'Official regional distributor of premier BAOFN air compressors & equipment'
+    },
+    {
       icon: Award,
       title: 'Established 2014',
-      description: 'Over a decade of excellence in industrial air solutions'
+      description: 'Over a decade of industrial compressed air supply & technical capability'
     },
     {
       icon: Users,
       title: '100% Black-Owned',
-      description: 'Proudly contributing to economic transformation'
+      description: 'Proudly contributing to industrial transformation and technical growth'
     },
     {
-      icon: Target,
-      title: 'Specialized Services',
-      description: 'Expert support for mining and agricultural sectors'
-    },
-    {
-      icon: Shield,
-      title: 'Pressure Testing',
-      description: 'Ensuring equipment safety and full industry compliance'
+      icon: ShieldCheck,
+      title: 'Lifecycle Engineering',
+      description: 'Turnkey installation, pressure vessel testing & technical support'
     }
   ];
 
   return (
-    <section id="about" className="py-24 bg-gradient-to-b from-white to-gray-50">
+    <section id="about" className="py-24 bg-gradient-to-b from-white to-gray-50 border-t border-gray-200">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left - Image */}
@@ -57,15 +57,14 @@ export function About() {
             className="space-y-8"
           >
             <div>
-              <div className="inline-block px-4 py-2 bg-[#dc2626]/10 text-[#dc2626] rounded-full text-sm font-medium mb-4">
+              <div className="inline-block px-4 py-2 bg-[#dc2626]/10 text-[#dc2626] rounded-full text-sm font-semibold mb-4 border border-[#dc2626]/20">
                 About Central Air Solutions
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6">
-                Engineering-Driven Excellence Since 2014
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6 tracking-tight">
+                Industrial Compressed Air Solutions & BAOFN Distributor
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Central Air Solutions (CAS) PTY LTD is a proudly 100% black-owned company specializing industrial, and
-                agricultural sectors with unwavering commitment to quality, safety, and innovation.
+                Central Air Solutions (CAS) PTY LTD is an industrial compressed-air solutions company and BAOFN distributor established in 2014. Equipment supply is at the centre of our business, supported by complete technical services including system design, installation, commissioning, air audits, pressure testing, and after-sales support.
               </p>
             </div>
 
@@ -92,13 +91,12 @@ export function About() {
             </div>
 
             <div className="pt-4">
-              <div className="bg-[#0a1628] cursor-pointer text-white p-6 rounded-xl relative overflow-hidden group">
+              <div className="bg-[#0a1628] cursor-pointer text-white p-6 rounded-xl relative overflow-hidden group shadow-lg">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#dc2626]/20 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700"></div>
-                <p className="text-lg font-medium relative z-10">
-                  "Delivering reliability and excellence to our clients through cutting-edge technology
-                  and unmatched technical expertise."
+                <p className="text-base md:text-lg font-medium relative z-10">
+                  "Positioned to supply premium compressed air equipment and engineer turnkey solutions for mining, manufacturing, and industrial operations across the region."
                 </p>
-                <p className="text-[#fbbf24] mt-2 font-medium relative z-10">— CAS Leadership Team</p>
+                <p className="text-[#fbbf24] mt-2 font-bold relative z-10">— CAS Management</p>
               </div>
             </div>
           </motion.div>

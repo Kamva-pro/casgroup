@@ -1,8 +1,11 @@
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Services } from './components/Services';
+import { BaofnBanner } from './components/BaofnBanner';
 import { Products } from './components/Products';
+import { Solutions } from './components/Solutions';
+import { Services } from './components/Services';
+import { Industries } from './components/Industries';
+import { About } from './components/About';
 import { Operations } from './components/Operations';
 import { CoreValues } from './components/CoreValues';
 import { Map } from './components/Map';
@@ -14,14 +17,17 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Services />
+        <BaofnBanner />
         <Products />
+        <Solutions />
+        <Services />
+        <Industries />
+        <About />
         <Operations />
         <CoreValues />
         <Map />
-        <Footer />
       </main>
+      <Footer />
     </div>
   );
 }

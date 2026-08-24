@@ -16,51 +16,51 @@ import air from '@/assets/air-aud.png';
 export function Services() {
   const services = [
     {
-      icon: Clock,
-      title: '24/7 Emergency Service',
-      description: 'Round-the-clock emergency response for critical industrial operations. Our team is always ready to minimize downtime.',
-      image: op7,
-      accent: '#f97316'
-    },
-    {
       icon: Wrench,
-      title: 'Maintenance Plans',
-      description: 'Customized preventive maintenance programs designed to maximize equipment lifespan and operational efficiency.',
+      title: 'Preventative Maintenance Contracts',
+      description: 'Scheduled maintenance agreements engineered to protect your BAOFN and industrial compressor investments, ensuring maximum uptime and efficiency.',
       image: op2,
       accent: '#dc2626'
     },
     {
-      icon: ClipboardCheck,
-      title: 'Site Inspections',
-      description: 'Thorough on-site evaluations of your compressor systems to ensure optimal placement, safety, and operational readiness.',
-      image: op20,
-      accent: '#3b82f6'
-    },
-    {
-      icon: Gauge,
-      title: 'Pressure Testing',
-      description: 'Comprehensive pressure testing and certification services ensuring compliance with industry safety standards.',
-      image: pressureTesting,
-      accent: '#fbbf24'
-    },
-    {
       icon: Settings,
-      title: 'Workshop Overhauls',
-      description: 'Complete compressor overhauls and rebuilds in our fully-equipped workshop facility by certified technicians.',
+      title: 'Compressor Servicing & Overhauls',
+      description: 'Complete element overhauls, airend rebuilds, and preventive servicing conducted in our certified workshop and field support units.',
       image: op22,
       accent: '#64748b'
     },
     {
+      icon: Clock,
+      title: 'Breakdown Repairs & Field Response',
+      description: 'Rapid field technical response for industrial breakdowns to diagnose issues, restore air pressure, and resume plant production quickly.',
+      image: op7,
+      accent: '#f97316'
+    },
+    {
+      icon: Gauge,
+      title: 'Pressure Testing & Safety Inspection',
+      description: 'Certified pressure vessel testing, safety valve recalibration, and legal compliance inspections for all compressed air receivers.',
+      image: pressureTesting,
+      accent: '#fbbf24'
+    },
+    {
       icon: FileSearch,
-      title: 'Air Audits',
-      description: 'Detailed air system audits to identify inefficiencies, optimize performance, and reduce operational costs.',
+      title: 'Compressed Air System Audits',
+      description: 'Comprehensive flow, pressure drop, and air quality audits to identify energy leaks and optimize compressor system operation.',
       image: air,
       accent: '#0a1628'
+    },
+    {
+      icon: ClipboardCheck,
+      title: 'Genuine Parts & Accessories',
+      description: 'Direct access to OEM spare parts, air filters, oil separators, line valves, and lubricants to maintain warranty protection.',
+      image: op20,
+      accent: '#3b82f6'
     }
   ];
 
   return (
-    <section id="services" className="py-24 bg-white">
+    <section id="services" className="py-24 bg-slate-50 border-t border-gray-200">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         {/* Header */}
         <motion.div
@@ -70,15 +70,14 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-block px-4 py-2 bg-[#dc2626]/10 text-[#dc2626] rounded-full text-sm font-medium mb-4">
-            Our Services
+          <div className="inline-block px-4 py-2 bg-[#dc2626]/10 text-[#dc2626] rounded-full text-sm font-semibold mb-4 border border-[#dc2626]/20 uppercase tracking-wide">
+            Service & After-Sales Support
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6">
-            Comprehensive Industrial Solutions
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6 tracking-tight uppercase">
+            Lifecycle Technical Support & Maintenance
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            From emergency repairs to preventive maintenance, we provide end-to-end services
-            for all your industrial air and compressor needs.
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Every equipment installation is backed by CAS technical capability. We support your compressed-air investment through preventative maintenance, overhauls, breakdown repairs, and genuine parts supply.
           </p>
         </motion.div>
 
