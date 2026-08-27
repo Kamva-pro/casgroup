@@ -1,28 +1,31 @@
+import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { BaofnBanner } from './components/BaofnBanner';
-import { Products } from './components/Products';
-import { Solutions } from './components/Solutions';
+import { Products, ProductCategory } from './components/Products';
 import { Services } from './components/Services';
 import { Industries } from './components/Industries';
-import { About } from './components/About';
 import { Operations } from './components/Operations';
 import { CoreValues } from './components/CoreValues';
 import { Map } from './components/Map';
 import { Footer } from './components/Footer';
 
 export default function App() {
+  const [activeCategory, setActiveCategory] = useState<ProductCategory>('Rotary Screw Compressors');
+
+  const handleCategorySelect = (category: ProductCategory) => {
+    setActiveCategory(category);
+  };
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-white">
-      <Navbar />
+      <Navbar onSelectCategory={handleCategorySelect} />
       <main>
         <Hero />
         <BaofnBanner />
-        <Products />
-        <Solutions />
+        <Products activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
         <Services />
         <Industries />
-        <About />
         <Operations />
         <CoreValues />
         <Map />

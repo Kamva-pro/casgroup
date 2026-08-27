@@ -1,29 +1,28 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, CheckCircle2, Factory, Phone } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import casLogo from '@/assets/logo-long.png';
+import { ProductCategory } from './Products';
 
-export function Navbar() {
+interface NavbarProps {
+  onSelectCategory?: (category: ProductCategory) => void;
+}
+
+export function Navbar({ onSelectCategory }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [currentSection, setCurrentSection] = useState('hero');
+  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+
+  const productCategories: ProductCategory[] = [
+    'Rotary Screw Compressors',
+    'Variable Speed Compressors',
+    'Portable & Drill Rig Compressors',
+    'Air Dryers & Treatment',
+    'Air Receivers'
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-
-      const sections = ['hero', 'baofn-distributor', 'products', 'solutions', 'services', 'industries', 'about', 'operations'];
-      const scrollPosition = window.scrollY + 60;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setCurrentSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -41,113 +40,165 @@ export function Navbar() {
         top: offsetPosition,
         behavior: 'smooth'
       });
-    } else {
-      window.location.href = import.meta.env.BASE_URL;
     }
     setMobileMenuOpen(false);
   };
 
-  const isDarkSection = currentSection === 'hero' || currentSection === 'baofn-distributor' || currentSection === 'industries' || currentSection === 'operations';
-  const textColor = scrolled ? 'text-[#0a1628]' : (isDarkSection ? 'text-white' : 'text-[#0a1628]');
-  const hoverColor = 'hover:text-[#dc2626]';
+  const handleCategorySelect = (cat: ProductCategory) => {
+    onSelectCategory?.(cat);
+    scrollToSection('products');
+    setProductsDropdownOpen(false);
+    setMobileMenuOpen(false);
+  };
 
   const navItems = [
     { id: 'hero', label: 'Home' },
-    { id: 'products', label: 'Products' },
-    { id: 'solutions', label: 'Solutions' },
+    { id: 'baofn-distributor', label: 'About' },
+    { id: 'products', label: 'Products', hasDropdown: true },
     { id: 'services', label: 'Service & Support' },
-    { id: 'industries', label: 'Industries' },
-    { id: 'about', label: 'About' }
+    { id: 'industries', label: 'Industries' }
   ];
 
   return (
-    <>
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-        .animate-marquee {
-          animation: marquee 25s linear infinite;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
-      {/* Main Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-40 lg:px-6 lg:pt-4 pointer-events-none">
-        <div
-          className={`mx-auto transition-all duration-300 pointer-events-auto w-full lg:max-w-7xl ${scrolled
-            ? 'backdrop-blur-xl bg-[#f1f5f9]/95 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] lg:border border-b border-white/40 py-2 lg:rounded-full'
-            : 'bg-transparent shadow-none backdrop-blur-none border-transparent py-2 lg:py-3 lg:rounded-full'
-            }`}
-        >
-          <div className="flex items-center justify-between h-12 lg:h-14 px-4 lg:px-8">
-            <div className="flex-shrink-0 flex items-center">
-              <div className={`transition-all duration-300 ${scrolled ? 'p-1' : 'bg-white/95 px-5 py-1 lg:px-8 lg:py-1.5 rounded-full flex items-center justify-center shadow-md border border-gray-100'}`}>
-                <img
-                  src={casLogo}
-                  alt="Central Air Solutions"
-                  className={`w-auto cursor-pointer transition-all duration-300 ${scrolled ? 'h-6 lg:h-7' : 'h-7 lg:h-9'}`}
-                  onClick={() => scrollToSection('hero')}
-                />
-              </div>
+    <nav className="fixed top-0 left-0 right-0 z-40 px-4 lg:px-8 pt-4 pointer-events-none">
+      <div
+        className={`mx-auto transition-all duration-300 pointer-events-auto w-full lg:max-w-7xl rounded-full ${
+          scrolled
+            ? 'bg-white/95 backdrop-blur-xl shadow-xl py-2.5 px-6'
+            : 'bg-[#0a1628]/80 backdrop-blur-lg shadow-lg py-3 px-6'
+        }`}
+      >
+        <div className="flex items-center justify-between h-12 lg:h-14">
+          {/* Logo Container: White background box in non-sticky state, transparent in sticky state */}
+          <div className="flex-shrink-0 flex items-center">
+            <div
+              className={`cursor-pointer transition-colors ${
+                scrolled
+                  ? 'bg-transparent'
+                  : 'bg-white px-3.5 py-1 rounded-md'
+              }`}
+              onClick={() => scrollToSection('hero')}
+            >
+              <img
+                src={casLogo}
+                alt="Central Air Solutions"
+                className="h-7 lg:h-8 w-auto object-contain"
+              />
             </div>
+          </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center justify-center flex-1 gap-6 lg:gap-8">
-              {navItems.map((item) => (
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center justify-center flex-1 gap-6 lg:gap-8">
+            {navItems.map((item) => (
+              item.hasDropdown ? (
+                <div key={item.id} className="relative" onMouseLeave={() => setProductsDropdownOpen(false)}>
+                  <button
+                    onMouseEnter={() => setProductsDropdownOpen(true)}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`flex items-center gap-1.5 text-xs lg:text-sm font-bold uppercase tracking-wider cursor-pointer transition-colors ${
+                      scrolled
+                        ? 'text-[#0a1628] hover:text-[#dc2626]'
+                        : 'text-white hover:text-[#f97316]'
+                    }`}
+                  >
+                    {item.label}
+                    <ChevronDown className={`w-3.5 h-3.5 ${scrolled ? 'text-[#0a1628]' : 'text-white'}`} />
+                  </button>
+
+                  {productsDropdownOpen && (
+                    <div
+                      onMouseEnter={() => setProductsDropdownOpen(true)}
+                      className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl py-2 text-[#0a1628] z-50 shadow-2xl overflow-hidden"
+                    >
+                      {productCategories.map((cat) => (
+                        <button
+                          key={cat}
+                          onClick={() => handleCategorySelect(cat)}
+                          className="block w-full text-left px-5 py-2.5 text-xs font-bold hover:bg-[#dc2626] hover:text-white transition-colors"
+                        >
+                          {cat}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`${textColor} ${hoverColor} cursor-pointer transition-colors duration-200 text-xs lg:text-sm font-bold uppercase tracking-wider whitespace-nowrap`}
+                  className={`text-xs lg:text-sm font-bold uppercase tracking-wider cursor-pointer transition-colors ${
+                    scrolled
+                      ? 'text-[#0a1628] hover:text-[#dc2626]'
+                      : 'text-white hover:text-[#f97316]'
+                  }`}
                 >
                   {item.label}
                 </button>
-              ))}
-            </div>
+              )
+            ))}
+          </div>
 
-            {/* CTA and Mobile Menu */}
-            <div className="flex items-center justify-end w-32 lg:w-44 gap-4">
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="hidden lg:block cursor-pointer bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:scale-105 transform text-white px-5 py-2 rounded-full text-xs lg:text-sm font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
-              >
-                Request Quote
-              </button>
+          {/* CTA and Mobile Menu Toggle */}
+          <div className="flex items-center justify-end gap-4">
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="hidden lg:block cursor-pointer bg-[#dc2626] hover:bg-[#b91c1c] text-white px-6 py-2.5 rounded-full text-xs lg:text-sm font-bold uppercase tracking-wider transition-colors whitespace-nowrap shadow-md"
+            >
+              Request Quote
+            </button>
 
-              {/* Mobile Menu Button */}
-              <button
-                className={`lg:hidden ${textColor}`}
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-            </div>
+            <button
+              className={`lg:hidden ${scrolled ? 'text-[#0a1628]' : 'text-white'}`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 mx-auto max-w-7xl bg-[#f1f5f9]/95 backdrop-blur-md rounded-2xl border border-white/40 shadow-xl pointer-events-auto overflow-hidden">
-            <div className="px-6 py-6 space-y-3">
-              {[
-                ...navItems,
-                { id: 'contact', label: 'Request Quote / Contact' }
-              ].map((item) => (
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className={`lg:hidden mt-3 mx-2 rounded-3xl pointer-events-auto overflow-hidden shadow-2xl ${
+          scrolled ? 'bg-white text-[#0a1628]' : 'bg-[#0a1628]/95 backdrop-blur-xl text-white'
+        }`}>
+          <div className="px-6 py-5 space-y-3">
+            {navItems.map((item) => (
+              <div key={item.id}>
                 <button
-                  key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left text-[#0a1628] hover:text-[#dc2626] transition-colors py-3 px-2 font-bold uppercase text-xs tracking-wider rounded-md hover:bg-white/50"
+                  className={`block w-full text-left font-bold uppercase text-xs tracking-wider py-1.5 ${
+                    scrolled ? 'text-[#0a1628] hover:text-[#dc2626]' : 'text-white hover:text-[#f97316]'
+                  }`}
                 >
                   {item.label}
                 </button>
-              ))}
-            </div>
+                {item.hasDropdown && (
+                  <div className="pl-4 space-y-2 py-1.5 border-l border-gray-300/40 my-1">
+                    {productCategories.map((cat) => (
+                      <button
+                        key={cat}
+                        onClick={() => handleCategorySelect(cat)}
+                        className={`block w-full text-left text-xs py-1 ${
+                          scrolled ? 'text-gray-700 hover:text-[#dc2626]' : 'text-gray-300 hover:text-white'
+                        }`}
+                      >
+                        • {cat}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="w-full text-center bg-[#dc2626] hover:bg-[#b91c1c] text-white py-3 rounded-full font-bold uppercase text-xs tracking-wider mt-3 shadow-md"
+            >
+              Request Quote
+            </button>
           </div>
-        )}
-      </nav>
-    </>
+        </div>
+      )}
+    </nav>
   );
 }

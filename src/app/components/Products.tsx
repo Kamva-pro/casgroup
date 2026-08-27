@@ -18,7 +18,7 @@ import rs75ff from '@/assets/Oil Injected Compressors/Full Feature/RS7.5 VSD FF/
 import sm3hp from '@/assets/Oil Injected Compressors/SM3HP/SM3HP.png';
 import rs22vsd from '@/assets/Oil Injected Compressors/Single Stage VSD/RS22VSD/RS22VSD.png';
 
-type ProductCategory = 'All' | 'Rotary Screw Compressors' | 'Variable Speed Compressors' | 'Portable & Drill Rig Compressors' | 'Air Dryers & Treatment' | 'Air Receivers';
+export type ProductCategory = 'All' | 'Rotary Screw Compressors' | 'Variable Speed Compressors' | 'Portable & Drill Rig Compressors' | 'Air Dryers & Treatment' | 'Air Receivers';
 
 interface Product {
   id: string;
@@ -33,8 +33,21 @@ interface Product {
   isPlaceholder?: boolean;
 }
 
-export function Products() {
-  const [activeTab, setActiveTab] = useState<ProductCategory>('All');
+interface ProductsProps {
+  activeCategory?: ProductCategory;
+  onCategoryChange?: (category: ProductCategory) => void;
+}
+
+export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
+  const [internalTab, setInternalTab] = useState<ProductCategory>('All');
+  const activeTab = activeCategory !== undefined ? activeCategory : internalTab;
+
+  const setActiveTab = (tab: ProductCategory) => {
+    setInternalTab(tab);
+    if (onCategoryChange) {
+      onCategoryChange(tab);
+    }
+  };
 
   const products: Product[] = [
     // BAOFN Rotary Screw & VSD
@@ -205,9 +218,6 @@ export function Products() {
 
   return (
     <section id="products" className="py-24 bg-slate-50 relative overflow-hidden">
-      {/* Decorative background grid */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#0a1628_1px,transparent_1px)] [background-size:24px_24px]" />
-
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
         {/* Header */}
         <motion.div
@@ -217,15 +227,11 @@ export function Products() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#dc2626]/10 text-[#dc2626] rounded-full text-sm font-semibold mb-4 border border-[#dc2626]/20">
-            <Wind className="w-4 h-4" />
-            BAOFN Equipment Range
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6 tracking-tight uppercase">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6 tracking-tight uppercase font-['Plus_Jakarta_Sans']">
             BAOFN Compressors & Compressed Air Equipment
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Industrial equipment supply is at the centre of our business. Explore our range of BAOFN rotary screw compressors, Variable Speed Drive (VSD) systems, high-pressure drill compressors, air dryers, and certified air receivers.
+            Industrial equipment supply is at the center of our business. Explore our range of BAOFN rotary screw compressors, Variable Speed Drive (VSD) systems, high-pressure drill compressors, air dryers, and certified air receivers.
           </p>
         </motion.div>
 
@@ -235,9 +241,9 @@ export function Products() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer shadow-sm ${
+              className={`px-5 py-2.5 rounded-md text-sm font-bold transition-colors cursor-pointer ${
                 activeTab === tab
-                  ? 'bg-[#0a1628] text-white shadow-md scale-105'
+                  ? 'bg-[#0a1628] text-white'
                   : 'bg-white text-gray-700 hover:bg-gray-100 hover:text-[#dc2626] border border-gray-200'
               }`}
             >
@@ -257,24 +263,24 @@ export function Products() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
-                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-200/80 flex flex-col justify-between"
+                className="group bg-white rounded-md overflow-hidden border border-gray-200 flex flex-col justify-between"
               >
                 <div>
                   {/* Image Container */}
-                  <div className="relative h-72 bg-gradient-to-br from-slate-900 to-[#0a1628] p-6 flex items-center justify-center overflow-hidden">
+                  <div className="relative h-72 bg-[#0a1628] p-6 flex items-center justify-center overflow-hidden">
                     {product.image ? (
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500 filter drop-shadow-md"
+                        className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
                       <div className="text-center p-6 space-y-3">
-                        <div className="w-16 h-16 mx-auto rounded-full bg-white/10 flex items-center justify-center text-[#fbbf24]">
+                        <div className="w-16 h-16 mx-auto rounded-md bg-white/10 flex items-center justify-center text-[#fbbf24]">
                           <Wind className="w-8 h-8" />
                         </div>
                         <p className="text-white font-bold text-base">{product.title}</p>
-                        <span className="inline-block px-3 py-1 bg-white/10 text-xs font-mono text-gray-300 rounded-full border border-white/20">
+                        <span className="inline-block px-3 py-1 bg-white/10 text-xs font-mono text-gray-300 rounded-md border border-white/20">
                           Approved Specs on Request
                         </span>
                       </div>
@@ -282,7 +288,7 @@ export function Products() {
                     
                     {/* Badge */}
                     <span
-                      className="absolute top-4 left-4 px-3 py-1 text-xs font-bold text-white rounded-md shadow"
+                      className="absolute top-4 left-4 px-3 py-1 text-xs font-bold text-white rounded-md"
                       style={{ backgroundColor: product.badgeColor }}
                     >
                       {product.badge}
@@ -317,7 +323,7 @@ export function Products() {
                 <div className="p-6 pt-0 border-t border-gray-100 bg-gray-50/50 mt-auto">
                   <button
                     onClick={scrollToContact}
-                    className="w-full mt-4 flex items-center justify-center gap-2 bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:from-[#b91c1c] hover:to-[#ea580c] text-white py-3 px-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-300 shadow-md hover:shadow-lg transform active:scale-98 cursor-pointer"
+                    className="w-full mt-4 flex items-center justify-center gap-2 bg-[#dc2626] hover:bg-[#b91c1c] text-white py-3 px-4 rounded-md font-bold text-sm tracking-wide transition-colors cursor-pointer"
                   >
                     <PhoneCall className="w-4 h-4" />
                     <span>Contact for Price</span>
@@ -335,10 +341,10 @@ export function Products() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-16 bg-[#0a1628] rounded-2xl p-8 md:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-white/10"
+          className="mt-16 bg-[#0a1628] rounded-md p-8 md:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10"
         >
           <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-2xl font-bold text-white flex items-center justify-center md:justify-start gap-2">
+            <h3 className="text-2xl font-bold text-white flex items-center justify-center md:justify-start gap-2 font-['Plus_Jakarta_Sans'] uppercase">
               <Zap className="w-6 h-6 text-[#fbbf24]" />
               Need Custom Compressor Specifications or Sizing?
             </h3>
@@ -348,7 +354,7 @@ export function Products() {
           </div>
           <button
             onClick={scrollToContact}
-            className="bg-white text-[#0a1628] hover:bg-[#fbbf24] hover:text-[#0a1628] font-bold px-7 py-3.5 rounded-xl transition-all duration-300 shadow-md whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
+            className="bg-white text-[#0a1628] hover:bg-[#fbbf24] hover:text-[#0a1628] font-bold px-7 py-3.5 rounded-md transition-colors whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
           >
             Get In Touch
           </button>

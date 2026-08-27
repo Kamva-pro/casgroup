@@ -1,28 +1,28 @@
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 import casLogo from '@/assets/logo.png';
 
 export function Footer() {
   return (
-    <footer id="contact" className="bg-[#0a1628] text-white pt-20 pb-8">
+    <footer id="contact" className="bg-[#0a1628] text-white pt-20 pb-8 border-t border-white/10">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           {/* Company Info */}
           <div>
-            <div className="inline-block bg-white/95 p-2 rounded-xl shadow-md border border-gray-100 mb-6">
+            <div className="inline-block bg-white/95 p-2 rounded-md border border-gray-100 mb-6">
               <img
                 src={casLogo}
                 alt="Central Air Solutions"
                 className="h-10 md:h-12 w-auto"
               />
             </div>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              Industrial compressed-air solutions provider & BAOFN distributor supplying equipment, system engineering, installation, commissioning, and after-sales support to the mining, manufacturing, and industrial sectors.
+            <p className="text-gray-300 mb-6 leading-relaxed text-sm">
+              Established in 2014, Central Air Solutions (CAS) is an authorized BAOFN distributor supplying, installing, and servicing industrial air compressor systems across South Africa's industrial, agricultural, and mining sectors.
             </p>
           </div>
 
           {/* Contact Information */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-[#fbbf24]">Contact Us</h3>
+            <h3 className="text-xl font-bold mb-6 text-[#fbbf24] font-['Plus_Jakarta_Sans'] uppercase">Contact Us</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#dc2626] mt-1 flex-shrink-0" />
@@ -58,7 +58,7 @@ export function Footer() {
                   >
                     admin@casgroup.co.za
                   </a>
-                  <br></br>
+                  <br />
                   <a
                     href="mailto:reception@casgroup.co.za"
                     className="text-gray-300 text-sm hover:text-[#dc2626] transition-colors"
@@ -72,19 +72,19 @@ export function Footer() {
 
           {/* Navigation Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-[#fbbf24]">Equipment & Solutions</h3>
+            <h3 className="text-xl font-bold mb-6 text-[#fbbf24] font-['Plus_Jakarta_Sans'] uppercase">Equipment & Services</h3>
             <ul className="space-y-3">
               {[
                 { name: 'BAOFN Compressor Range', target: 'products' },
                 { name: 'Rotary Screw & VSD Units', target: 'products' },
                 { name: 'Air Dryers & Treatment', target: 'products' },
-                { name: 'Air System Design & Supply', target: 'solutions' },
-                { name: 'Installation & Commissioning', target: 'solutions' },
+                { name: 'Air System Design & Supply', target: 'products' },
+                { name: 'Installation & Commissioning', target: 'services' },
                 { name: 'Preventative Maintenance', target: 'services' },
                 { name: 'Pressure Testing & Certification', target: 'services' },
               ].map((link, index) => (
                 <li key={index} className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-[#dc2626] rounded-full" />
+                  <div className="w-1.5 h-1.5 bg-[#dc2626]" />
                   <button
                     onClick={() => {
                       const element = document.getElementById(link.target);
@@ -104,8 +104,6 @@ export function Footer() {
             </ul>
           </div>
         </div>
-
-
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10">

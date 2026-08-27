@@ -52,11 +52,7 @@ export function Industries() {
   ];
 
   return (
-    <section id="industries" className="py-24 bg-gradient-to-b from-[#0a1628] via-[#0f2038] to-[#0a1628] text-white relative overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/3 left-10 w-96 h-96 bg-[#dc2626]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#f97316]/10 rounded-full blur-[140px] pointer-events-none" />
-
+    <section id="industries" className="py-24 bg-[#0a1628] text-white relative overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -66,14 +62,11 @@ export function Industries() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-full text-sm font-semibold mb-4 text-[#fbbf24]">
-            Industrial Sectors
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight uppercase font-['Plus_Jakarta_Sans']">
             Industries We Supply & Serve
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Central Air Solutions provides specialized compressed air equipment, engineering, and maintenance tailored to the rigorous demands of key industrial sectors.
+            Central Air Solutions provides air compressor equipment, system engineering, and servicing tailored to the operational demands of key industrial sectors.
           </p>
         </motion.div>
 
@@ -88,10 +81,10 @@ export function Industries() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white/5 border border-white/10 hover:border-[#f97316]/50 rounded-2xl p-7 transition-all duration-300 hover:bg-white/[0.08] flex flex-col justify-between group"
+                className="bg-white/5 border border-white/10 hover:border-[#f97316]/50 rounded-md p-7 transition-colors flex flex-col justify-between group"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#dc2626] to-[#f97316] text-white flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-md bg-[#dc2626] text-white flex items-center justify-center mb-6">
                     <Icon className="w-6 h-6" />
                   </div>
 
@@ -123,20 +116,20 @@ export function Industries() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-gradient-to-r from-[#dc2626] to-[#f97316] rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl"
+          className="bg-[#102036] border border-white/10 rounded-md p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-2xl md:text-3xl font-extrabold text-white">
+            <h3 className="text-2xl md:text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans'] uppercase">
               Procurement & Engineering Inquiries
             </h3>
-            <p className="text-white/90 text-sm md:text-base max-w-2xl">
+            <p className="text-gray-300 text-sm md:text-base max-w-2xl">
               Are you an industrial plant manager, procurement officer, or mining engineer looking for equipment specifications and commercial quotes?
             </p>
           </div>
 
           <button
             onClick={scrollToContact}
-            className="cursor-pointer bg-[#0a1628] hover:bg-black text-white px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-xl whitespace-nowrap flex items-center gap-2"
+            className="cursor-pointer bg-[#dc2626] hover:bg-[#b91c1c] text-white px-8 py-4 rounded-md font-bold text-sm uppercase tracking-wider transition-colors whitespace-nowrap flex items-center gap-2"
           >
             <span>Request Commercial Quote</span>
             <ArrowRight className="w-4 h-4" />

@@ -70,14 +70,11 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-block px-4 py-2 bg-[#dc2626]/10 text-[#dc2626] rounded-full text-sm font-semibold mb-4 border border-[#dc2626]/20 uppercase tracking-wide">
-            Service & After-Sales Support
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6 tracking-tight uppercase">
-            Lifecycle Technical Support & Maintenance
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6 tracking-tight uppercase font-['Plus_Jakarta_Sans']">
+            Technical Support & Compressor Maintenance
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Every equipment installation is backed by CAS technical capability. We support your compressed-air investment through preventative maintenance, overhauls, breakdown repairs, and genuine parts supply.
+            Every equipment installation is backed by CAS technical capability. We support your compressed-air investment through preventative maintenance, overhauls, breakdown repairs, pressure testing, and genuine parts supply.
           </p>
         </motion.div>
 
@@ -92,17 +89,17 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
+                className="group cursor-pointer bg-white rounded-md overflow-hidden border border-gray-200"
               >
                 <div className="relative h-80 overflow-hidden bg-gray-100">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover object-[50%_30%] group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover object-[50%_30%] group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/80 to-transparent" />
+                  <div className="absolute inset-0 bg-[#0a1628]/60" />
                   <div
-                    className="absolute top-4 right-4 w-12 h-12 rounded-lg flex items-center justify-center shadow-md"
+                    className="absolute top-4 right-4 w-12 h-12 rounded-md flex items-center justify-center"
                     style={{ backgroundColor: service.accent }}
                   >
                     <Icon className="w-6 h-6 text-white" />
@@ -114,7 +111,7 @@ export function Services() {
                   <h3 className="text-xl font-bold text-[#0a1628] mb-3 group-hover:text-[#dc2626] transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed text-sm">
                     {service.description}
                   </p>
                 </div>
@@ -131,14 +128,14 @@ export function Services() {
           transition={{ duration: 0.5 }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-6 bg-gradient-to-r from-[#0a1628] to-[#1a2740] text-white px-8 py-6 sm:py-4 rounded-xl shadow-xl">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-6 bg-[#0a1628] text-white px-8 py-6 sm:py-4 rounded-md border border-white/10">
             <div className="text-center sm:text-left">
-              <p className="font-bold text-lg">Need a custom solution?</p>
-              <p className="text-sm text-gray-300">Contact us for tailored industrial air services</p>
+              <p className="font-bold text-lg font-['Plus_Jakarta_Sans'] uppercase">Need a custom technical support plan?</p>
+              <p className="text-sm text-gray-300">Contact us for tailored industrial air service contracts</p>
             </div>
             <a
               href="tel:053-832-1249"
-              className="bg-gradient-to-r from-[#dc2626] to-[#f97316] hover:scale-105 transform px-6 py-3 rounded-lg font-medium transition-all whitespace-nowrap"
+              className="bg-[#dc2626] hover:bg-[#b91c1c] text-white px-6 py-3 rounded-md font-bold text-sm uppercase tracking-wider transition-colors whitespace-nowrap"
             >
               Call Now
             </a>

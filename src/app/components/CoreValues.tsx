@@ -31,7 +31,7 @@ export function CoreValues() {
   ];
 
   return (
-    <section id="values" className="py-20 bg-gradient-to-r from-[#0a1628] via-[#1a2740] to-[#0a1628]">
+    <section id="values" className="py-20 bg-[#0a1628]">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         {/* Header */}
         <motion.div
@@ -41,11 +41,11 @@ export function CoreValues() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 font-['Plus_Jakarta_Sans'] uppercase">
             Our Core Values
           </h2>
           <p className="text-gray-300">
-            The principles that guide our work and define our commitment to excellence
+            The principles that guide our work and define our commitment to engineering excellence
           </p>
         </motion.div>
 
@@ -60,10 +60,10 @@ export function CoreValues() {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative cursor-pointer bg-white/5 backdrop-blur-sm hover:bg-white/10 p-6 rounded-xl transition-all duration-300 border border-white/10 hover:border-[#dc2626]/50 text-center"
+                className="group relative cursor-pointer bg-white/5 hover:bg-white/10 p-6 rounded-md transition-colors border border-white/10 hover:border-[#dc2626]/50 text-center"
               >
                 {/* Icon */}
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-[#dc2626] to-[#f97316] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 mx-auto mb-4 bg-[#dc2626] rounded-md flex items-center justify-center">
                   <Icon className="w-8 h-8 text-white" />
                 </div>
 
@@ -76,9 +76,6 @@ export function CoreValues() {
                 <p className="text-sm text-gray-400">
                   {value.description}
                 </p>
-
-                {/* Accent bar */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#dc2626] to-[#fbbf24] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-xl" />
               </motion.div>
             );
           })}

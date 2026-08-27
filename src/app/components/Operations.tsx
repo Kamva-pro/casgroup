@@ -1,8 +1,8 @@
 import Masonry from 'react-responsive-masonry';
 import { motion, useInView } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-import teamIndoor from '@/assets/team-indoor.jpg';
-import teamOutdoor from '@/assets/team-outdoor.jpg';
+import teamImg from '@/assets/team.jpeg';
+import team2Img from '@/assets/team-2.jpeg';
 import officeWork from '@/assets/office-work.jpg';
 import op1 from '@/assets/operation-1.jpg';
 import op2 from '@/assets/operation-2.jpg';
@@ -59,9 +59,9 @@ function CountUp({ end, suffix = '' }: { end: number; suffix?: string }) {
 export function Operations() {
   const images = [
     {
-      src: op15, // Team at the gate
-      alt: 'CAS Team at Headquarters',
-      caption: 'Head Office Personnel'
+      src: teamImg,
+      alt: 'CAS Central Air Solutions Team',
+      caption: 'Central Air Solutions Team'
     },
     {
       src: op8, // The two Hilux bakkies
@@ -94,9 +94,9 @@ export function Operations() {
       caption: 'Sales & Client Support'
     },
     {
-      src: op17, // Indoor team photo
-      alt: 'CAS Core Team',
-      caption: 'Strategic & Technical Experts'
+      src: team2Img,
+      alt: 'CAS Technical & Field Team',
+      caption: 'CAS Operational Personnel'
     }
   ];
 
@@ -120,15 +120,11 @@ export function Operations() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-block px-4 py-2 bg-[#dc2626]/20 text-[#fbbf24] rounded-full text-sm font-medium mb-4">
-            Our Operations
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-['Plus_Jakarta_Sans'] uppercase">
             Our Team & Fleet in Action
           </h2>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-            A glimpse into our operations, showcasing our dedicated team, modern fleet,
-            and state-of-the-art facilities serving industries across the region.
+            Our technical personnel, mobile support fleet, and workshop facilities support continuous industrial operations across South Africa.
           </p>
         </motion.div>
 
@@ -143,21 +139,21 @@ export function Operations() {
             {images.map((image, index) => (
               <div
                 key={index}
-                className="group relative overflow-hidden rounded-lg cursor-pointer"
+                className="group relative overflow-hidden rounded-md cursor-pointer"
               >
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-auto transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/90 via-[#0a1628]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-[#0a1628]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <p className="text-white font-medium text-sm">{image.caption}</p>
                   </div>
                 </div>
                 {/* Accent border on hover */}
-                <div className="absolute inset-0 border-2 border-[#dc2626] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
+                <div className="absolute inset-0 border-2 border-[#dc2626] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md" />
               </div>
             ))}
           </Masonry>
@@ -172,16 +168,17 @@ export function Operations() {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-t border-white/10"
         >
           {[
-            { label: 'Field Technicians', end: 2, suffix: '+' },
-            { label: 'Years Experience', end: 12, suffix: '+' },
-            { label: 'Workshop Bays', end: 1, suffix: '' },
-            { label: 'Active Clients', end: 50, suffix: '+' }
+            { label: 'Field Technicians', end: 3, suffix: '+', caption: '3 senior technicians + 3 assistants' },
+            { label: 'Years Experience', end: 20, suffix: '+', caption: 'combined experience' },
+            { label: 'Workshop Bays', end: 1, suffix: '', caption: 'fully equipped facility' },
+            { label: 'Active Clients', end: 50, suffix: '+', caption: 'across key industrial sectors' }
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-[#fbbf24] mb-2">
+              <div className="text-4xl md:text-5xl font-extrabold text-[#fbbf24] mb-1 font-['Plus_Jakarta_Sans'] uppercase">
                 <CountUp end={stat.end} suffix={stat.suffix} />
               </div>
-              <div className="text-sm text-gray-400">{stat.label}</div>
+              <div className="text-sm font-bold text-white uppercase tracking-wider">{stat.label}</div>
+              {stat.caption && <div className="text-xs text-gray-400 mt-1 font-normal">{stat.caption}</div>}
             </div>
           ))}
         </motion.div>
