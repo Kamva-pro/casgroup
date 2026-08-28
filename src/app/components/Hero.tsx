@@ -30,7 +30,7 @@ export function Hero() {
             alt="Industrial Plant Operations"
             className="w-full h-full object-cover object-center opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628] via-[#0a1628]/90 to-[#0a1628]/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/90 via-[#0a1628]/80 to-[#0a1628]" />
         </div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 w-full">
@@ -38,7 +38,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl space-y-6 text-left"
+            className="max-w-4xl space-y-6 text-center mx-auto flex flex-col items-center justify-center"
           >
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight font-['Plus_Jakarta_Sans']">
               Industrial Compressed Air <br />
@@ -47,12 +47,12 @@ export function Hero() {
               </span>
             </h1>
 
-            <p className="text-base md:text-xl text-gray-300 max-w-2xl leading-relaxed">
+            <p className="text-base md:text-xl text-gray-300 max-w-2xl leading-relaxed text-center">
               Central Air Solutions (CAS) supplies industrial compressed-air equipment and engineers end-to-end solutions for mining, manufacturing, agriculture, and engineering applications.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full sm:w-auto">
               <button
                 onClick={() => scrollToSection('products')}
                 className="w-full sm:w-auto cursor-pointer bg-[#dc2626] hover:bg-[#b91c1c] text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-3"
