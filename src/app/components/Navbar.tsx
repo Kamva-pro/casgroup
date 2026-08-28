@@ -65,18 +65,14 @@ export function Navbar({ onSelectCategory }: NavbarProps) {
         className={`mx-auto transition-all duration-300 pointer-events-auto w-full lg:max-w-7xl rounded-full ${
           scrolled
             ? 'bg-white/95 backdrop-blur-xl shadow-xl py-2.5 px-6'
-            : 'bg-[#0a1628]/80 backdrop-blur-lg shadow-lg py-3 px-6'
+            : 'bg-transparent py-3 px-6'
         }`}
       >
         <div className="flex items-center justify-between h-12 lg:h-14">
           {/* Logo Container: White background box in non-sticky state, transparent in sticky state */}
           <div className="flex-shrink-0 flex items-center">
             <div
-              className={`cursor-pointer transition-colors ${
-                scrolled
-                  ? 'bg-transparent'
-                  : 'bg-white px-4 py-1.5 rounded-full shadow-sm'
-              }`}
+              className="cursor-pointer transition-colors"
               onClick={() => scrollToSection('hero')}
             >
               <img
@@ -98,11 +94,11 @@ export function Navbar({ onSelectCategory }: NavbarProps) {
                     className={`flex items-center gap-1.5 text-xs lg:text-sm font-bold uppercase tracking-wider cursor-pointer transition-colors ${
                       scrolled
                         ? 'text-[#0a1628] hover:text-[#dc2626]'
-                        : 'text-white hover:text-[#f97316]'
+                        : 'text-[#0a1628] hover:text-[#dc2626]'
                     }`}
                   >
                     {item.label}
-                    <ChevronDown className={`w-3.5 h-3.5 ${scrolled ? 'text-[#0a1628]' : 'text-white'}`} />
+                    <ChevronDown className={`w-3.5 h-3.5 text-[#0a1628]`} />
                   </button>
 
                   {productsDropdownOpen && (
@@ -126,11 +122,7 @@ export function Navbar({ onSelectCategory }: NavbarProps) {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-xs lg:text-sm font-bold uppercase tracking-wider cursor-pointer transition-colors ${
-                    scrolled
-                      ? 'text-[#0a1628] hover:text-[#dc2626]'
-                      : 'text-white hover:text-[#f97316]'
-                  }`}
+                  className={`text-xs lg:text-sm font-bold uppercase tracking-wider cursor-pointer transition-colors text-[#0a1628] hover:text-[#dc2626]`}
                 >
                   {item.label}
                 </button>
@@ -148,7 +140,7 @@ export function Navbar({ onSelectCategory }: NavbarProps) {
             </button>
 
             <button
-              className={`lg:hidden ${scrolled ? 'text-[#0a1628]' : 'text-white'}`}
+              className="lg:hidden text-[#0a1628]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

@@ -46,15 +46,15 @@ export function BaofnBanner() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-7 space-y-6"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0a1628] tracking-tight leading-tight font-['Plus_Jakarta_Sans'] uppercase">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0a1628] tracking-tight leading-tight uppercase">
               ABOUT <span className="text-[#f97316]">US</span>
             </h2>
 
             <div className="space-y-4 text-gray-700 leading-relaxed text-base">
-              <p>Central Air Solutions (CAS) was established in 2014 in South Africa and provides comprehensive supply, installation, servicing, maintenance, repairs, and pressure testing of air compressor systems across the industrial, agricultural, and mining sectors.</p>
-              <p>We are a proudly South African company, fully registered and compliant on the National Treasury Central Supplier Database (CSD). Central Air Solutions is 100% black-owned, a Level 1 B-BBEE contributor, and an empowering supplier offering 135% procurement recognition.</p>
-              <p>As an authorized distributor of BAOFN compressors, CAS supplies globally competitive, energy-efficient compressor systems known for reliable performance, low maintenance costs, and readily available spares.</p>
-              <p>Our operations are supported by a fully equipped workshop facility that allows us to maintain stockholding of critical spares and fast-moving components. This ensures minimal downtime and responsive turnaround times for our clients. Our qualified technical team operates on a 24/7 standby basis to support clients in time-sensitive and production-critical environments, maintaining all major brands.</p>
+              <p>Central Air Solutions (CAS) was started in 2014 out of a genuine need for reliable, hands-on compressed air services in South Africa. We supply, install and maintain air compressor systems for clients in mining, manufacturing, agriculture and engineering.</p>
+              <p>We are a proudly South African company, 100% black-owned and a Level 1 B-BBEE contributor with 135% procurement recognition. We are fully registered on the National Treasury CSD and compliant across all sectors we work in.</p>
+              <p>As an authorized BAOFN distributor, we stock energy-efficient compressor systems backed by readily available spares and real technical support from people who know the equipment.</p>
+              <p>Our workshop carries critical spares for fast turnaround. Our technicians are on standby 24/7 for breakdowns and production-critical situations, and we work across all major brands, not just our own.</p>
             </div>
 
             <div className="pt-2 flex flex-wrap items-center gap-4">
