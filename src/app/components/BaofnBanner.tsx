@@ -1,8 +1,25 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import teamImage from '@/assets/team.jpeg';
+import team2Image from '@/assets/team-2.jpeg';
+
+const teamImages = [
+  { src: teamImage, alt: "Central Air Solutions Team" },
+  { src: team2Image, alt: "Central Air Solutions Operations" },
+];
 
 export function BaofnBanner() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % teamImages.length);
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -58,7 +75,7 @@ export function BaofnBanner() {
             </div>
           </motion.div>
 
-          {/* Right Column: Team Image Container */}
+          {/* Right Column: Auto Image Carousel */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -66,15 +83,19 @@ export function BaofnBanner() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="lg:col-span-5 flex justify-center items-center"
           >
-            <div className="bg-gray-50 border border-gray-200 rounded-md p-4 w-full flex flex-col items-center">
-              <img
-                src={teamImage}
-                alt="Central Air Solutions Team"
-                className="max-h-96 w-full object-cover rounded-md mb-3"
-              />
-              <p className="text-xs text-gray-500 text-center font-mono">
-                Central Air Solutions Technical & Management Team
-              </p>
+            <div className="relative w-full h-80 sm:h-96 lg:h-[440px] overflow-hidden rounded-md shadow-md">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentImageIndex}
+                  src={teamImages[currentImageIndex].src}
+                  alt={teamImages[currentImageIndex].alt}
+                  initial={{ opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.8, ease: 'easeInOut' }}
+                  className="absolute inset-0 w-full h-full object-cover rounded-md"
+                />
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>
@@ -82,3 +103,4 @@ export function BaofnBanner() {
     </section>
   );
 }
+
