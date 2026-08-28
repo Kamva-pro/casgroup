@@ -75,7 +75,7 @@ export function Navbar({ onSelectCategory }: NavbarProps) {
               className={`cursor-pointer transition-colors ${
                 scrolled
                   ? 'bg-transparent'
-                  : 'bg-white px-3.5 py-1 rounded-md'
+                  : 'bg-white px-4 py-1.5 rounded-full shadow-sm'
               }`}
               onClick={() => scrollToSection('hero')}
             >
