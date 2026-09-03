@@ -52,7 +52,7 @@ export function Services() {
     },
     {
       icon: ClipboardCheck,
-      title: 'Genuine Parts & Accessories',
+      title: 'Site Inspections',
       description: 'Direct access to OEM spare parts, air filters, oil separators, line valves, and lubricants to maintain warranty protection.',
       image: op20,
       accent: '#3b82f6'
@@ -97,7 +97,7 @@ export function Services() {
                     alt={service.title}
                     className="w-full h-full object-cover object-[50%_30%] group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-[#0a1628]/60" />
+                  <div className="absolute inset-0 bg-black/40" />
                   <div
                     className="absolute top-4 right-4 w-12 h-12 rounded-md flex items-center justify-center"
                     style={{ backgroundColor: service.accent }}
@@ -128,10 +128,10 @@ export function Services() {
           transition={{ duration: 0.5 }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-6 bg-[#0a1628] text-white px-8 py-6 sm:py-4 rounded-md border border-white/10">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-6 bg-gray-100 border border-gray-200 text-[#0a1628] px-8 py-6 sm:py-4 rounded-md">
             <div className="text-center sm:text-left">
-              <p className="font-bold text-lg font-['Plus_Jakarta_Sans'] uppercase">Need a custom technical support plan?</p>
-              <p className="text-sm text-gray-300">Contact us for tailored industrial air service contracts</p>
+              <p className="font-bold text-lg uppercase">Need a custom technical support plan?</p>
+              <p className="text-sm text-gray-500">Contact us for tailored industrial air service contracts</p>
             </div>
             <a
               href="tel:053-832-1249"

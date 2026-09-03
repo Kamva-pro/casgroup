@@ -31,7 +31,7 @@ export function CoreValues() {
   ];
 
   return (
-    <section id="values" className="py-20 bg-[#0a1628]">
+    <section id="values" className="py-20 bg-white border-t border-gray-100">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         {/* Header */}
         <motion.div
@@ -41,10 +41,10 @@ export function CoreValues() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 font-['Plus_Jakarta_Sans'] uppercase">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-3 uppercase">
             Our Core Values
           </h2>
-          <p className="text-gray-300">
+          <p className="text-gray-500">
             The principles that guide our work and define our commitment to engineering excellence
           </p>
         </motion.div>
@@ -60,7 +60,7 @@ export function CoreValues() {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative cursor-pointer bg-white/5 hover:bg-white/10 p-6 rounded-md transition-colors border border-white/10 hover:border-[#dc2626]/50 text-center"
+                className="group relative cursor-pointer bg-white hover:bg-gray-50 p-6 rounded-md transition-all border border-gray-200 hover:border-[#dc2626]/40 hover:shadow-md text-center"
               >
                 {/* Icon */}
                 <div className="w-16 h-16 mx-auto mb-4 bg-[#dc2626] rounded-md flex items-center justify-center">
@@ -68,12 +68,12 @@ export function CoreValues() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#fbbf24] transition-colors">
+                <h3 className="text-lg font-bold text-[#0a1628] mb-2 group-hover:text-[#dc2626] transition-colors">
                   {value.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-gray-500">
                   {value.description}
                 </p>
               </motion.div>

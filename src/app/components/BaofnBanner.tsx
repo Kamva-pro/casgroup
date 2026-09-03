@@ -51,10 +51,12 @@ export function BaofnBanner() {
             </h2>
 
             <div className="space-y-4 text-gray-700 leading-relaxed text-base">
-              <p>Central Air Solutions (CAS) was started in 2014 out of a genuine need for reliable, hands-on compressed air services in South Africa. We supply, install and maintain air compressor systems for clients in mining, manufacturing, agriculture and engineering.</p>
+              <p>Central Air Solutions (CAS) was started in 2014 out of a genuine need for reliable, hands-on compressed air services in South Africa. We supply, install and service compressed air systems for mining, manufacturing, agriculture, engineering, and industrials at large in the Northern Cape Region and we have expanded to neighbouring provinces
+
+                .</p>
               <p>We are a proudly South African company, 100% black-owned and a Level 1 B-BBEE contributor with 135% procurement recognition. We are fully registered on the National Treasury CSD and compliant across all sectors we work in.</p>
               <p>As an authorized BAOFN distributor, we stock energy-efficient compressor systems backed by readily available spares and real technical support from people who know the equipment.</p>
-              <p>Our workshop carries critical spares for fast turnaround. Our technicians are on standby 24/7 for breakdowns and production-critical situations, and we work across all major brands, not just our own.</p>
+              <p>Our workshop carries critical spares for fast turnaround. Our technicians are on standby 24/7 for breakdowns and production-critical situations, and we work across all major brands.</p>
             </div>
 
             <div className="pt-2 flex flex-wrap items-center gap-4">

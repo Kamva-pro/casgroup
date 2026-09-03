@@ -64,7 +64,7 @@ export function Hero() {
 
             <p className="text-gray-500 text-base md:text-lg leading-relaxed max-w-md mb-10">
               We supply, install and service compressed air systems for mining, manufacturing,
-              agriculture and engineering across South Africa. Since 2014.
+              agriculture, engineering, and industrials at large in the Northern Cape Region and we have expanded to neighbouring provinces.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-14">

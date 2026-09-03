@@ -52,7 +52,7 @@ export function Industries() {
   ];
 
   return (
-    <section id="industries" className="py-24 bg-[#0a1628] text-white relative overflow-hidden">
+    <section id="industries" className="py-24 bg-white relative overflow-hidden border-t border-gray-100">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -62,10 +62,10 @@ export function Industries() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight uppercase font-['Plus_Jakarta_Sans']">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6 tracking-tight uppercase">
             Industries We Supply & Serve
           </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
             Central Air Solutions provides air compressor equipment, system engineering, and servicing tailored to the operational demands of key industrial sectors.
           </p>
         </motion.div>
@@ -81,26 +81,26 @@ export function Industries() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white/5 border border-white/10 hover:border-[#f97316]/50 rounded-md p-7 transition-colors flex flex-col justify-between group"
+                className="bg-white border border-gray-200 hover:border-[#dc2626]/40 hover:shadow-md rounded-md p-7 transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="w-12 h-12 rounded-md bg-[#dc2626] text-white flex items-center justify-center mb-6">
                     <Icon className="w-6 h-6" />
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#fbbf24] transition-colors">
+                  <h3 className="text-xl font-bold text-[#0a1628] mb-3 group-hover:text-[#dc2626] transition-colors">
                     {ind.title}
                   </h3>
 
-                  <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                  <p className="text-gray-500 text-sm leading-relaxed mb-6">
                     {ind.description}
                   </p>
                 </div>
 
-                <div className="space-y-2 border-t border-white/10 pt-4">
+                <div className="space-y-2 border-t border-gray-100 pt-4">
                   {ind.features.map((feat, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs font-medium text-gray-300">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#f97316] flex-shrink-0" />
+                    <div key={i} className="flex items-center gap-2 text-xs font-medium text-gray-600">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#dc2626] flex-shrink-0" />
                       <span>{feat}</span>
                     </div>
                   ))}
@@ -116,13 +116,13 @@ export function Industries() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-[#102036] border border-white/10 rounded-md p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6"
+          className="bg-gray-100 border border-gray-200 rounded-md p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-2xl md:text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans'] uppercase">
+            <h3 className="text-2xl md:text-3xl font-extrabold text-[#0a1628] uppercase">
               Procurement & Engineering Inquiries
             </h3>
-            <p className="text-gray-300 text-sm md:text-base max-w-2xl">
+            <p className="text-gray-500 text-sm md:text-base max-w-2xl">
               Are you an industrial plant manager, procurement officer, or mining engineer looking for equipment specifications and commercial quotes?
             </p>
           </div>

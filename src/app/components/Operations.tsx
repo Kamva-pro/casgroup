@@ -101,15 +101,7 @@ export function Operations() {
   ];
 
   return (
-    <section id="operations" className="py-24 bg-[#0a1628] relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(45deg, #1a2740 25%, transparent 25%, transparent 75%, #1a2740 75%, #1a2740), linear-gradient(45deg, #1a2740 25%, transparent 25%, transparent 75%, #1a2740 75%, #1a2740)',
-          backgroundSize: '60px 60px',
-          backgroundPosition: '0 0, 30px 30px'
-        }} />
-      </div>
+    <section id="operations" className="py-24 bg-white border-t border-gray-100 relative overflow-hidden">
 
       <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         {/* Header */}
@@ -120,10 +112,10 @@ export function Operations() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-['Plus_Jakarta_Sans'] uppercase">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6 uppercase">
             Our Team & Fleet in Action
           </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-500 max-w-3xl mx-auto">
             Our technical personnel, mobile support fleet, and workshop facilities support continuous industrial operations across South Africa.
           </p>
         </motion.div>
@@ -146,8 +138,8 @@ export function Operations() {
                   alt={image.alt}
                   className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
                 />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-[#0a1628]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <p className="text-white font-medium text-sm">{image.caption}</p>
                   </div>
@@ -165,7 +157,7 @@ export function Operations() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-t border-white/10"
+          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-t border-gray-200"
         >
           {[
             { label: 'Field Technicians', end: 3, suffix: '+', caption: '3 senior technicians + 3 assistants' },
@@ -174,10 +166,10 @@ export function Operations() {
             { label: 'Active Clients', end: 50, suffix: '+', caption: 'across key industrial sectors' }
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-4xl md:text-5xl font-extrabold text-[#fbbf24] mb-1 font-['Plus_Jakarta_Sans'] uppercase">
+              <div className="text-4xl md:text-5xl font-extrabold text-[#dc2626] mb-1 uppercase">
                 <CountUp end={stat.end} suffix={stat.suffix} />
               </div>
-              <div className="text-sm font-bold text-white uppercase tracking-wider">{stat.label}</div>
+              <div className="text-sm font-bold text-[#0a1628] uppercase tracking-wider">{stat.label}</div>
               {stat.caption && <div className="text-xs text-gray-400 mt-1 font-normal">{stat.caption}</div>}
             </div>
           ))}

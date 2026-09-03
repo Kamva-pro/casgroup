@@ -243,7 +243,7 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
               onClick={() => setActiveTab(tab)}
               className={`px-5 py-2.5 rounded-md text-sm font-bold transition-colors cursor-pointer ${
                 activeTab === tab
-                  ? 'bg-[#0a1628] text-white'
+                  ? 'bg-[#dc2626] text-white'
                   : 'bg-white text-gray-700 hover:bg-gray-100 hover:text-[#dc2626] border border-gray-200'
               }`}
             >
@@ -267,7 +267,7 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
               >
                 <div>
                   {/* Image Container */}
-                  <div className="relative h-72 bg-[#0a1628] p-6 flex items-center justify-center overflow-hidden">
+                  <div className="relative h-72 bg-gray-50 p-6 flex items-center justify-center overflow-hidden border-b border-gray-100">
                     {product.image ? (
                       <img
                         src={product.image}
@@ -276,11 +276,11 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
                       />
                     ) : (
                       <div className="text-center p-6 space-y-3">
-                        <div className="w-16 h-16 mx-auto rounded-md bg-white/10 flex items-center justify-center text-[#fbbf24]">
+                        <div className="w-16 h-16 mx-auto rounded-md bg-gray-200 flex items-center justify-center text-gray-400">
                           <Wind className="w-8 h-8" />
                         </div>
-                        <p className="text-white font-bold text-base">{product.title}</p>
-                        <span className="inline-block px-3 py-1 bg-white/10 text-xs font-mono text-gray-300 rounded-md border border-white/20">
+                        <p className="text-gray-700 font-bold text-base">{product.title}</p>
+                        <span className="inline-block px-3 py-1 bg-gray-100 text-xs font-mono text-gray-500 rounded-md border border-gray-200">
                           Approved Specs on Request
                         </span>
                       </div>
@@ -341,20 +341,20 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-16 bg-[#0a1628] rounded-md p-8 md:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10"
+          className="mt-16 bg-gray-100 border border-gray-200 rounded-md p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-2xl font-bold text-white flex items-center justify-center md:justify-start gap-2 font-['Plus_Jakarta_Sans'] uppercase">
-              <Zap className="w-6 h-6 text-[#fbbf24]" />
+            <h3 className="text-2xl font-bold text-[#0a1628] flex items-center justify-center md:justify-start gap-2 uppercase">
+              <Zap className="w-6 h-6 text-[#dc2626]" />
               Need Custom Compressor Specifications or Sizing?
             </h3>
-            <p className="text-gray-300 text-sm max-w-2xl">
+            <p className="text-gray-500 text-sm max-w-2xl">
               Our engineering specialists provide tailored compressed air audits, custom receiver sizing, and competitive quotes for all industrial setups.
             </p>
           </div>
           <button
             onClick={scrollToContact}
-            className="bg-white text-[#0a1628] hover:bg-[#fbbf24] hover:text-[#0a1628] font-bold px-7 py-3.5 rounded-md transition-colors whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
+            className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-7 py-3.5 rounded-md transition-colors whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
           >
             Get In Touch
           </button>
