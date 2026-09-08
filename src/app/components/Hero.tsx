@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import compressorImg from '@/assets/Oil Injected Compressors/SM3HP/SM3HP.png';
+import compressorImg from '@/assets/Oil Injected Compressors/Two Stage Fixed Speed/RS315-2S/RS315-2S.png';
 import { fadeUp, staggerContainer } from '@/lib/motion';
 
 export function Hero() {
@@ -112,14 +112,14 @@ export function Hero() {
 
             <motion.img
               src={compressorImg}
-              alt="BAOFN SM3HP industrial compressor"
+              alt="BAOFN RS315-2S industrial compressor"
               animate={{ y: [0, -14, 0] }}
               transition={{
                 duration: 6,
                 repeat: Infinity,
                 ease: 'easeInOut'
               }}
-              className="relative z-10 mx-auto w-full max-w-md lg:max-w-lg object-contain drop-shadow-2xl select-none"
+              className="relative z-10 mx-auto w-full max-w-lg lg:max-w-xl xl:max-w-2xl object-contain drop-shadow-2xl select-none"
               draggable={false}
             />
           </motion.div>

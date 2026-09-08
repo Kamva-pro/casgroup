@@ -1,20 +1,46 @@
 import { MapPin, Phone, Mail } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import casLogo from '@/assets/logo.png';
 
 export function Footer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLinkClick = (target: string) => {
+    if (location.pathname !== '/') {
+      navigate('/#' + target);
+      return;
+    }
+    const element = document.getElementById(target);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - offset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer id="contact" className="bg-[#0a1628] text-white pt-20 pb-8 border-t border-white/10">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           {/* Company Info */}
           <div>
-            <div className="inline-block bg-white/95 p-2 rounded-md border border-gray-100 mb-6">
+            <Link
+              to="/"
+              className="inline-block bg-white/95 p-2 rounded-md border border-gray-100 mb-6 cursor-pointer hover:opacity-90 transition-opacity"
+              onClick={() => {
+                if (location.pathname === '/') {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+            >
               <img
                 src={casLogo}
                 alt="Central Air Solutions"
                 className="h-10 md:h-12 w-auto"
               />
-            </div>
+            </Link>
             <p className="text-gray-300 mb-6 leading-relaxed text-sm">
               Established in 2014, Central Air Solutions (CAS) is an authorized BAOFN distributor supplying, installing, and servicing industrial air compressor systems across South Africa's industrial, agricultural, and mining sectors.
             </p>
@@ -86,15 +112,7 @@ export function Footer() {
                 <li key={index} className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-[#dc2626]" />
                   <button
-                    onClick={() => {
-                      const element = document.getElementById(link.target);
-                      if (element) {
-                        const offset = 80;
-                        const elementPosition = element.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.scrollY - offset;
-                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                      }
-                    }}
+                    onClick={() => handleLinkClick(link.target)}
                     className="text-gray-300 text-sm hover:text-[#dc2626] transition-colors cursor-pointer text-left"
                   >
                     {link.name}

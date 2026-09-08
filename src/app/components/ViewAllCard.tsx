@@ -18,12 +18,12 @@ export function ViewAllCard({ href = '/products/catalog', className = '' }: View
         <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-600/10 text-red-500 shadow-sm border border-red-500/30 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all">
           <Layers className="h-8 w-8" />
         </div>
-        <p className="text-2xl sm:text-3xl font-black text-white tracking-tight">View All Products</p>
+        <p className="text-2xl sm:text-3xl font-black text-white tracking-tight">Full Product Range</p>
         <p className="mt-3 text-xs sm:text-sm text-slate-400 max-w-xs leading-relaxed">
-          Browse the complete 35+ BAOFN equipment catalog, sizing charts, and full technical specifications
+          Browse the complete BAOFN equipment lineup.
         </p>
         <span className="mt-8 inline-flex items-center gap-2 rounded-full bg-red-600 px-8 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-red-600/30 transition group-hover:bg-red-500">
-          See Full Catalog →
+          View Full Catalog →
         </span>
       </motion.div>
     </Link>

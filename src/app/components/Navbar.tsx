@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation, useNavigate } from 'react-router';
 import casLogo from '@/assets/logo-long.png';
 import { ProductCategory } from './Products';
 
@@ -12,6 +13,8 @@ export function Navbar({ onSelectCategory }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const productCategories: ProductCategory[] = [
     'Two-Stage Rotary Screw',
@@ -32,6 +35,12 @@ export function Navbar({ onSelectCategory }: NavbarProps) {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      navigate('/#' + sectionId);
+      setMobileMenuOpen(false);
+      return;
+    }
+
     const element = document.getElementById(sectionId);
     if (element) {
       const offset = 80;
@@ -48,7 +57,11 @@ export function Navbar({ onSelectCategory }: NavbarProps) {
 
   const handleCategorySelect = (cat: ProductCategory) => {
     onSelectCategory?.(cat);
-    scrollToSection('products');
+    if (location.pathname !== '/') {
+      navigate('/#products');
+    } else {
+      scrollToSection('products');
+    }
     setProductsDropdownOpen(false);
     setMobileMenuOpen(false);
   };
@@ -72,18 +85,23 @@ export function Navbar({ onSelectCategory }: NavbarProps) {
         }`}
       >
         <div className="flex items-center justify-between h-12 lg:h-14">
-          {/* Logo Container: White background box in non-sticky state, transparent in sticky state */}
+          {/* Logo Container: Links directly back to home */}
           <div className="flex-shrink-0 flex items-center">
-            <div
-              className="cursor-pointer transition-colors"
-              onClick={() => scrollToSection('hero')}
+            <Link
+              to="/"
+              className="cursor-pointer transition-colors block"
+              onClick={() => {
+                if (location.pathname === '/') {
+                  scrollToSection('hero');
+                }
+              }}
             >
               <img
                 src={casLogo}
                 alt="Central Air Solutions"
                 className="h-7 lg:h-8 w-auto object-contain"
               />
-            </div>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}

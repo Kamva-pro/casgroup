@@ -22,20 +22,20 @@ export function Industries() {
     {
       icon: Factory,
       title: 'Manufacturing & Processing',
-      description: 'Continuous 100% duty cycle rotary screw and Variable Speed Drive (VSD) systems powering industrial automation, pneumatic machinery, and plant air networks.',
-      features: ['Energy-Efficient VSD', 'Constant Line Pressure', 'Minimal Operational Downtime']
+      description: 'Industrial rotary screw and Variable Speed Drive (VSD) systems powering manufacturing automation, pneumatic equipment, and facility air distribution.',
+      features: ['Demand-Matched VSD', 'Stable Line Pressure', 'Service-Supported Reliability']
     },
     {
       icon: Tractor,
       title: 'Agriculture & Agro-Processing',
       description: 'Reliable air solutions for grain handling, crop sorting, pneumatic conveying, and farm maintenance machinery operating under demanding seasonal schedules.',
-      features: ['Rugged Reliability', 'Low Maintenance Overhead', 'Portable & Fixed Air Options']
+      features: ['Rugged Mechanical Build', 'Low Maintenance Overhead', 'Fixed & Mobile Air Options']
     },
     {
       icon: Utensils,
       title: 'Food Processing & Pharma',
-      description: '100% oil-free ISO 8573-1 Class 0 certified air compressors guaranteeing zero risk of air contamination in sensitive product and packaging environments.',
-      features: ['ISO Class 0 Air Pureness', 'Hygienic System Design', 'Strict Standard Compliance']
+      description: 'Dedicated oil-free compressor configurations for applications requiring clean compressed air in product processing and packaging environments.',
+      features: ['Oil-Free Air Architecture', 'Hygienic Process Compatibility', 'Downstream Quality Filtration']
     },
     {
       icon: Wrench,
@@ -46,8 +46,8 @@ export function Industries() {
     {
       icon: Building2,
       title: 'Industrial Workshops & Commercial',
-      description: 'Compact rotary screw and receiver-mounted packages offering whisper-quiet operation and reliable air supply for commercial facilities and workshop environments.',
-      features: ['Compact Footprint', 'Low Noise Levels', 'Simple Serviceability']
+      description: 'Compact rotary screw and receiver-mounted packages offering enclosed low-noise operation and steady air supply for light industrial workshops.',
+      features: ['Compact Workshop Footprint', 'Enclosed Acoustic Canopy', 'Routine Service Access']
     }
   ];
 

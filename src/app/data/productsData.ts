@@ -110,13 +110,13 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     categoryTags: ['Two-Stage Rotary Screw'],
     subtitle: 'Heavy Industrial & Continuous 24/7 Mining Operations',
     description:
-      'Engineered with dual independent air-ends to divide compression ratio across two stages. Delivers up to 15-20% lower specific energy consumption, significantly lower thermal stress, and maximum operational longevity for continuous heavy industrial duty.',
-    badge: 'Two-Stage High Efficiency',
+      'Engineered with dual independent airends to divide the compression ratio across two stages, lowering internal mechanical stress and bearing load for continuous heavy industrial duty.',
+    badge: 'Two-Stage Fixed Speed',
     badgeColor: '#dc2626',
     keyHighlights: [
-      '15% - 20% Specific Energy Savings',
+      'Dual-Stage Compression Ratio Division',
       'Lower Internal Pressure Ratio Per Stage',
-      'Heavy-Duty Cast Iron Air-End',
+      'Heavy-Duty Industrial Airends',
       'Continuous 24/7 Harsh Ambient Duty'
     ],
     specsList: [
@@ -322,20 +322,20 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     categoryTags: ['Two-Stage Rotary Screw', 'Variable Speed (VSD)'],
     subtitle: 'Dynamic Speed Modulation with Two-Stage Thermodynamics',
     description:
-      'The ultimate energy-saving compressed air solution. Combines the high efficiency of two-stage screw compression with Permanent Magnet VSD inverter technology. Eliminates unload electricity wastage and delivers up to 35-45% power cost reduction.',
-    badge: 'Maximum Energy Saver (VSD)',
+      'Two-stage screw compression combined with Permanent Magnet VSD inverter control. Modulates motor speed to track plant demand and reduce unloaded idling power consumption.',
+    badge: 'Variable Speed Drive (VSD)',
     badgeColor: '#f97316',
     keyHighlights: [
-      'Up to 45% Total Power Savings',
+      'Demand-Matched Speed Modulation',
       'Permanent Magnet Synchronous Motor',
-      'Constant Target Pressure Regulation (±0.1 Bar)',
+      'Stable Line Pressure Control',
       'Zero Inrush Current Soft Start'
     ],
     specsList: [
       'Two-Stage Compression + Inverter Drive',
-      'Wide Turndown Modulation (25% - 100%)',
+      'Variable Speed Frequency Modulation',
       'Direct Drive Integrated Shaft',
-      'Colour Graphic Touch PLC with Remote Monitoring'
+      'Colour Graphic Touch PLC Interface'
     ],
     applications: ['Fluctuating Air Demand Facilities', 'High Energy Cost Operations', 'Mining Processing', '24/7 Manufacturing'],
     defaultVariantIndex: 4, // RS75-2S-VSD
@@ -613,7 +613,7 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
       'Plug & Play Complete Compressed Air System',
       'Built-In Refrigerated Moisture Dryer',
       'Dual Integrated Air Receiver Tanks',
-      'Saves 60% Plant Floor Footprint'
+      'Compact Pre-Piped Footprint'
     ],
     specsList: [
       'Variable Speed Rotary Screw Air-End',
@@ -681,14 +681,14 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     categoryTags: ['Drill Rigs & Workshop'],
     subtitle: 'Tank-Mounted Rotary Screw for Commercial Workshops',
     description:
-      'Designed to replace loud, high-wear piston compressors with smooth, whisper-quiet rotary screw continuous power. Mounted on a heavy receiver with wheels for easy workshop mobility and 100% continuous duty cycle without overheating.',
+      'Rotary screw performance in a compact mobile workshop format. Mounted on an air receiver with castor wheels for workshop mobility and steady operational output.',
     badge: 'Workshop Rotary Screw',
     badgeColor: '#475569',
     keyHighlights: [
-      '100% Continuous Duty Cycle (No Rest Needed)',
-      'Whisper-Quiet Commercial Workshop Operation',
+      'Rotary Screw Continuous Duty Design',
+      'Enclosed Low-Noise Acoustic Housing',
       'Tank-Mounted with Heavy Castor Wheels',
-      'Direct Replacement for Piston Compressors'
+      'Alternative to High-Wear Piston Compressors'
     ],
     specsList: [
       '2.2 kW / 3.0 HP High-Efficiency Motor',
@@ -778,20 +778,20 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
   // 7. OIL FREE CLASS 0 (RSVT 400 VSD)
   {
     id: 'oil-free-rsvt',
-    name: 'BAOFN Oil-Free Rotary Screw Compressors (Class 0)',
+    name: 'BAOFN Oil-Free Rotary Screw Compressors',
     seriesCode: 'RSVT Series',
     category: 'Variable Speed (VSD)',
     categoryTags: ['Variable Speed (VSD)'],
-    subtitle: '100% ISO 8573-1 Class 0 Certified Pure Compressed Air',
+    subtitle: 'Oil-Free Rotary Screw Air Compression',
     description:
-      'Zero oil contamination guaranteed. High-efficiency oil-free dry rotary screw technology paired with advanced Variable Speed Drive. Built for industries where even trace oil vapor could ruin products or violate critical safety standards.',
-    badge: '100% Oil-Free (Class 0)',
+      'Dry oil-free rotary screw compression paired with Variable Speed Drive technology. Built for processing applications requiring oil-free air delivery without lubricating oil in the compression chamber.',
+    badge: 'Oil-Free Design',
     badgeColor: '#10b981',
     keyHighlights: [
-      'Zero Oil Risk: ISO 8573-1 Class 0 Certified',
-      'Dry Screw Rotors with Anti-Corrosion Coating',
-      'Direct Drive Inverter Efficiency',
-      'Food & Pharmaceutical Grade Certified'
+      'Dry Screw Compression Chamber',
+      'Anti-Corrosion Coated Rotors',
+      'Direct Drive Inverter Speed Control',
+      'Compatible with Sensitive Packaging Processes'
     ],
     specsList: [
       'Dual-Chamber Oil-Free Sealing System',

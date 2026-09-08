@@ -32,17 +32,17 @@ interface ProductsProps {
   onCategoryChange?: (category: ProductCategory) => void;
 }
 
-// Spotlight showcase tabs data synthesized from real product families
+// Spotlight showcase series configurations with verified mechanical parameters
 const SPOTLIGHT_SERIES = [
   {
     id: 'two-stage-vsd',
     name: 'RS-2S-VSD Series',
     fullName: 'BAOFN Two-Stage Variable Speed Drive',
     powerRange: '22 – 250 kW',
-    energySavings: 'Up to 45%',
+    driveType: 'Permanent Magnet VSD',
     modelCount: 11,
     pressureRange: '8 – 13 Bar',
-    description: 'Dual-stage compression coupled with ultra-efficient permanent magnet VSD technology. Maximizes airflow while slashing electrical consumption during fluctuating plant demand.',
+    description: 'Two-stage rotary screw compression equipped with permanent magnet variable speed drive. Modulates motor speed to match actual plant air demand and reduce unloaded idle running.',
     familyId: 'two-stage-vsd'
   },
   {
@@ -50,10 +50,10 @@ const SPOTLIGHT_SERIES = [
     name: 'RS-2S Series',
     fullName: 'BAOFN Two-Stage Fixed Speed Heavy Duty',
     powerRange: '15 – 315 kW',
-    energySavings: 'Up to 20%',
+    driveType: 'Fixed Speed Direct Drive',
     modelCount: 13,
     pressureRange: '8 – 13 Bar',
-    description: 'Continuous 24/7 baseload compression for mining, smelting, and heavy industrial plants. Independent dual air-ends divide thermal load for unmatched equipment lifespan.',
+    description: 'Two-stage compression designed for continuous baseload industrial operations. Dual independent airends divide the compression ratio across two stages to reduce mechanical stress.',
     familyId: 'two-stage-fixed-speed'
   },
   {
@@ -61,10 +61,10 @@ const SPOTLIGHT_SERIES = [
     name: 'RS-VSD Series',
     fullName: 'BAOFN Single-Stage Permanent Magnet VSD',
     powerRange: '22 – 75 kW',
-    energySavings: 'Up to 40%',
+    driveType: 'Variable Speed (VSD)',
     modelCount: 5,
     pressureRange: '8 – 13 Bar',
-    description: 'Precision variable speed control in a compact footprint. Eliminates unloaded idle energy waste and maintains line pressure within ±0.1 bar.',
+    description: 'Single-stage rotary screw compressor with variable speed control. Matches fluctuating air demand and stabilizes line pressure in industrial workshops and facilities.',
     familyId: 'single-stage-vsd'
   },
   {
@@ -72,32 +72,32 @@ const SPOTLIGHT_SERIES = [
     name: 'RS-VSD-FF Series',
     fullName: 'BAOFN All-In-One Tank-Mounted Screw Compressor',
     powerRange: '7.5 – 15 kW',
-    energySavings: 'Up to 35%',
+    driveType: 'Integrated 3-in-1 Station',
     modelCount: 3,
     pressureRange: '8 – 13 Bar',
-    description: 'Complete plug-and-play air station: rotary screw compressor, 500L receiver vessel, refrigerated dryer, and inline filters in a single quiet footprint.',
+    description: 'Integrated air station combining rotary screw compressor, 500L air receiver, and refrigerated air dryer in a single pre-piped enclosure.',
     familyId: 'full-feature-all-in-one'
   },
   {
     id: 'drill-rigs-workshop',
-    name: 'DZ & Workshop Series',
+    name: 'Drill Rigs',
     fullName: 'High-Pressure Drill Rigs & Compact Units',
     powerRange: '2.2 – 37 kW',
-    energySavings: 'Up to 25 Bar',
+    driveType: 'High Pressure / Mobile',
     modelCount: 3,
     pressureRange: '8 – 25 Bar',
-    description: 'Purpose-built for harsh open-cast mining drill rigs, mobile field rigs, and industrial engineering workshops requiring high pressure and absolute durability.',
+    description: 'High-pressure skid and mobile compressors engineered for exploration drill rigs, mobile field operations, and industrial workshops.',
     familyId: 'mining-drill-rigs'
   },
   {
     id: 'air-receivers',
     name: 'Air Receivers & Vessels',
-    fullName: 'Certified Industrial Pressure Vessels',
+    fullName: 'Industrial Air Pressure Vessels',
     powerRange: '500L – 10,000L+',
-    energySavings: 'Surge Buffer',
+    driveType: 'Vertical / Horizontal',
     modelCount: 3,
     pressureRange: '10 – 40 Bar',
-    description: 'ASME & SANS 347 compliant vertical and horizontal compressed air storage vessels. Fully hydro-tested and certified with safety relief valves.',
+    description: 'Vertical and horizontal industrial compressed air receivers for volume buffering and moisture separation. Manufactured to SANS 347 pressure vessel standards.',
     familyId: 'certified-air-receivers'
   }
 ];
@@ -272,19 +272,19 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
                     </p>
                   </div>
                   <div>
-                    <p className="text-2xl sm:text-3xl font-black text-[#dc2626] tracking-tight">
-                      {currentSpotlight.energySavings}
+                    <p className="text-base sm:text-lg lg:text-xl font-black text-[#0a1628] tracking-tight leading-snug">
+                      {currentSpotlight.driveType}
                     </p>
                     <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
-                      Efficiency Factor
+                      Drive / Configuration
                     </p>
                   </div>
                   <div>
                     <p className="text-2xl sm:text-3xl font-black text-[#dc2626] tracking-tight">
-                      {currentSpotlight.modelCount}
+                      {currentSpotlight.pressureRange}
                     </p>
                     <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
-                      Models Available
+                      Pressure Rating
                     </p>
                   </div>
                 </div>
@@ -427,16 +427,16 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
                         <span className="font-bold text-[#0a1628]">{modalModel.variant.powerKw} kW ({modalModel.variant.powerHp} HP)</span>
                       </div>
                       <div className="bg-slate-50 p-3 rounded-xl">
-                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Pressure</span>
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Operating Pressure</span>
                         <span className="font-bold text-[#0a1628]">{modalModel.variant.pressureBar}</span>
                       </div>
                       <div className="bg-slate-50 p-3 rounded-xl">
-                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Air Flow (FAD)</span>
-                        <span className="font-bold text-[#0a1628]">{modalModel.variant.flowRateCfm}</span>
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Drive Type</span>
+                        <span className="font-bold text-[#0a1628]">{modalModel.family.name}</span>
                       </div>
                       <div className="bg-slate-50 p-3 rounded-xl">
-                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Noise Level</span>
-                        <span className="font-bold text-[#0a1628]">{modalModel.variant.noiseDb || 'Harsh Duty'}</span>
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Cooling Method</span>
+                        <span className="font-bold text-[#0a1628]">{modalModel.variant.cooling || 'Air-Cooled'}</span>
                       </div>
                     </div>
                   </div>
@@ -470,7 +470,7 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
                     onClick={() => scrollToContact(modalModel.variant.model)}
                     className="w-full sm:w-auto bg-[#dc2626] hover:bg-[#b91c1c] text-white px-8 py-3.5 rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider transition-colors cursor-pointer shadow-md"
                   >
-                    Request Pricing & Sizing for {modalModel.variant.model}
+                    Request Technical Datasheet for {modalModel.variant.model}
                   </motion.button>
                 </div>
               </motion.div>

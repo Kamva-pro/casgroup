@@ -4,6 +4,7 @@ import { fadeUp, staggerContainer } from '@/lib/motion';
 
 import op7 from '@/assets/operation-7.jpg';
 import op2 from '@/assets/operation-14.jpg';
+import op21 from '@/assets/op21.jpeg';
 import op20 from '@/assets/op20.jpeg';
 import op22 from '@/assets/op22.jpeg';
 import pressureTesting from '@/assets/pressure-testing.png';
@@ -13,39 +14,39 @@ export function Services() {
   const services = [
     {
       title: 'Preventative Maintenance Contracts',
-      description: 'Scheduled maintenance agreements engineered to protect your BAOFN and industrial compressor investments, ensuring maximum uptime and factory warranty compliance.',
+      // description: 'Scheduled maintenance agreements engineered to protect your BAOFN and industrial compressor investments, ensuring maximum uptime and efficiency.',
       image: op2,
-      category: 'Featured Maintenance Program'
+      objectPosition: '50% 20%',
     },
     {
       title: 'Compressor Servicing & Overhauls',
-      description: 'Complete element overhauls, airend rebuilds, and preventative servicing conducted in our certified workshop and field support units.',
+      // description: 'Complete element overhauls, airend rebuilds, and preventive servicing conducted in our certified workshop and field support units.',
       image: op22,
-      category: 'Workshop & Field'
+      objectPosition: '25% 15%',
     },
     {
       title: 'Breakdown Repairs & Field Response',
-      description: 'Rapid field technical response for industrial breakdowns to diagnose issues, restore air pressure, and resume plant production quickly.',
+      // description: 'Rapid field technical response for industrial breakdowns to diagnose issues, restore air pressure, and resume plant production quickly.',
       image: op7,
-      category: '24/7 Emergency Support'
+      objectPosition: '50% 65%',
     },
     {
-      title: 'Pressure Testing & Safety Inspection',
-      description: 'Certified pressure vessel testing, safety valve recalibration, and legal compliance inspections for all compressed air receivers.',
+      title: 'Pressure Testing',
+      // description: 'Certified pressure vessel testing, safety valve recalibration, and legal compliance inspections for all compressed air receivers.',
       image: pressureTesting,
-      category: 'Regulatory Compliance'
+      objectPosition: '50% 60%',
     },
     {
-      title: 'Compressed Air System Audits',
-      description: 'Comprehensive flow, pressure drop, and air quality audits to identify energy leaks and optimize compressor system efficiency.',
+      title: 'System Audits',
+      // description: 'Comprehensive flow, pressure drop, and air quality audits to identify energy leaks and optimize compressor system operation.',
       image: air,
-      category: 'Energy Optimization'
+      objectPosition: '50% 70%',
     },
     {
-      title: 'Site Inspections & Genuine Parts',
-      description: 'Direct access to OEM spare parts, air filters, oil separators, line valves, and lubricants to maintain equipment performance.',
-      image: op20,
-      category: 'OEM Spares & Logistics'
+      title: 'Site Inspections',
+      // description: 'Direct access to OEM spare parts, air filters, oil separators, line valves, and lubricants to maintain warranty protection.',
+      image: op21,
+      objectPosition: '50% 15%',
     }
   ];
 
@@ -86,17 +87,17 @@ export function Services() {
                 key={s.title}
                 variants={fadeUp}
                 whileHover={{ y: -6 }}
-                className={`group relative overflow-hidden rounded-2xl shadow-sm border border-slate-200/80 bg-slate-900 transition-all duration-300 hover:shadow-xl ${
-                  isFeatured
-                    ? 'md:col-span-2 md:row-span-2 min-h-[380px] lg:min-h-[460px]'
-                    : 'min-h-[220px] lg:min-h-[240px]'
-                }`}
+                className={`group relative overflow-hidden rounded-2xl shadow-sm border border-slate-200/80 bg-slate-900 transition-all duration-300 hover:shadow-xl ${isFeatured
+                  ? 'md:col-span-2 md:row-span-2 min-h-[380px] lg:min-h-[460px]'
+                  : 'min-h-[220px] lg:min-h-[240px]'
+                  }`}
               >
                 {/* Background Image with Hover Scale */}
                 <img
                   src={s.image}
                   alt={s.title}
-                  className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  style={{ objectPosition: s.objectPosition || 'center' }}
                 />
 
                 {/* Ambient Deep Dark Gradient Overlay */}
@@ -105,27 +106,25 @@ export function Services() {
                 {/* Content Overlay */}
                 <div className="relative z-10 flex h-full flex-col justify-end p-6 lg:p-8">
                   <div className="mb-2">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-red-400">
+                    {/* <span className="text-[11px] font-bold uppercase tracking-wider text-red-400">
                       {s.category}
-                    </span>
+                    </span> */}
                   </div>
 
                   <h3
-                    className={`font-black text-white leading-tight ${
-                      isFeatured ? 'text-2xl sm:text-3xl lg:text-4xl max-w-xl' : 'text-lg lg:text-xl'
-                    }`}
+                    className={`font-black text-white leading-tight ${isFeatured ? 'text-2xl sm:text-3xl lg:text-4xl max-w-xl' : 'text-lg lg:text-xl'
+                      }`}
                   >
                     {s.title}
                   </h3>
 
                   <p
-                    className={`text-white/80 leading-relaxed text-sm mt-2 transition-all duration-300 ${
-                      isFeatured
-                        ? 'max-w-xl text-base text-white/90'
-                        : 'line-clamp-2 group-hover:line-clamp-none text-xs sm:text-sm'
-                    }`}
+                    className={`text-white/80 leading-relaxed text-sm mt-2 transition-all duration-300 ${isFeatured
+                      ? 'max-w-xl text-base text-white/90'
+                      : 'line-clamp-2 group-hover:line-clamp-none text-xs sm:text-sm'
+                      }`}
                   >
-                    {s.description}
+                    {/* {s.description} */}
                   </p>
                 </div>
               </motion.div>

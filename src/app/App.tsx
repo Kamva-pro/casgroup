@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { BaofnBanner } from './components/BaofnBanner';
@@ -14,6 +15,34 @@ import { Footer } from './components/Footer';
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState<ProductCategory>('All');
+  const location = useLocation();
+
+  useEffect(() => {
+    const scrollToHash = () => {
+      const hash = window.location.hash || location.hash;
+      if (!hash) return;
+      const id = hash.replace('#', '');
+
+      const attemptScroll = (count = 0) => {
+        const el = document.getElementById(id);
+        if (el) {
+          const offset = 80;
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - offset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        } else if (count < 6) {
+          setTimeout(() => attemptScroll(count + 1), 100);
+        }
+      };
+
+      attemptScroll(0);
+      setTimeout(() => attemptScroll(0), 200);
+    };
+
+    scrollToHash();
+    window.addEventListener('hashchange', scrollToHash);
+    return () => window.removeEventListener('hashchange', scrollToHash);
+  }, [location.pathname, location.hash]);
 
   const handleCategorySelect = (category: ProductCategory) => {
     setActiveCategory(category);

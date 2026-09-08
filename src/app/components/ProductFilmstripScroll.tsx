@@ -59,15 +59,15 @@ export function ProductFilmstripScroll({
       {
         model: 'DZ10 Drill Rig',
         series: 'High-Pressure Drill Rig',
-        tagline: 'Skid-mounted high-pressure compressor built for harsh open-cast mining exploration and drilling.',
+        tagline: 'Skid-mounted high-pressure drill rig',
         power: '18.5 kW',
         pressure: 'Up to 25 Bar',
         image: dz10
       },
       {
         model: '1000L Air Receiver',
-        series: 'Certified Air Storage Vessel',
-        tagline: 'Vertical ASME & SANS 347 certified air vessel with safety valves, pressure gauge, and auto drain.',
+        series: 'Industrial Air Storage Vessel',
+        tagline: 'Vertical industrial air receiver built to SANS 347 pressure vessel standards with safety valve and inspection port.',
         power: '1000 Litres',
         pressure: '11 – 16 Bar',
         image: airReceiverVertical
@@ -75,7 +75,7 @@ export function ProductFilmstripScroll({
       {
         model: 'Refrigerated Air Dryer',
         series: 'Compressed Air Treatment',
-        tagline: 'High-efficiency refrigerated moisture and particulate removal station protecting downstream machinery.',
+        tagline: 'Refrigerated moisture separation system designed to reduce dew point and protect downstream pneumatic equipment.',
         power: '10 m³/min',
         pressure: '16 Bar Max',
         image: airDryerImg
