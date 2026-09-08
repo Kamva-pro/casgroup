@@ -1,144 +1,164 @@
-import { Clock, Wrench, Gauge, Settings, FileSearch, ClipboardCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { ArrowRight, Phone } from 'lucide-react';
+import { fadeUp, staggerContainer } from '@/lib/motion';
+
 import op7 from '@/assets/operation-7.jpg';
 import op2 from '@/assets/operation-14.jpg';
-import op4 from '@/assets/operation-4.jpg';
-import op5 from '@/assets/operation-5.jpg';
-import op16 from '@/assets/operation-16.jpg';
 import op20 from '@/assets/op20.jpeg';
-import op21 from '@/assets/op21.jpeg';
 import op22 from '@/assets/op22.jpeg';
-import op23 from '@/assets/op23.jpeg';
 import pressureTesting from '@/assets/pressure-testing.png';
 import air from '@/assets/air-aud.png';
-
 
 export function Services() {
   const services = [
     {
-      icon: Wrench,
       title: 'Preventative Maintenance Contracts',
-      description: 'Scheduled maintenance agreements engineered to protect your BAOFN and industrial compressor investments, ensuring maximum uptime and efficiency.',
+      description: 'Scheduled maintenance agreements engineered to protect your BAOFN and industrial compressor investments, ensuring maximum uptime and factory warranty compliance.',
       image: op2,
-      accent: '#dc2626'
+      category: 'Featured Maintenance Program'
     },
     {
-      icon: Settings,
       title: 'Compressor Servicing & Overhauls',
-      description: 'Complete element overhauls, airend rebuilds, and preventive servicing conducted in our certified workshop and field support units.',
+      description: 'Complete element overhauls, airend rebuilds, and preventative servicing conducted in our certified workshop and field support units.',
       image: op22,
-      accent: '#64748b'
+      category: 'Workshop & Field'
     },
     {
-      icon: Clock,
       title: 'Breakdown Repairs & Field Response',
       description: 'Rapid field technical response for industrial breakdowns to diagnose issues, restore air pressure, and resume plant production quickly.',
       image: op7,
-      accent: '#f97316'
+      category: '24/7 Emergency Support'
     },
     {
-      icon: Gauge,
       title: 'Pressure Testing & Safety Inspection',
       description: 'Certified pressure vessel testing, safety valve recalibration, and legal compliance inspections for all compressed air receivers.',
       image: pressureTesting,
-      accent: '#fbbf24'
+      category: 'Regulatory Compliance'
     },
     {
-      icon: FileSearch,
       title: 'Compressed Air System Audits',
-      description: 'Comprehensive flow, pressure drop, and air quality audits to identify energy leaks and optimize compressor system operation.',
+      description: 'Comprehensive flow, pressure drop, and air quality audits to identify energy leaks and optimize compressor system efficiency.',
       image: air,
-      accent: '#0a1628'
+      category: 'Energy Optimization'
     },
     {
-      icon: ClipboardCheck,
-      title: 'Site Inspections',
-      description: 'Direct access to OEM spare parts, air filters, oil separators, line valves, and lubricants to maintain warranty protection.',
+      title: 'Site Inspections & Genuine Parts',
+      description: 'Direct access to OEM spare parts, air filters, oil separators, line valves, and lubricants to maintain equipment performance.',
       image: op20,
-      accent: '#3b82f6'
+      category: 'OEM Spares & Logistics'
     }
   ];
 
   return (
-    <section id="services" className="py-24 bg-slate-50 border-t border-gray-200">
-      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
-        {/* Header */}
+    <section id="services" className="py-24 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6 tracking-tight uppercase font-['Plus_Jakarta_Sans']">
-            Technical Support & Compressor Maintenance
+          <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#dc2626] mb-3">
+            Engineering & Field Capability
+          </p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0a1628] uppercase tracking-tight">
+            Technical Support & Compressor Servicing
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Every equipment installation is backed by CAS technical capability. We support your compressed-air investment through preventative maintenance, overhauls, breakdown repairs, pressure testing, and genuine parts supply.
+          <p className="mt-4 text-gray-600 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
+            Every equipment installation is backed by CAS technical capability. We support your compressed-air investment through preventative maintenance, overhauls, emergency breakdown repairs, pressure vessel testing, and genuine OEM parts.
           </p>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => {
-            const Icon = service.icon;
+        {/* Asymmetric Bento Grid */}
+        <motion.div
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-5"
+        >
+          {services.map((s, i) => {
+            const isFeatured = i === 0;
             return (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group cursor-pointer bg-white rounded-md overflow-hidden border border-gray-200"
+                key={s.title}
+                variants={fadeUp}
+                whileHover={{ y: -6 }}
+                className={`group relative overflow-hidden rounded-2xl shadow-sm border border-slate-200/80 bg-slate-900 transition-all duration-300 hover:shadow-xl ${
+                  isFeatured
+                    ? 'md:col-span-2 md:row-span-2 min-h-[380px] lg:min-h-[460px]'
+                    : 'min-h-[220px] lg:min-h-[240px]'
+                }`}
               >
-                <div className="relative h-80 overflow-hidden bg-gray-100">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover object-[50%_30%] group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black/40" />
-                  <div
-                    className="absolute top-4 right-4 w-12 h-12 rounded-md flex items-center justify-center"
-                    style={{ backgroundColor: service.accent }}
-                  >
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                </div>
+                {/* Background Image with Hover Scale */}
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                />
 
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-[#0a1628] mb-3 group-hover:text-[#dc2626] transition-colors">
-                    {service.title}
+                {/* Ambient Deep Dark Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 transition-opacity duration-300 group-hover:from-black/95 group-hover:via-black/50" />
+
+                {/* Content Overlay */}
+                <div className="relative z-10 flex h-full flex-col justify-end p-6 lg:p-8">
+                  <div className="mb-2">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-red-400">
+                      {s.category}
+                    </span>
+                  </div>
+
+                  <h3
+                    className={`font-black text-white leading-tight ${
+                      isFeatured ? 'text-2xl sm:text-3xl lg:text-4xl max-w-xl' : 'text-lg lg:text-xl'
+                    }`}
+                  >
+                    {s.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed text-sm">
-                    {service.description}
+
+                  <p
+                    className={`text-white/80 leading-relaxed text-sm mt-2 transition-all duration-300 ${
+                      isFeatured
+                        ? 'max-w-xl text-base text-white/90'
+                        : 'line-clamp-2 group-hover:line-clamp-none text-xs sm:text-sm'
+                    }`}
+                  >
+                    {s.description}
                   </p>
                 </div>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Bottom CTA */}
+        {/* Bottom CTA with Micro-interactions */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-60px' }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-6 bg-gray-100 border border-gray-200 text-[#0a1628] px-8 py-6 sm:py-4 rounded-md">
+          <div className="inline-flex flex-col sm:flex-row items-center justify-between gap-6 bg-white border border-slate-200 text-[#0a1628] p-6 sm:px-10 sm:py-6 rounded-2xl shadow-sm max-w-4xl mx-auto w-full">
             <div className="text-center sm:text-left">
-              <p className="font-bold text-lg uppercase">Need a custom technical support plan?</p>
-              <p className="text-sm text-gray-500">Contact us for tailored industrial air service contracts</p>
+              <h4 className="font-bold text-lg sm:text-xl uppercase tracking-tight text-[#0a1628]">
+                Need a custom technical support contract?
+              </h4>
+              <p className="text-sm text-slate-500 mt-1">
+                Contact our Kimberley workshop for tailored industrial air service contracts and 24/7 breakdown coverage.
+              </p>
             </div>
-            <a
+            <motion.a
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.98 }}
               href="tel:053-832-1249"
-              className="bg-[#dc2626] hover:bg-[#b91c1c] text-white px-6 py-3 rounded-md font-bold text-sm uppercase tracking-wider transition-colors whitespace-nowrap"
+              className="bg-[#dc2626] hover:bg-[#b91c1c] text-white px-7 py-3.5 rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider transition-all whitespace-nowrap flex items-center gap-2 shadow-md hover:shadow-lg shadow-red-600/20"
             >
-              Call Now
-            </a>
+              <Phone className="w-4 h-4" />
+              <span>Call 053-832-1249</span>
+            </motion.a>
           </div>
         </motion.div>
       </div>

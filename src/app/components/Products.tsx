@@ -1,364 +1,482 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Tag, PhoneCall, ShieldCheck, Zap, ArrowRight, Gauge, Layers, Wind } from 'lucide-react';
+import {
+  ShieldCheck,
+  Zap,
+  ArrowRight,
+  PhoneCall,
+  Wind,
+  Gauge,
+  Search,
+  CheckCircle2,
+  Eye,
+  X,
+  Layers,
+  Sparkles
+} from 'lucide-react';
+import {
+  PRODUCT_FAMILIES,
+  ALL_MODELS_FLAT,
+  ProductCategory,
+  ProductFamily,
+  ProductModelVariant,
+  FlatModelRow
+} from '../data/productsData';
+import { fadeUp, staggerContainer } from '@/lib/motion';
+import { ProductFilmstripScroll } from './ProductFilmstripScroll';
 
-// Air Receivers images
-import airReceiver1 from '@/assets/Air Receivers/Air Receiver 1.png';
-import airReceiverMain from '@/assets/Air Receivers/Air Receiver.png';
-import airReceiver2 from '@/assets/Air Receivers/Air Receiver2.png';
-
-// Oil Free Compressors images
-import rsvt400vsd from '@/assets/Oil Free Compressors/RSVT400VSD/RSVT400VSD.png';
-
-// Oil Injected Compressors images
-import dz10 from '@/assets/Oil Injected Compressors/Drill Rigs/DZ10/DZ10.png';
-import rs3 from '@/assets/Oil Injected Compressors/Drill Rigs/RS3/RS3.png';
-import rs11ff from '@/assets/Oil Injected Compressors/Full Feature/RS11 VSD FF/RS11VSDFF.png';
-import rs75ff from '@/assets/Oil Injected Compressors/Full Feature/RS7.5 VSD FF/RS7.5VSDFF.png';
-import sm3hp from '@/assets/Oil Injected Compressors/SM3HP/SM3HP.png';
-import rs22vsd from '@/assets/Oil Injected Compressors/Single Stage VSD/RS22VSD/RS22VSD.png';
-
-export type ProductCategory = 'All' | 'Rotary Screw Compressors' | 'Variable Speed Compressors' | 'Portable & Drill Rig Compressors' | 'Air Dryers & Treatment' | 'Air Receivers';
-
-interface Product {
-  id: string;
-  title: string;
-  category: Exclude<ProductCategory, 'All'>;
-  subtitle: string;
-  description: string;
-  image?: string;
-  badge: string;
-  badgeColor: string;
-  specs: string[];
-  isPlaceholder?: boolean;
-}
+export type { ProductCategory };
 
 interface ProductsProps {
   activeCategory?: ProductCategory;
   onCategoryChange?: (category: ProductCategory) => void;
 }
 
-export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
-  const [internalTab, setInternalTab] = useState<ProductCategory>('All');
-  const activeTab = activeCategory !== undefined ? activeCategory : internalTab;
+// Spotlight showcase tabs data synthesized from real product families
+const SPOTLIGHT_SERIES = [
+  {
+    id: 'two-stage-vsd',
+    name: 'RS-2S-VSD Series',
+    fullName: 'BAOFN Two-Stage Variable Speed Drive',
+    powerRange: '22 – 250 kW',
+    energySavings: 'Up to 45%',
+    modelCount: 11,
+    pressureRange: '8 – 13 Bar',
+    description: 'Dual-stage compression coupled with ultra-efficient permanent magnet VSD technology. Maximizes airflow while slashing electrical consumption during fluctuating plant demand.',
+    familyId: 'two-stage-vsd'
+  },
+  {
+    id: 'two-stage-fixed-speed',
+    name: 'RS-2S Series',
+    fullName: 'BAOFN Two-Stage Fixed Speed Heavy Duty',
+    powerRange: '15 – 315 kW',
+    energySavings: 'Up to 20%',
+    modelCount: 13,
+    pressureRange: '8 – 13 Bar',
+    description: 'Continuous 24/7 baseload compression for mining, smelting, and heavy industrial plants. Independent dual air-ends divide thermal load for unmatched equipment lifespan.',
+    familyId: 'two-stage-fixed-speed'
+  },
+  {
+    id: 'single-stage-vsd',
+    name: 'RS-VSD Series',
+    fullName: 'BAOFN Single-Stage Permanent Magnet VSD',
+    powerRange: '22 – 75 kW',
+    energySavings: 'Up to 40%',
+    modelCount: 5,
+    pressureRange: '8 – 13 Bar',
+    description: 'Precision variable speed control in a compact footprint. Eliminates unloaded idle energy waste and maintains line pressure within ±0.1 bar.',
+    familyId: 'single-stage-vsd'
+  },
+  {
+    id: 'full-feature-all-in-one',
+    name: 'RS-VSD-FF Series',
+    fullName: 'BAOFN All-In-One Tank-Mounted Screw Compressor',
+    powerRange: '7.5 – 15 kW',
+    energySavings: 'Up to 35%',
+    modelCount: 3,
+    pressureRange: '8 – 13 Bar',
+    description: 'Complete plug-and-play air station: rotary screw compressor, 500L receiver vessel, refrigerated dryer, and inline filters in a single quiet footprint.',
+    familyId: 'full-feature-all-in-one'
+  },
+  {
+    id: 'drill-rigs-workshop',
+    name: 'DZ & Workshop Series',
+    fullName: 'High-Pressure Drill Rigs & Compact Units',
+    powerRange: '2.2 – 37 kW',
+    energySavings: 'Up to 25 Bar',
+    modelCount: 3,
+    pressureRange: '8 – 25 Bar',
+    description: 'Purpose-built for harsh open-cast mining drill rigs, mobile field rigs, and industrial engineering workshops requiring high pressure and absolute durability.',
+    familyId: 'mining-drill-rigs'
+  },
+  {
+    id: 'air-receivers',
+    name: 'Air Receivers & Vessels',
+    fullName: 'Certified Industrial Pressure Vessels',
+    powerRange: '500L – 10,000L+',
+    energySavings: 'Surge Buffer',
+    modelCount: 3,
+    pressureRange: '10 – 40 Bar',
+    description: 'ASME & SANS 347 compliant vertical and horizontal compressed air storage vessels. Fully hydro-tested and certified with safety relief valves.',
+    familyId: 'certified-air-receivers'
+  }
+];
 
-  const setActiveTab = (tab: ProductCategory) => {
-    setInternalTab(tab);
+export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
+  const [internalCategory, setInternalCategory] = useState<ProductCategory>('All');
+  const currentCategory = activeCategory !== undefined ? activeCategory : internalCategory;
+
+  // 5a Spotlight active series tab
+  const [activeSpotlightId, setActiveSpotlightId] = useState(SPOTLIGHT_SERIES[0].id);
+
+  // Quick-view modal state
+  const [modalModel, setModalModel] = useState<{
+    family: ProductFamily;
+    variant: ProductModelVariant;
+  } | null>(null);
+
+  const handleCategoryChange = (cat: ProductCategory) => {
+    setInternalCategory(cat);
     if (onCategoryChange) {
-      onCategoryChange(tab);
+      onCategoryChange(cat);
     }
   };
 
-  const products: Product[] = [
-    // BAOFN Rotary Screw & VSD
-    {
-      id: 'rs-22-vsd',
-      title: 'BAOFN RS22 VSD Rotary Screw Compressor',
-      category: 'Variable Speed Compressors',
-      subtitle: 'Single-Stage VSD Series',
-      description: 'High-performance oil-injected rotary screw compressor engineered for continuous heavy-duty industrial operations with dynamic energy savings.',
-      image: rs22vsd,
-      badge: 'BAOFN VSD Energy Saver',
-      badgeColor: '#f97316',
-      specs: ['Variable Speed Drive', 'Ultra-Quiet Operation', 'Direct Drive System', 'Smart Microprocessor Control']
-    },
-    {
-      id: 'rs-vsd-full-feature',
-      title: 'BAOFN RS VSD Full Feature Compressor',
-      category: 'Rotary Screw Compressors',
-      subtitle: 'Integrated Dryer & Air Package',
-      description: 'All-in-one industrial rotary screw compressor with integrated refrigerated air dryer and precision filtration for clean, dry air.',
-      image: rs11ff,
-      badge: 'BAOFN Full Feature',
-      badgeColor: '#dc2626',
-      specs: ['Integrated Refrigerated Dryer', 'Variable Speed Drive (VSD)', 'Compact Footprint', 'Plug & Play Installation']
-    },
-    {
-      id: 'rsvt-400-vsd',
-      title: 'BAOFN RSVT 400 VSD Oil-Free Compressor',
-      category: 'Variable Speed Compressors',
-      subtitle: '100% Pure ISO Class 0 Air',
-      description: 'State-of-the-art oil-free rotary screw compressor with Variable Speed Drive technology. Delivers 100% ISO Class 0 pure air for critical food, pharma & high-tech applications.',
-      image: rsvt400vsd,
-      badge: '100% Oil-Free (Class 0)',
-      badgeColor: '#10b981',
-      specs: ['ISO 8573-1 Class 0 Certified', 'Variable Speed Drive (VSD)', 'Maximum Energy Savings', 'Pharma & Food Grade Approved']
-    },
+  const currentSpotlight = useMemo(() => {
+    const s = SPOTLIGHT_SERIES.find((item) => item.id === activeSpotlightId) || SPOTLIGHT_SERIES[0];
+    const family = PRODUCT_FAMILIES.find((f) => f.id === s.familyId) || PRODUCT_FAMILIES[0];
+    const heroVariant = family.variants[family.defaultVariantIndex] || family.variants[0];
+    return {
+      ...s,
+      image: heroVariant?.image,
+      modelName: heroVariant?.model,
+      family
+    };
+  }, [activeSpotlightId]);
 
-    // Portable / Drill Rigs
-    {
-      id: 'dz10-drill-rig',
-      title: 'BAOFN DZ10 Heavy Drill Rig Compressor',
-      category: 'Portable & Drill Rig Compressors',
-      subtitle: 'Mining & Exploration Series',
-      description: 'Ruggedized high-pressure compressor built specifically for drilling rigs, mining exploration, quarrying, and harsh field operations.',
-      image: dz10,
-      badge: 'Mining & Drill Rig',
-      badgeColor: '#b45309',
-      specs: ['Extreme Environment Ready', 'High CFM & Bar Output', 'Heavy Industrial Chassis', 'Shock & Dust Protection']
-    },
-    {
-      id: 'rs3-drill-rig',
-      title: 'BAOFN RS3 Portable High-Pressure Unit',
-      category: 'Portable & Drill Rig Compressors',
-      subtitle: 'Heavy Field Output Series',
-      description: 'Heavy-duty high-pressure mobile air compressor engineered for maximum uptime and reliability on demanding drill sites and field operations.',
-      image: rs3,
-      badge: 'High Pressure Drill',
-      badgeColor: '#d97706',
-      specs: ['High CFM Delivery', 'Heavy Skid Chassis', 'Superior Thermal Management', 'Easy Field Maintenance']
-    },
-
-    // Workshop & General Rotary Screw
-    {
-      id: 'sm-3hp-compact',
-      title: 'BAOFN SM 3HP Industrial Screw Compressor',
-      category: 'Rotary Screw Compressors',
-      subtitle: 'Compact Rotary Screw',
-      description: 'Efficient and compact rotary screw compressor ideal for small-to-medium workshops requiring continuous commercial compressed air supply.',
-      image: sm3hp,
-      badge: 'Workshop Series',
-      badgeColor: '#64748b',
-      specs: ['Continuous 100% Duty Cycle', 'Low Noise Emissions', 'Energy Efficient Motor', 'Simple Serviceability']
-    },
-    {
-      id: 'rs75-full-feature',
-      title: 'BAOFN RS 7.5 VSD FF Compact System',
-      category: 'Rotary Screw Compressors',
-      subtitle: 'Integrated Air System',
-      description: 'Compact Full Feature rotary screw unit featuring smart VSD control and integrated air treatment for reliable industrial air.',
-      image: rs75ff,
-      badge: 'Compact Full Feature',
-      badgeColor: '#ef4444',
-      specs: ['Inverter Driven (VSD)', 'Built-in Air Dryer', 'Low Operating Costs', 'Digital Touch Display']
-    },
-
-    // Air Dryers & Treatment
-    {
-      id: 'air-dryer-ref',
-      title: 'Industrial Refrigerated Air Dryer Range',
-      category: 'Air Dryers & Treatment',
-      subtitle: 'Moisture & Condensate Removal',
-      description: 'Heavy-duty refrigerated compressed air dryers designed to remove moisture and protect downstream pneumatic equipment from corrosion.',
-      badge: 'Air Treatment',
-      badgeColor: '#0284c7',
-      isPlaceholder: true,
-      specs: ['Low Pressure Drop', 'Eco-Friendly Refrigerant R410a', 'Automatic Drain Valve', 'Digital Dewpoint Display']
-    },
-    {
-      id: 'air-filter-pack',
-      title: 'High-Efficiency Inline Filtration & Treatment',
-      category: 'Air Dryers & Treatment',
-      subtitle: 'Particulate & Oil Removal',
-      description: 'Multi-stage inline compressed air filtration for oil mist removal, dust filtering, and odour absorption across industrial plants.',
-      badge: 'Air Filtration',
-      badgeColor: '#0d9488',
-      isPlaceholder: true,
-      specs: ['High Particulate Retention', 'Low Operating Resistance', 'Differential Pressure Indicator', 'Easy Filter Cartridge Replacement']
-    },
-
-    // Air Receivers
-    {
-      id: 'air-receiver-vertical',
-      title: 'Vertical Industrial Air Receiver',
-      category: 'Air Receivers',
-      subtitle: 'Pressure Vessel Tank',
-      description: 'High-capacity vertical air storage vessels engineered to absorb pressure surges, equalize air flow, and optimize air compressor efficiency.',
-      image: airReceiverMain,
-      badge: 'Certified Air Vessel',
-      badgeColor: '#3b82f6',
-      specs: ['Certified Pressure Tested', 'Heavy-Duty Steel Construction', 'Corrosion-Resistant Finish', 'Safety Valve & Pressure Gauge']
-    },
-    {
-      id: 'air-receiver-high-cap',
-      title: 'High-Capacity Air Storage Tank',
-      category: 'Air Receivers',
-      subtitle: 'Heavy-Duty Pressure Receiver',
-      description: 'Industrial-grade air storage solution designed for heavy compressed air demand, ensuring stable line pressure and reduced compressor cycle frequency.',
-      image: airReceiver1,
-      badge: 'Heavy Pressure Vessel',
-      badgeColor: '#0284c7',
-      specs: ['ASME / SANS Compliant', 'Multi-Port Outlets', 'Drain Valve Assembly', 'Low Maintenance']
-    },
-    {
-      id: 'air-receiver-duo',
-      title: 'Dual-Stage Air Receiver Unit',
-      category: 'Air Receivers',
-      subtitle: 'Buffer & Storage Vessel',
-      description: 'Robust receiver system built for harsh industrial environments, providing vital buffer capacity during high peak air demand.',
-      image: airReceiver2,
-      badge: 'Heavy Industrial Buffer',
-      badgeColor: '#1d4ed8',
-      specs: ['High Pressure Rating', 'Vibration Resistant', 'Easy Inspection Access', 'Long Operational Lifespan']
-    }
-  ];
-
-  const filteredProducts = activeTab === 'All'
-    ? products
-    : products.filter(p => p.category === activeTab);
-
-  const scrollToContact = () => {
+  const scrollToContact = (modelName?: string) => {
+    setModalModel(null);
     const element = document.getElementById('contact');
     if (element) {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - offset;
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+
+      const subjectInput = document.querySelector<HTMLInputElement>(
+        '#contact input[name="subject"], #contact input[name="interest"]'
+      );
+      if (subjectInput && modelName) {
+        subjectInput.value = `Enquiry: BAOFN ${modelName}`;
+      }
     }
   };
 
-  const tabs: ProductCategory[] = [
-    'All',
-    'Rotary Screw Compressors',
-    'Variable Speed Compressors',
-    'Portable & Drill Rig Compressors',
-    'Air Dryers & Treatment',
-    'Air Receivers'
-  ];
+
 
   return (
-    <section id="products" className="py-24 bg-slate-50 relative overflow-hidden">
-      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-        {/* Header */}
+    <section id="products" className="pt-24 pb-24 relative overflow-hidden">
+      {/* Soft Ambient Background Glows */}
+      <div className="pointer-events-none absolute -left-20 top-20 h-[500px] w-[500px] rounded-full bg-red-500/5 blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 top-1/3 h-[500px] w-[500px] rounded-full bg-blue-500/5 blur-3xl" />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
+        {/* Section Header: Clean Typographic Hierarchy, No Pill Badges */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-6 tracking-tight uppercase font-['Plus_Jakarta_Sans']">
-            BAOFN Compressors & Compressed Air Equipment
+          <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#dc2626] mb-3">
+            Authorized BAOFN Industrial Equipment Catalog
+          </p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0a1628] uppercase tracking-tight">
+            BAOFN Compressors <span className="text-[#dc2626]">& Compressed Air Systems</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Industrial equipment supply is at the center of our business. Explore our range of BAOFN rotary screw compressors, Variable Speed Drive (VSD) systems, high-pressure drill compressors, air dryers, and certified air receivers.
+          <p className="mt-4 text-gray-500 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
+            Engineered for high-efficiency continuous duty. We supply, commission, and maintain heavy-duty two-stage screw units, permanent magnet VSD compressors, drill rig systems, and certified pressure vessels across Southern Africa.
           </p>
         </motion.div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-5 py-2.5 rounded-md text-sm font-bold transition-colors cursor-pointer ${
-                activeTab === tab
-                  ? 'bg-[#dc2626] text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 hover:text-[#dc2626] border border-gray-200'
-              }`}
-            >
-              {tab === 'All' ? 'All Products' : tab}
-            </button>
-          ))}
-        </div>
+        {/* ------------------------------------------------------------- */}
+        {/* 5a. SPOTLIGHT SECTION: One Large Interactive Showcase Panel  */}
+        {/* ------------------------------------------------------------- */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-60px' }}
+          className="rounded-3xl border border-slate-200/90 bg-gradient-to-b from-slate-50/90 to-white p-6 sm:p-10 shadow-sm relative overflow-hidden mb-20"
+        >
+          {/* Subtle Ambient Red Glow */}
+          <div className="pointer-events-none absolute right-0 top-0 h-96 w-96 rounded-full bg-red-500/5 blur-3xl" />
 
-        {/* Product Grid */}
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredProducts.map((product) => (
+          {/* Series Tabs with Sliding Underline via layoutId */}
+          <div className="flex gap-4 sm:gap-8 overflow-x-auto pb-3 border-b border-slate-200 no-scrollbar">
+            {SPOTLIGHT_SERIES.map((series) => {
+              const isActive = activeSpotlightId === series.id;
+              return (
+                <button
+                  key={series.id}
+                  onClick={() => setActiveSpotlightId(series.id)}
+                  className={`relative pb-3 text-xs sm:text-sm font-bold tracking-wide whitespace-nowrap cursor-pointer transition-colors ${
+                    isActive ? 'text-[#dc2626]' : 'text-slate-400 hover:text-slate-700'
+                  }`}
+                >
+                  {series.name}
+                  {isActive && (
+                    <motion.div
+                      layoutId="spotlight-tab-underline"
+                      className="absolute -bottom-px left-0 right-0 h-[2.5px] bg-[#dc2626]"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Crossfading Showcase Panel */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSpotlight.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_1.1fr]"
+            >
+              {/* Left Product Image Stage with Slow Continuous Float */}
+              <div className="relative flex items-center justify-center p-4">
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                  className="relative flex items-center justify-center w-full"
+                >
+                  {currentSpotlight.image ? (
+                    <img
+                      src={currentSpotlight.image}
+                      alt={currentSpotlight.fullName}
+                      className="max-h-[320px] sm:max-h-[360px] w-auto max-w-full object-contain drop-shadow-2xl select-none"
+                    />
+                  ) : (
+                    <div className="h-64 w-64 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400">
+                      <Wind className="w-16 h-16" />
+                    </div>
+                  )}
+                </motion.div>
+              </div>
+
+              {/* Right Details & Big Specs */}
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wider text-[#dc2626]">
+                  Series Spotlight · {currentSpotlight.pressureRange}
+                </p>
+                <h3 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-black text-[#0a1628] leading-tight">
+                  {currentSpotlight.fullName}
+                </h3>
+                <p className="mt-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+                  {currentSpotlight.description}
+                </p>
+
+                {/* 3 Key Specs Shown Large */}
+                <div className="mt-8 grid grid-cols-3 gap-4 border-y border-slate-200/80 py-6">
+                  <div>
+                    <p className="text-2xl sm:text-3xl font-black text-[#dc2626] tracking-tight">
+                      {currentSpotlight.powerRange}
+                    </p>
+                    <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Power Range
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-2xl sm:text-3xl font-black text-[#dc2626] tracking-tight">
+                      {currentSpotlight.energySavings}
+                    </p>
+                    <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Efficiency Factor
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-2xl sm:text-3xl font-black text-[#dc2626] tracking-tight">
+                      {currentSpotlight.modelCount}
+                    </p>
+                    <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Models Available
+                    </p>
+                  </div>
+                </div>
+
+                {/* Spotlight Actions */}
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <motion.button
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      const family = currentSpotlight.family;
+                      const variant = family.variants[family.defaultVariantIndex] || family.variants[0];
+                      if (family && variant) {
+                        setModalModel({ family, variant });
+                      }
+                    }}
+                    className="cursor-pointer rounded-full bg-[#dc2626] px-7 py-3.5 font-bold text-xs sm:text-sm uppercase tracking-wider text-white shadow-lg shadow-red-600/20 transition hover:bg-[#b91c1c] hover:shadow-red-600/40"
+                  >
+                    View {currentSpotlight.name} Models →
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => scrollToContact(currentSpotlight.name)}
+                    className="cursor-pointer rounded-full border border-slate-300 bg-white px-7 py-3.5 font-bold text-xs sm:text-sm uppercase tracking-wider text-slate-700 transition hover:bg-slate-50 hover:border-slate-400"
+                  >
+                    Request Series Quote
+                  </motion.button>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+      </div>
+
+      {/* ------------------------------------------------------------- */}
+      {/* 4b. FEATURED SHOWCASE: Pinned Horizontal Scroll (Full Width)  */}
+      {/* ------------------------------------------------------------- */}
+      <ProductFilmstripScroll
+        products={ALL_MODELS_FLAT}
+        onQuote={(modelName) => scrollToContact(modelName)}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10 mt-20">
+        {/* ------------------------------------------------------------- */}
+        {/* Air Receiver Sizing Guide Callout (Clean Refactored Card)    */}
+        {/* ------------------------------------------------------------- */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-60px' }}
+          className="rounded-3xl bg-[#0a1628] text-white p-8 sm:p-12 relative overflow-hidden shadow-lg border border-slate-800"
+        >
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+            <div className="space-y-3 text-center lg:text-left">
+              <p className="text-xs font-bold uppercase tracking-widest text-[#dc2626]">
+                Air Receiver Sizing Guideline
+              </p>
+              <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight">
+                Need Help Matching Compressor CFM to Air Receiver Capacity?
+              </h3>
+              <p className="text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed">
+                As a standard industrial guideline, compressed air systems require <strong>1 m³ of receiver capacity per 10 – 12 m³/min</strong> of compressor free air delivery to buffer pneumatic peak demands and prevent excessive compressor motor cycling. Our technical engineers calculate your exact plant requirements.
+              </p>
+            </div>
+            <motion.button
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => scrollToContact('Air Receiver & System Sizing')}
+              className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-8 py-4 rounded-full transition-all whitespace-nowrap cursor-pointer text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-red-600/30 flex-shrink-0"
+            >
+              Request Sizing Audit
+            </motion.button>
+          </div>
+        </motion.div>
+
+        {/* ------------------------------------------------------------- */}
+        {/* Full Specification Modal (Interactive Engineering Deep Dive) */}
+        {/* ------------------------------------------------------------- */}
+        <AnimatePresence>
+          {modalModel && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setModalModel(null)}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs"
+            >
               <motion.div
-                layout
-                key={product.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-                className="group bg-white rounded-md overflow-hidden border border-gray-200 flex flex-col justify-between"
+                initial={{ opacity: 0, scale: 0.94, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.94, y: 20 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 relative p-6 sm:p-8"
               >
-                <div>
-                  {/* Image Container */}
-                  <div className="relative h-72 bg-gray-50 p-6 flex items-center justify-center overflow-hidden border-b border-gray-100">
-                    {product.image ? (
+                {/* Close Button */}
+                <button
+                  onClick={() => setModalModel(null)}
+                  className="absolute top-5 right-5 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors cursor-pointer z-20"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                {/* Modal Header */}
+                <div className="pb-6 border-b border-slate-100">
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#dc2626]">
+                    {modalModel.family.seriesCode} · {modalModel.family.category}
+                  </p>
+                  <h3 className="text-2xl sm:text-3xl font-black text-[#0a1628] mt-1">
+                    BAOFN {modalModel.variant.model}
+                  </h3>
+                  <p className="text-slate-500 text-sm mt-1">
+                    {modalModel.family.subtitle}
+                  </p>
+                </div>
+
+                {/* Modal Body */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-6 items-center">
+                  <div className="h-56 bg-slate-50 rounded-2xl flex items-center justify-center p-4">
+                    {modalModel.variant.image ? (
                       <img
-                        src={product.image}
-                        alt={product.title}
-                        className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+                        src={modalModel.variant.image}
+                        alt={modalModel.variant.model}
+                        className="max-h-full max-w-full object-contain drop-shadow-md"
                       />
                     ) : (
-                      <div className="text-center p-6 space-y-3">
-                        <div className="w-16 h-16 mx-auto rounded-md bg-gray-200 flex items-center justify-center text-gray-400">
-                          <Wind className="w-8 h-8" />
-                        </div>
-                        <p className="text-gray-700 font-bold text-base">{product.title}</p>
-                        <span className="inline-block px-3 py-1 bg-gray-100 text-xs font-mono text-gray-500 rounded-md border border-gray-200">
-                          Approved Specs on Request
-                        </span>
-                      </div>
+                      <Wind className="w-16 h-16 text-slate-300" />
                     )}
-                    
-                    {/* Badge */}
-                    <span
-                      className="absolute top-4 left-4 px-3 py-1 text-xs font-bold text-white rounded-md"
-                      style={{ backgroundColor: product.badgeColor }}
-                    >
-                      {product.badge}
-                    </span>
                   </div>
 
-                  {/* Body Content */}
-                  <div className="p-6">
-                    <div className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">
-                      {product.subtitle}
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Technical Parameters
+                    </h4>
+                    <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm">
+                      <div className="bg-slate-50 p-3 rounded-xl">
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Motor Power</span>
+                        <span className="font-bold text-[#0a1628]">{modalModel.variant.powerKw} kW ({modalModel.variant.powerHp} HP)</span>
+                      </div>
+                      <div className="bg-slate-50 p-3 rounded-xl">
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Pressure</span>
+                        <span className="font-bold text-[#0a1628]">{modalModel.variant.pressureBar}</span>
+                      </div>
+                      <div className="bg-slate-50 p-3 rounded-xl">
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Air Flow (FAD)</span>
+                        <span className="font-bold text-[#0a1628]">{modalModel.variant.flowRateCfm}</span>
+                      </div>
+                      <div className="bg-slate-50 p-3 rounded-xl">
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Noise Level</span>
+                        <span className="font-bold text-[#0a1628]">{modalModel.variant.noiseDb || 'Harsh Duty'}</span>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-bold text-[#0a1628] mb-3 group-hover:text-[#dc2626] transition-colors">
-                      {product.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-5">
-                      {product.description}
-                    </p>
+                  </div>
+                </div>
 
-                    {/* Specs / Features */}
-                    <div className="space-y-2 mb-6">
-                      {product.specs.map((spec, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs font-medium text-gray-700">
-                          <ShieldCheck className="w-4 h-4 text-[#dc2626] flex-shrink-0" />
-                          <span>{spec}</span>
+                {/* Key Highlights */}
+                {modalModel.family.keyHighlights && modalModel.family.keyHighlights.length > 0 && (
+                  <div className="mb-6 bg-slate-50 p-4 rounded-2xl">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+                      Engineering Highlights
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {modalModel.family.keyHighlights.map((feat, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-xs text-slate-700">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#dc2626] flex-shrink-0" />
+                          <span>{feat}</span>
                         </div>
                       ))}
                     </div>
                   </div>
-                </div>
+                )}
 
-                {/* Footer CTA */}
-                <div className="p-6 pt-0 border-t border-gray-100 bg-gray-50/50 mt-auto">
-                  <button
-                    onClick={scrollToContact}
-                    className="w-full mt-4 flex items-center justify-center gap-2 bg-[#dc2626] hover:bg-[#b91c1c] text-white py-3 px-4 rounded-md font-bold text-sm tracking-wide transition-colors cursor-pointer"
+                {/* Modal Footer CTA */}
+                <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <span className="text-xs text-slate-400 text-center sm:text-left">
+                    All BAOFN units supplied with South African warranty and field service backup.
+                  </span>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => scrollToContact(modalModel.variant.model)}
+                    className="w-full sm:w-auto bg-[#dc2626] hover:bg-[#b91c1c] text-white px-8 py-3.5 rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider transition-colors cursor-pointer shadow-md"
                   >
-                    <PhoneCall className="w-4 h-4" />
-                    <span>Contact for Price</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                    Request Pricing & Sizing for {modalModel.variant.model}
+                  </motion.button>
                 </div>
               </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Bottom Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-16 bg-gray-100 border border-gray-200 rounded-md p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6"
-        >
-          <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-2xl font-bold text-[#0a1628] flex items-center justify-center md:justify-start gap-2 uppercase">
-              <Zap className="w-6 h-6 text-[#dc2626]" />
-              Need Custom Compressor Specifications or Sizing?
-            </h3>
-            <p className="text-gray-500 text-sm max-w-2xl">
-              Our engineering specialists provide tailored compressed air audits, custom receiver sizing, and competitive quotes for all industrial setups.
-            </p>
-          </div>
-          <button
-            onClick={scrollToContact}
-            className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-7 py-3.5 rounded-md transition-colors whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
-          >
-            Get In Touch
-          </button>
-        </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

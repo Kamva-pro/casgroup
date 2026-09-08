@@ -1,85 +1,87 @@
-import { Users, Award, Shield, Lightbulb, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer } from '@/lib/motion';
+
+const values = [
+  {
+    title: 'Client-First',
+    desc: 'Your success drives everything we do in plant design and emergency support.'
+  },
+  {
+    title: 'Quality Assurance',
+    desc: 'Excellence in every compressed air installation and overhaul delivered.'
+  },
+  {
+    title: 'Integrity',
+    desc: 'Operating with honesty and delivering on technical promises consistently.'
+  },
+  {
+    title: 'Expertise',
+    desc: 'Deep engineering knowledge and certified compressor technical experience.'
+  },
+  {
+    title: 'Innovation',
+    desc: 'Embracing cutting-edge VSD efficiency and modern pneumatic solutions.'
+  }
+];
 
 export function CoreValues() {
-  const values = [
-    {
-      icon: Users,
-      title: 'Client-First',
-      description: 'Your success drives everything we do'
-    },
-    {
-      icon: Award,
-      title: 'Quality Assurance',
-      description: 'Excellence in every service delivered'
-    },
-    {
-      icon: Shield,
-      title: 'Integrity',
-      description: 'Operating with honesty and delivering on promises consistently'
-    },
-    {
-      icon: Target,
-      title: 'Expertise',
-      description: 'Deep technical knowledge and experience'
-    },
-    {
-      icon: Lightbulb,
-      title: 'Innovation',
-      description: 'Embracing cutting-edge solutions'
-    }
-  ];
-
   return (
-    <section id="values" className="py-20 bg-white border-t border-gray-100">
-      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
-        {/* Header */}
+    <section id="values" className="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-3 uppercase">
+          <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#dc2626] mb-3">
+            Guiding Engineering Principles
+          </p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0a1628] uppercase tracking-tight">
             Our Core Values
           </h2>
-          <p className="text-gray-500">
-            The principles that guide our work and define our commitment to engineering excellence
+          <p className="mt-4 text-gray-500 max-w-2xl mx-auto text-base sm:text-lg">
+            The principles that guide our work and define our commitment to operational reliability and engineering excellence.
           </p>
         </motion.div>
 
-        {/* Values Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-          {values.map((value, index) => {
-            const Icon = value.icon;
-            return (
+        {/* Connected Horizontal Timeline */}
+        <motion.div
+          variants={staggerContainer(0.14)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
+          className="relative mt-8 pt-4"
+        >
+          {/* Connecting Line across markers */}
+          <div className="absolute left-8 right-8 top-[36px] hidden h-[2px] bg-slate-200 md:block z-0" />
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-6">
+            {values.map((v, i) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative cursor-pointer bg-white hover:bg-gray-50 p-6 rounded-md transition-all border border-gray-200 hover:border-[#dc2626]/40 hover:shadow-md text-center"
+                key={v.title}
+                variants={fadeUp}
+                whileHover={{ y: -6 }}
+                className="group relative flex flex-col items-start md:items-center text-left md:text-center transition-transform"
               >
-                {/* Icon */}
-                <div className="w-16 h-16 mx-auto mb-4 bg-[#dc2626] rounded-md flex items-center justify-center">
-                  <Icon className="w-8 h-8 text-white" />
+                {/* Numbered Sequence Badge */}
+                <div className="relative z-10 mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-white text-sm font-black text-[#dc2626] ring-4 ring-red-50 border border-red-200 shadow-sm transition-all group-hover:scale-110 group-hover:ring-red-100 group-hover:bg-[#dc2626] group-hover:text-white">
+                  {String(i + 1).padStart(2, '0')}
                 </div>
 
-                {/* Title */}
-                <h3 className="text-lg font-bold text-[#0a1628] mb-2 group-hover:text-[#dc2626] transition-colors">
-                  {value.title}
+                {/* Content */}
+                <h3 className="text-lg font-bold text-[#0a1628] group-hover:text-[#dc2626] transition-colors mb-2">
+                  {v.title}
                 </h3>
-
-                {/* Description */}
-                <p className="text-sm text-gray-500">
-                  {value.description}
+                <p className="text-sm leading-relaxed text-slate-500">
+                  {v.desc}
                 </p>
               </motion.div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
