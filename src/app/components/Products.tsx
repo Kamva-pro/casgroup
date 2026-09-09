@@ -32,26 +32,26 @@ interface ProductsProps {
   onCategoryChange?: (category: ProductCategory) => void;
 }
 
-// Spotlight showcase series configurations with verified mechanical parameters
+// Spotlight showcase series configurations — verified against baofn.co.za
 const SPOTLIGHT_SERIES = [
   {
     id: 'two-stage-vsd',
     name: 'RS-2S-VSD Series',
     fullName: 'BAOFN Two-Stage Variable Speed Drive',
-    powerRange: '22 – 250 kW',
-    driveType: 'Permanent Magnet VSD',
-    modelCount: 11,
+    powerRange: '22 – 315 kW',
+    driveType: 'Variable Speed Drive',
+    modelCount: 12,
     pressureRange: '8 – 13 Bar',
-    description: 'Two-stage rotary screw compression equipped with permanent magnet variable speed drive. Modulates motor speed to match actual plant air demand and reduce unloaded idle running.',
+    description: 'Dual-stage efficiency coupled with VSD technology. Modulates motor speed to match actual plant air demand and reduce unloaded idle running.',
     familyId: 'two-stage-vsd'
   },
   {
     id: 'two-stage-fixed-speed',
     name: 'RS-2S Series',
     fullName: 'BAOFN Two-Stage Fixed Speed Heavy Duty',
-    powerRange: '15 – 315 kW',
+    powerRange: '15 – 550 kW',
     driveType: 'Fixed Speed Direct Drive',
-    modelCount: 13,
+    modelCount: 17,
     pressureRange: '8 – 13 Bar',
     description: 'Two-stage compression designed for continuous baseload industrial operations. Dual independent airends divide the compression ratio across two stages to reduce mechanical stress.',
     familyId: 'two-stage-fixed-speed'
@@ -59,13 +59,24 @@ const SPOTLIGHT_SERIES = [
   {
     id: 'single-stage-vsd',
     name: 'RS-VSD Series',
-    fullName: 'BAOFN Single-Stage Permanent Magnet VSD',
-    powerRange: '22 – 75 kW',
+    fullName: 'BAOFN Single-Stage VSD',
+    powerRange: '7.5 – 75 kW',
     driveType: 'Variable Speed (VSD)',
-    modelCount: 5,
+    modelCount: 8,
     pressureRange: '8 – 13 Bar',
-    description: 'Single-stage rotary screw compressor with variable speed control. Matches fluctuating air demand and stabilizes line pressure in industrial workshops and facilities.',
+    description: 'Single-stage rotary screw compressor with variable speed control. Eliminates unloaded idle energy waste and maintains line pressure within ±0.1 bar.',
     familyId: 'single-stage-vsd'
+  },
+  {
+    id: 'oil-free',
+    name: 'Oil-Free Series',
+    fullName: 'BAOFN Oil-Free Rotary Screw',
+    powerRange: '15 – 945 kW',
+    driveType: 'Class 0 Oil-Free',
+    modelCount: 23,
+    pressureRange: '7 – 10 Bar',
+    description: 'Class 0 100% oil-free rotary screw compression engineered for pharmaceutical, food processing, electronics, and high-purity clean air operations.',
+    familyId: 'oil-free-rsvt'
   },
   {
     id: 'full-feature-all-in-one',
@@ -75,18 +86,18 @@ const SPOTLIGHT_SERIES = [
     driveType: 'Integrated 3-in-1 Station',
     modelCount: 3,
     pressureRange: '8 – 13 Bar',
-    description: 'Integrated air station combining rotary screw compressor, 500L air receiver, and refrigerated air dryer in a single pre-piped enclosure.',
+    description: 'Complete plug-and-play station combining rotary screw compressor, air receiver tank, and refrigerated air dryer in a single compact footprint.',
     familyId: 'full-feature-all-in-one'
   },
   {
     id: 'drill-rigs-workshop',
-    name: 'Drill Rigs',
-    fullName: 'High-Pressure Drill Rigs & Compact Units',
-    powerRange: '2.2 – 37 kW',
+    name: 'Drill Rigs & Portable',
+    fullName: 'BAOFN Drill Rigs & Portable Compressors',
+    powerRange: '3 – 310 kW',
     driveType: 'High Pressure / Mobile',
-    modelCount: 3,
+    modelCount: 12,
     pressureRange: '8 – 25 Bar',
-    description: 'High-pressure skid and mobile compressors engineered for exploration drill rigs, mobile field operations, and industrial workshops.',
+    description: 'High-pressure skid and wheeled diesel compressors engineered for exploration drill rigs, open-cast blast holes, and remote field operations.',
     familyId: 'mining-drill-rigs'
   },
   {
@@ -96,8 +107,8 @@ const SPOTLIGHT_SERIES = [
     powerRange: '500L – 10,000L+',
     driveType: 'Vertical / Horizontal',
     modelCount: 3,
-    pressureRange: '10 – 40 Bar',
-    description: 'Vertical and horizontal industrial compressed air receivers for volume buffering and moisture separation. Manufactured to SANS 347 pressure vessel standards.',
+    pressureRange: '11 – 40 Bar',
+    description: 'Vertical, horizontal, and bulk industrial air receivers manufactured to SANS 347 pressure vessel standards for volume buffering and moisture separation.',
     familyId: 'certified-air-receivers'
   }
 ];
@@ -176,7 +187,7 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
             BAOFN Compressors <span className="text-[#dc2626]">& Compressed Air Systems</span>
           </h2>
           <p className="mt-4 text-gray-500 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
-            Engineered for high-efficiency continuous duty. We supply, commission, and maintain heavy-duty two-stage screw units, permanent magnet VSD compressors, drill rig systems, and certified pressure vessels across Southern Africa.
+            Engineered for high-efficiency continuous duty. We supply, commission, and maintain heavy-duty two-stage screw units, variable speed (VSD) compressors, drill rig systems, and certified pressure vessels across Southern Africa.
           </p>
         </motion.div>
 
@@ -193,15 +204,15 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
           {/* Subtle Ambient Red Glow */}
           <div className="pointer-events-none absolute right-0 top-0 h-96 w-96 rounded-full bg-red-500/5 blur-3xl" />
 
-          {/* Series Tabs with Sliding Underline via layoutId */}
-          <div className="flex gap-4 sm:gap-8 overflow-x-auto pb-3 border-b border-slate-200 no-scrollbar">
+          {/* Series Tabs with Sliding Underline - Responsive wrapping, no overflow scrollbar */}
+          <div className="flex flex-wrap items-center justify-start sm:justify-center gap-x-6 sm:gap-x-8 gap-y-3 pb-3 border-b border-slate-200 mb-8">
             {SPOTLIGHT_SERIES.map((series) => {
               const isActive = activeSpotlightId === series.id;
               return (
                 <button
                   key={series.id}
                   onClick={() => setActiveSpotlightId(series.id)}
-                  className={`relative pb-3 text-xs sm:text-sm font-bold tracking-wide whitespace-nowrap cursor-pointer transition-colors ${
+                  className={`relative pb-3 text-xs sm:text-sm font-bold tracking-wide cursor-pointer transition-colors ${
                     isActive ? 'text-[#dc2626]' : 'text-slate-400 hover:text-slate-700'
                   }`}
                 >
@@ -226,7 +237,7 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_1.1fr]"
+              className="mt-6 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_1.1fr]"
             >
               {/* Left Product Image Stage with Slow Continuous Float */}
               <div className="relative flex items-center justify-center p-4">
@@ -272,19 +283,19 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
                     </p>
                   </div>
                   <div>
-                    <p className="text-base sm:text-lg lg:text-xl font-black text-[#0a1628] tracking-tight leading-snug">
-                      {currentSpotlight.driveType}
-                    </p>
-                    <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
-                      Drive / Configuration
-                    </p>
-                  </div>
-                  <div>
                     <p className="text-2xl sm:text-3xl font-black text-[#dc2626] tracking-tight">
                       {currentSpotlight.pressureRange}
                     </p>
                     <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
                       Pressure Rating
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-2xl sm:text-3xl font-black text-[#dc2626] tracking-tight">
+                      {currentSpotlight.modelCount}
+                    </p>
+                    <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Models Available
                     </p>
                   </div>
                 </div>
@@ -318,7 +329,8 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
             </motion.div>
           </AnimatePresence>
         </motion.div>
-      </div>
+
+      </div>{/* /max-w-7xl (first) */}
 
       {/* ------------------------------------------------------------- */}
       {/* 4b. FEATURED SHOWCASE: Pinned Horizontal Scroll (Full Width)  */}

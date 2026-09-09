@@ -6,7 +6,7 @@ import op7 from '@/assets/operation-7.jpg';
 import op2 from '@/assets/operation-14.jpg';
 import op21 from '@/assets/op21.jpeg';
 import op20 from '@/assets/op20.jpeg';
-import op22 from '@/assets/op22.jpeg';
+import baofnTech from '@/assets/WhatsApp Image Mar 31 2026 (7).jpeg';
 import pressureTesting from '@/assets/pressure-testing.png';
 import air from '@/assets/air-aud.png';
 
@@ -21,8 +21,8 @@ export function Services() {
     {
       title: 'Compressor Servicing & Overhauls',
       // description: 'Complete element overhauls, airend rebuilds, and preventive servicing conducted in our certified workshop and field support units.',
-      image: op22,
-      objectPosition: '25% 15%',
+      image: baofnTech,
+      objectPosition: '35% 20%',
     },
     {
       title: 'Breakdown Repairs & Field Response',
