@@ -49,19 +49,19 @@ export function ProductFilmstripScroll({
         image: rs75_2s_vsd
       },
       {
-        model: 'RS11-VSD-FF',
-        series: 'Full-Feature 3-in-1 Station',
-        tagline: 'All-in-one plug-and-play station: rotary screw compressor, 500L storage receiver, and integrated air dryer.',
+        model: 'RS11VSD-FF',
+        series: 'Single-Stage VSD',
+        tagline: 'Compact variable speed rotary screw compressor with integrated frequency inverter for plant energy optimization.',
         power: '11 kW (15 HP)',
         pressure: '8 – 13 Bar',
         image: rs11ff
       },
       {
         model: 'DZ10 Drill Rig',
-        series: 'High-Pressure Drill Rig',
-        tagline: 'Skid-mounted high-pressure drill rig',
-        power: '18.5 kW',
-        pressure: 'Up to 25 Bar',
+        series: 'BAOFN Drill Rigs',
+        tagline: 'Electric direct-mount rotary screw compressor unit for mining and production drilling rigs.',
+        power: '7.5 kW (10 HP)',
+        pressure: '8 Bar',
         image: dz10
       },
       {

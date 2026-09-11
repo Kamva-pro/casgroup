@@ -19,8 +19,9 @@ export function Navbar({ onSelectCategory }: NavbarProps) {
   const productCategories: ProductCategory[] = [
     'Two-Stage Rotary Screw',
     'Variable Speed (VSD)',
-    'Full Feature All-In-One',
-    'Drill Rigs & Workshop',
+    'Oil Free Compressors',
+    'Portable Compressors',
+    'Drill Rigs',
     'Air Receivers',
     'Air Dryers & Treatment'
   ];

@@ -32,8 +32,6 @@ import rs37vsd from '@/assets/Oil Injected Compressors/Single Stage VSD/RS37VSD/
 import rs45vsd from '@/assets/Oil Injected Compressors/Single Stage VSD/RS45VSD/RS45VSD.png';
 import rs55vsd from '@/assets/Oil Injected Compressors/Single Stage VSD/RS55VSD/RS55VSD.png';
 import rs75vsd from '@/assets/Oil Injected Compressors/Single Stage VSD/RS75VSD/RS75VSD.png';
-
-// Full Feature Images
 import rs75ff from '@/assets/Oil Injected Compressors/Full Feature/RS7.5 VSD FF/RS7.5VSDFF.png';
 import rs11ff from '@/assets/Oil Injected Compressors/Full Feature/RS11 VSD FF/RS11VSDFF.png';
 import rs15ff from '@/assets/Oil Injected Compressors/Full Feature/RS15 VSD FF/RS15VSDFF.png';
@@ -61,20 +59,38 @@ export type ProductCategory =
   | 'All'
   | 'Two-Stage Rotary Screw'
   | 'Variable Speed (VSD)'
-  | 'Full Feature All-In-One'
-  | 'Drill Rigs & Workshop'
+  | 'Oil Free Compressors'
+  | 'Oil Free Blowers'
+  | 'Drill Rigs'
+  | 'Portable Compressors'
+  | 'Low Pressure Compressors'
+  | 'High Pressure Compressors'
   | 'Air Receivers'
-  | 'Air Dryers & Treatment';
+  | 'Desiccant Dryers'
+  | 'Refrigerant Dryers'
+  | 'Inline Filters'
+  | 'Air Dryers & Treatment'
+  | 'Drill Rigs & Workshop'
+  | string;
 
 export interface ProductModelVariant {
   id: string;
   model: string;
-  powerKw: number;
-  powerHp: number;
-  pressureBar: string;
-  flowRateM3: string;
-  flowRateCfm: string;
+  powerKw?: number;
+  powerHp?: number;
+  pressureBar?: string;
+  flowRateM3?: string;
+  flowRateCfm?: string;
+  flowRateNm3?: string;
+  powerW?: number;
+  dieselPower?: string;
+  connection?: string;
+  outlet?: string;
+  gas?: string;
+  type?: string;
+  pressureDrop?: string;
   image: string;
+  isPlaceholderImage?: boolean;
   tankSize?: string;
   noiseDb?: string;
   weightKg?: string;
@@ -101,691 +117,521 @@ export interface ProductFamily {
 }
 
 export const PRODUCT_FAMILIES: ProductFamily[] = [
-  // 1. TWO-STAGE FIXED SPEED SERIES (RS-2S)
+  // 1. TWO-STAGE FIXED SPEED SERIES (RS-2S) — 17 Models
   {
     id: 'two-stage-fixed-speed',
-    name: 'BAOFN Two-Stage Fixed Speed Screw Compressors',
+    name: 'Two Stage Fixed Speed Compressors',
     seriesCode: 'RS-2S Series',
     category: 'Two-Stage Rotary Screw',
     categoryTags: ['Two-Stage Rotary Screw'],
-    subtitle: 'Heavy Industrial & Continuous 24/7 Mining Operations',
+    subtitle: 'Screw Compressors · 15 kW to 550 kW',
     description:
-      'Engineered with dual independent airends to divide the compression ratio across two stages, lowering internal mechanical stress and bearing load for continuous heavy industrial duty.',
+      'Official BAOFN specifications for every two stage fixed speed compressors model — backed by the only OEM warranty on BAOFN units in South Africa.',
     badge: 'Two-Stage Fixed Speed',
     badgeColor: '#dc2626',
     keyHighlights: [
-      'Dual-Stage Compression Ratio Division',
-      'Lower Internal Pressure Ratio Per Stage',
-      'Heavy-Duty Industrial Airends',
-      'Continuous 24/7 Harsh Ambient Duty'
+      'Official BAOFN OEM specifications',
+      'Motor range: 15 kW to 550 kW',
+      'Outlets from G1 1/4 to DN150',
+      'Backed by OEM warranty in South Africa'
     ],
     specsList: [
-      'Two-Stage Inter-Cooled Compression',
-      'IE3/IE4 High-Efficiency Industrial Motor',
-      'Dual Stage Synthetic Oil Separation',
-      'Smart 7" Touchscreen PLC Controller'
+      'Motor: 15 kW to 550 kW',
+      'Outlet: G1 1/4 to DN150',
+      'Weight: 650 kg to 12,000 kg',
+      'Dimensions: 1450x870x1220 to 6000x2380x2750 mm'
     ],
-    applications: ['Mining & Smelting', 'Steel & Metal Fabrication', 'Heavy Chemical Processing', 'Automotive Plants', 'Glass & Cement'],
-    defaultVariantIndex: 5, // RS75-2S
+    applications: ['Need a Two Stage Fixed Speed Compressors sized for the duty? Tell us pressure, flow and hours. We will match a catalogue model and come back within one working day.'],
+    defaultVariantIndex: 0,
     variants: [
-      {
-        id: 'rs15-2s',
-        model: 'RS15-2S',
-        powerKw: 15,
-        powerHp: 20,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '2.85 m³/min',
-        flowRateCfm: '100.6 CFM',
-        image: rs15_2s,
-        noiseDb: '62 ± 2 dB(A)',
-        weightKg: '650 kg',
-        dimensions: '1450 x 870 x 1220 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs15-2s-ff',
-        model: 'RS15-2S-FF',
-        powerKw: 15,
-        powerHp: 20,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '2.85 m³/min',
-        flowRateCfm: '100.6 CFM',
-        image: rs15_2s,
-        noiseDb: '62 ± 2 dB(A)',
-        weightKg: '650 kg',
-        dimensions: '1450 x 870 x 1220 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs22-2s',
-        model: 'RS22-2S',
-        powerKw: 22,
-        powerHp: 30,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '4.1 m³/min',
-        flowRateCfm: '144.8 CFM',
-        image: rs22_2s,
-        noiseDb: '63 ± 2 dB(A)',
-        weightKg: '680 kg',
-        dimensions: '1450 x 970 x 1340 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs37-2s',
-        model: 'RS37-2S',
-        powerKw: 37,
-        powerHp: 50,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '7.1 m³/min',
-        flowRateCfm: '250.7 CFM',
-        image: rs37_2s,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '980 kg',
-        dimensions: '1560 x 970 x 1730 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs37-2s-ff',
-        model: 'RS37-2S-FF',
-        powerKw: 37,
-        powerHp: 50,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '7.1 m³/min',
-        flowRateCfm: '250.7 CFM',
-        image: rs37_2s,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '980 kg',
-        dimensions: '1560 x 970 x 1730 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs45-2s',
-        model: 'RS45-2S',
-        powerKw: 45,
-        powerHp: 60,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '9.7 m³/min',
-        flowRateCfm: '342.6 CFM',
-        image: rs45_2s,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '1510 kg',
-        dimensions: '2150 x 1140 x 1520 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs55-2s',
-        model: 'RS55-2S',
-        powerKw: 55,
-        powerHp: 75,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '12.0 m³/min',
-        flowRateCfm: '423.8 CFM',
-        image: rs55_2s,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '1950 kg',
-        dimensions: '2000 x 1360 x 1750 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs75-2s',
-        model: 'RS75-2S',
-        powerKw: 75,
-        powerHp: 100,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '15.5 m³/min',
-        flowRateCfm: '547.4 CFM',
-        image: rs75_2s,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '2000 kg',
-        dimensions: '1900 x 1550 x 1700 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs90-2s',
-        model: 'RS90-2S',
-        powerKw: 90,
-        powerHp: 120,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '19.2 m³/min',
-        flowRateCfm: '678.0 CFM',
-        image: rs90_2s,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '2500 kg',
-        dimensions: '2380 x 1750 x 1900 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs110-2s',
-        model: 'RS110-2S',
-        powerKw: 110,
-        powerHp: 150,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '23.1 m³/min',
-        flowRateCfm: '815.8 CFM',
-        image: rs110_2s,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '2900 kg',
-        dimensions: '2400 x 1850 x 1970 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs132-2s',
-        model: 'RS132-2S',
-        powerKw: 132,
-        powerHp: 175,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '28.0 m³/min',
-        flowRateCfm: '988.8 CFM',
-        image: rs132_2s,
-        noiseDb: '72 ± 2 dB(A)',
-        weightKg: '4350 kg',
-        dimensions: '2700 x 1900 x 2200 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rs160-2s',
-        model: 'RS160-2S',
-        powerKw: 160,
-        powerHp: 215,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '33.6 m³/min',
-        flowRateCfm: '1186.6 CFM',
-        image: rs160_2s,
-        noiseDb: '72 ± 2 dB(A)',
-        weightKg: '4600 kg',
-        dimensions: '3050 x 1900 x 2430 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rs200-2s',
-        model: 'RS200-2S',
-        powerKw: 200,
-        powerHp: 270,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '43.0 m³/min',
-        flowRateCfm: '1518.5 CFM',
-        image: rs200_2s,
-        noiseDb: '76 ± 2 dB(A)',
-        weightKg: '6200 kg',
-        dimensions: '3200 x 1900 x 2450 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rs250-2s',
-        model: 'RS250-2S',
-        powerKw: 250,
-        powerHp: 335,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '56.7 m³/min',
-        flowRateCfm: '2002.3 CFM',
-        image: rs250_2s,
-        noiseDb: '80 ± 2 dB(A)',
-        weightKg: '8000 kg',
-        dimensions: '4000 x 2200 x 2400 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rs315-2s',
-        model: 'RS315-2S',
-        powerKw: 315,
-        powerHp: 420,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '70.9 m³/min',
-        flowRateCfm: '2503.8 CFM',
-        image: rs315_2s,
-        noiseDb: '80 ± 2 dB(A)',
-        weightKg: '9000 kg',
-        dimensions: '4200 x 2200 x 2370 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rs355-2s',
-        model: 'RS355-2S',
-        powerKw: 350,
-        powerHp: 470,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '78.0 m³/min',
-        flowRateCfm: '2754.5 CFM',
-        image: rs315_2s,
-        noiseDb: '82 ± 2 dB(A)',
-        weightKg: '9500 kg',
-        dimensions: '4200 x 2200 x 2370 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rs550-2s',
-        model: 'RS550-2S',
-        powerKw: 550,
-        powerHp: 740,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '108.0 m³/min',
-        flowRateCfm: '3814.0 CFM',
-        image: rs315_2s,
-        noiseDb: '100 ± 2 dB(A)',
-        weightKg: '12000 kg',
-        dimensions: '6000 x 2380 x 2750 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      }
-
+      { id: 'rs15-2s',    model: 'RS15-2S',    powerKw: 15,  outlet: 'G1 1/4', weightKg: '650 kg',   dimensions: '1450x870x1220 mm', image: rs15_2s },
+      { id: 'rs15-2s-ff', model: 'RS15-2S-FF', powerKw: 15,  outlet: 'G1 1/4', weightKg: '650 kg',   dimensions: '1450x870x1220 mm', image: rs15_2s },
+      { id: 'rs22-2s',    model: 'RS22-2S',    powerKw: 22,  outlet: 'G1 1/2', weightKg: '680 kg',   dimensions: '1450x970x1340 mm', image: rs22_2s },
+      { id: 'rs37-2s',    model: 'RS37-2S',    powerKw: 37,  outlet: 'G1 1/2', weightKg: '980 kg',   dimensions: '1560x970x1730 mm', image: rs37_2s },
+      { id: 'rs37-2s-ff', model: 'RS37-2S-FF', powerKw: 37,  outlet: 'G1 1/2', weightKg: '980 kg',   dimensions: '1560x970x1730 mm', image: rs37_2s },
+      { id: 'rs45-2s',    model: 'RS45-2S',    powerKw: 45,  outlet: 'G2',     weightKg: '1510 kg',  dimensions: '2150x1140x1520 mm', image: rs45_2s },
+      { id: 'rs55-2s',    model: 'RS55-2S',    powerKw: 55,  outlet: 'G2 1/2', weightKg: '1950 kg',  dimensions: '2000x1360x1750 mm', image: rs55_2s },
+      { id: 'rs75-2s',    model: 'RS75-2S',    powerKw: 75,  outlet: 'DN65',   weightKg: '2000 kg',  dimensions: '1900x1550x1700 mm', image: rs75_2s },
+      { id: 'rs90-2s',    model: 'RS90-2S',    powerKw: 90,  outlet: 'DN80',   weightKg: '2500 kg',  dimensions: '2380x1750x1900 mm', image: rs90_2s },
+      { id: 'rs110-2s',   model: 'RS110-2S',   powerKw: 110, outlet: 'DN100',  weightKg: '2900 kg',  dimensions: '2400x1850x1970 mm', image: rs110_2s },
+      { id: 'rs132-2s',   model: 'RS132-2S',   powerKw: 132, outlet: 'DN100',  weightKg: '4350 kg',  dimensions: '2700x1900x2200 mm', image: rs132_2s },
+      { id: 'rs160-2s',   model: 'RS160-2S',   powerKw: 160, outlet: 'DN100',  weightKg: '4600 kg',  dimensions: '3050x1900x2430 mm', image: rs160_2s },
+      { id: 'rs200-2s',   model: 'RS200-2S',   powerKw: 200, outlet: 'DN125',  weightKg: '6200 kg',  dimensions: '3200x1900x2450 mm', image: rs200_2s },
+      { id: 'rs250-2s',   model: 'RS250-2S',   powerKw: 250, outlet: 'DN125',  weightKg: '8000 kg',  dimensions: '4000x2200x2400 mm', image: rs250_2s },
+      { id: 'rs315-2s',   model: 'RS315-2S',   powerKw: 315, outlet: 'DN125',  weightKg: '9000 kg',  dimensions: '4200x2200x2370 mm', image: rs315_2s },
+      { id: 'rs355-2s',   model: 'RS355-2S',   powerKw: 350, outlet: 'DN125',  weightKg: '9500 kg',  dimensions: '4200x2200x2370 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs550-2s',   model: 'RS550-2S',   powerKw: 550, outlet: 'DN150',  weightKg: '12000 kg', dimensions: '6000x2380x2750 mm', image: '', isPlaceholderImage: true }
     ]
   },
 
-  // 2. TWO-STAGE VARIABLE SPEED DRIVE (RS-2S-VSD)
+  // 2. TWO-STAGE VARIABLE SPEED DRIVE (RS-2S-VSD) — 12 Models
   {
     id: 'two-stage-vsd',
-    name: 'BAOFN Two-Stage Variable Speed Drive (VSD) Compressors',
+    name: 'Two Stage VSD Compressors',
     seriesCode: 'RS-2S-VSD Series',
     category: 'Variable Speed (VSD)',
     categoryTags: ['Two-Stage Rotary Screw', 'Variable Speed (VSD)'],
-    subtitle: 'Dynamic Speed Modulation with Two-Stage Thermodynamics',
+    subtitle: 'Screw Compressors · 22 kW to 315 kW',
     description:
-      'Dual-stage efficiency coupled with VSD technology. Modulates motor speed to track plant demand and reduce unloaded idling power consumption.',
-    badge: 'Variable Speed Drive (VSD)',
+      'Official BAOFN specifications for every two stage vsd compressors model — backed by the only OEM warranty on BAOFN units in South Africa.',
+    badge: 'Two-Stage VSD',
     badgeColor: '#f97316',
     keyHighlights: [
-      'Demand-Matched Speed Modulation',
-      'Stable Line Pressure Control',
-      'Zero Inrush Current Soft Start',
-      'Direct Drive Integrated Shaft'
+      'Official BAOFN OEM specifications',
+      'Motor range: 22 kW to 315 kW',
+      'Outlets from G1 1/2 to DN125',
+      'Backed by OEM warranty in South Africa'
     ],
     specsList: [
-      'Two-Stage Compression + Inverter Drive',
-      'Variable Speed Frequency Modulation',
-      'Direct Drive Integrated Shaft',
-      'Colour Graphic Touch PLC Interface'
+      'Motor: 22 kW to 315 kW',
+      'Outlet: G1 1/2 to DN125',
+      'Weight: 530 kg to 9,150 kg',
+      'Dimensions: 1450x970x1340 to 4200x2200x2370 mm'
     ],
-    applications: ['Fluctuating Air Demand Facilities', 'High Energy Cost Operations', 'Mining Processing', '24/7 Manufacturing'],
-    defaultVariantIndex: 4, // RS75-2S-VSD
+    applications: ['Need a Two Stage VSD Compressors sized for the duty? Tell us pressure, flow and hours. We will match a catalogue model and come back within one working day.'],
+    defaultVariantIndex: 0,
     variants: [
-      {
-        id: 'rs22-2s-vsd',
-        model: 'RS22-2S-VSD',
-        powerKw: 22,
-        powerHp: 30,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '4.1 m³/min',
-        flowRateCfm: '144.8 CFM',
-        image: rs22_2s_vsd,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '530 kg',
-        dimensions: '1450 x 970 x 1340 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs37-2s-vsd',
-        model: 'RS37-2S-VSD',
-        powerKw: 37,
-        powerHp: 50,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '7.1 m³/min',
-        flowRateCfm: '250.7 CFM',
-        image: rs37_2s_vsd,
-        noiseDb: '67 ± 2 dB(A)',
-        weightKg: '920 kg',
-        dimensions: '1560 x 970 x 1730 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs45-2s-vsd',
-        model: 'RS45-2S-VSD',
-        powerKw: 45,
-        powerHp: 60,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '9.7 m³/min',
-        flowRateCfm: '342.6 CFM',
-        image: rs45_2s_vsd,
-        noiseDb: '67 ± 2 dB(A)',
-        weightKg: '1250 kg',
-        dimensions: '2150 x 1140 x 1520 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs55-2s-vsd',
-        model: 'RS55-2S-VSD',
-        powerKw: 55,
-        powerHp: 75,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '12.0 m³/min',
-        flowRateCfm: '423.8 CFM',
-        image: rs55_2s_vsd,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '1300 kg',
-        dimensions: '2000 x 1360 x 1750 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs75-2s-vsd',
-        model: 'RS75-2S-VSD',
-        powerKw: 75,
-        powerHp: 100,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '15.5 m³/min',
-        flowRateCfm: '547.4 CFM',
-        image: rs75_2s_vsd,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '2000 kg',
-        dimensions: '1900 x 1550 x 1700 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs90-2s-vsd',
-        model: 'RS90-2S-VSD',
-        powerKw: 90,
-        powerHp: 120,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '19.2 m³/min',
-        flowRateCfm: '678.0 CFM',
-        image: rs90_2s_vsd,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '2400 kg',
-        dimensions: '2380 x 1750 x 1900 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs110-2s-vsd',
-        model: 'RS110-2S-VSD',
-        powerKw: 110,
-        powerHp: 150,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '23.1 m³/min',
-        flowRateCfm: '815.8 CFM',
-        image: rs110_2s_vsd,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '3300 kg',
-        dimensions: '2400 x 1850 x 1970 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs132-2s-vsd',
-        model: 'RS132-2S-VSD',
-        powerKw: 132,
-        powerHp: 175,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '28.0 m³/min',
-        flowRateCfm: '988.8 CFM',
-        image: rs132_2s_vsd,
-        noiseDb: '72 ± 2 dB(A)',
-        weightKg: '4300 kg',
-        dimensions: '2700 x 1900 x 2200 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rs160-2s-vsd',
-        model: 'RS160-2S-VSD',
-        powerKw: 160,
-        powerHp: 215,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '33.6 m³/min',
-        flowRateCfm: '1186.6 CFM',
-        image: rs160_2s_vsd,
-        noiseDb: '72 ± 2 dB(A)',
-        weightKg: '4500 kg',
-        dimensions: '3050 x 1900 x 2430 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rs200-2s-vsd',
-        model: 'RS200-2S-VSD',
-        powerKw: 200,
-        powerHp: 270,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '43.0 m³/min',
-        flowRateCfm: '1518.5 CFM',
-        image: rs200_2s_vsd,
-        noiseDb: '80 ± 2 dB(A)',
-        weightKg: '6000 kg',
-        dimensions: '3200 x 1900 x 2450 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rs250-2s-vsd',
-        model: 'RS250-2S-VSD',
-        powerKw: 250,
-        powerHp: 335,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '56.7 m³/min',
-        flowRateCfm: '2002.3 CFM',
-        image: rs250_2s_vsd,
-        noiseDb: '80 ± 2 dB(A)',
-        weightKg: '8000 kg',
-        dimensions: '4000 x 2200 x 2400 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rs315-2s-vsd',
-        model: 'RS315-2S-VSD',
-        powerKw: 315,
-        powerHp: 420,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '70.9 m³/min',
-        flowRateCfm: '2503.8 CFM',
-        image: rs250_2s_vsd, // placeholder — no RS315-2S-VSD image in assets yet
-        noiseDb: '82 ± 2 dB(A)',
-        weightKg: '9150 kg',
-        dimensions: '4200 x 2200 x 2370 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      }
+      { id: 'rs22-2s-vsd',  model: 'RS22-2S-VSD',  powerKw: 22,  outlet: 'G1 1/2', weightKg: '530 kg',  dimensions: '1450x970x1340 mm', image: rs22_2s_vsd },
+      { id: 'rs37-2s-vsd',  model: 'RS37-2S-VSD',  powerKw: 37,  outlet: 'G1 1/2', weightKg: '920 kg',  dimensions: '1560x970x1730 mm', image: rs37_2s_vsd },
+      { id: 'rs45-2s-vsd',  model: 'RS45-2S-VSD',  powerKw: 45,  outlet: 'G2',     weightKg: '1250 kg', dimensions: '2150x1140x1520 mm', image: rs45_2s_vsd },
+      { id: 'rs55-2s-vsd',  model: 'RS55-2S-VSD',  powerKw: 55,  outlet: 'G2 1/2', weightKg: '1300 kg', dimensions: '2000x1360x1750 mm', image: rs55_2s_vsd },
+      { id: 'rs75-2s-vsd',  model: 'RS75-2S-VSD',  powerKw: 75,  outlet: 'DN65',   weightKg: '2000 kg', dimensions: '1900x1550x1700 mm', image: rs75_2s_vsd },
+      { id: 'rs90-2s-vsd',  model: 'RS90-2S-VSD',  powerKw: 90,  outlet: 'DN80',   weightKg: '2400 kg', dimensions: '2380x1750x1900 mm', image: rs90_2s_vsd },
+      { id: 'rs110-2s-vsd', model: 'RS110-2S-VSD', powerKw: 110, outlet: 'DN100',  weightKg: '3300 kg', dimensions: '2400x1850x1970 mm', image: rs110_2s_vsd },
+      { id: 'rs132-2s-vsd', model: 'RS132-2S-VSD', powerKw: 132, outlet: 'DN100',  weightKg: '4300 kg', dimensions: '2700x1900x2200 mm', image: rs132_2s_vsd },
+      { id: 'rs160-2s-vsd', model: 'RS160-2S-VSD', powerKw: 160, outlet: 'DN100',  weightKg: '4500 kg', dimensions: '3050x1900x2430 mm', image: rs160_2s_vsd },
+      { id: 'rs200-2s-vsd', model: 'RS200-2S-VSD', powerKw: 200, outlet: 'DN125',  weightKg: '6000 kg', dimensions: '3200x1900x2450 mm', image: rs200_2s_vsd },
+      { id: 'rs250-2s-vsd', model: 'RS250-2S-VSD', powerKw: 250, outlet: 'DN125',  weightKg: '8000 kg', dimensions: '4000x2200x2400 mm', image: rs250_2s_vsd },
+      { id: 'rs315-2s-vsd', model: 'RS315-2S-VSD', powerKw: 315, outlet: 'DN125',  weightKg: '9150 kg', dimensions: '4200x2200x2370 mm', image: '', isPlaceholderImage: true }
     ]
   },
 
-  // 3. SINGLE-STAGE VARIABLE SPEED DRIVE (RS-VSD)
+  // 3. SINGLE-STAGE VSD (RS-VSD) — 8 Models
+  // 3. SINGLE-STAGE VSD (RS-VSD) — 8 Models
   {
     id: 'single-stage-vsd',
-    name: 'BAOFN Single-Stage Variable Speed Compressors',
+    name: 'Single Stage VSD Compressors',
     seriesCode: 'RS-VSD Series',
     category: 'Variable Speed (VSD)',
     categoryTags: ['Variable Speed (VSD)'],
-    subtitle: 'Cost-Effective Commercial & Industrial VSD Performance',
+    subtitle: 'Screw Compressors · 7.5 kW to 75 kW',
     description:
-      'Direct-drive single-stage rotary screw compressors with VSD frequency conversion. Matches rotational speed exactly to factory air consumption to eliminate no-load power draw.',
-    badge: 'Smart Inverter VSD',
+      'Official BAOFN specifications for every single stage vsd compressors model — backed by the only OEM warranty on BAOFN units in South Africa.',
+    badge: 'Single-Stage VSD',
     badgeColor: '#f97316',
     keyHighlights: [
-      'Eliminates No-Load Energy Waste',
-      'Stable Plant Air Pressure Output',
-      'Direct Coupled Motor & Air-End',
-      'Low Operating Noise Emissions'
+      'Official BAOFN OEM specifications',
+      'Motor range: 7.5 kW to 75 kW',
+      'Outlets from G 3/4 to G2 1/2',
+      'Backed by OEM warranty in South Africa'
     ],
     specsList: [
-      'Variable Frequency Drive (VFD)',
-      'Low Maintenance Direct Drive',
-      'Microprocessor Diagnostic Interface',
-      'Colour Graphic Touch PLC Controller'
+      'Motor: 7.5 kW to 75 kW',
+      'Outlet: G 3/4 to G2 1/2',
+      'Weight: 380 kg to 1,390 kg',
+      'Dimensions: 1210x1000x1470 to 2000x1360x1650 mm'
     ],
-    applications: ['Manufacturing Workshops', 'Packaging & Bottling', 'Joinery & Woodworking', 'Plastic Injection Moulding'],
-    defaultVariantIndex: 0, // RS22VSD
+    applications: ['Need a Single Stage VSD Compressors sized for the duty? Tell us pressure, flow and hours. We will match a catalogue model and come back within one working day.'],
+    defaultVariantIndex: 3,
     variants: [
-      {
-        id: 'rs7-5vsd-ff',
-        model: 'RS7.5VSD-FF',
-        powerKw: 7.5,
-        powerHp: 10,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '1.1 m³/min',
-        flowRateCfm: '38.8 CFM',
-        image: rs75ff,
-        noiseDb: '62 ± 2 dB(A)',
-        weightKg: '380 kg',
-        dimensions: '1270 x 750 x 1650 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs11vsd-ff',
-        model: 'RS11VSD-FF',
-        powerKw: 11,
-        powerHp: 15,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '1.7 m³/min',
-        flowRateCfm: '60.0 CFM',
-        image: rs11ff,
-        noiseDb: '62 ± 2 dB(A)',
-        weightKg: '480 kg',
-        dimensions: '1230 x 860 x 1600 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs15vsd-ff',
-        model: 'RS15VSD-FF',
-        powerKw: 15,
-        powerHp: 20,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '2.6 m³/min',
-        flowRateCfm: '91.8 CFM',
-        image: rs15ff,
-        noiseDb: '62 ± 2 dB(A)',
-        weightKg: '480 kg',
-        dimensions: '1230 x 860 x 1600 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs22vsd',
-        model: 'RS22 VSD',
-        powerKw: 22,
-        powerHp: 30,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '3.73 m³/min',
-        flowRateCfm: '131.7 CFM',
-        image: rs22vsd,
-        noiseDb: '63 ± 2 dB(A)',
-        weightKg: '450 kg',
-        dimensions: '1210 x 1000 x 1470 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs37vsd',
-        model: 'RS37 VSD',
-        powerKw: 37,
-        powerHp: 50,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '6.82 m³/min',
-        flowRateCfm: '240.8 CFM',
-        image: rs37vsd,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '700 kg',
-        dimensions: '1350 x 1170 x 1480 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs45vsd',
-        model: 'RS45 VSD',
-        powerKw: 45,
-        powerHp: 60,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '8.14 m³/min',
-        flowRateCfm: '287.5 CFM',
-        image: rs45vsd,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '890 kg',
-        dimensions: '1600 x 1150 x 1530 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs55vsd',
-        model: 'RS55 VSD',
-        powerKw: 55,
-        powerHp: 75,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '10.13 m³/min',
-        flowRateCfm: '357.7 CFM',
-        image: rs55vsd,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '950 kg',
-        dimensions: '1600 x 1150 x 1530 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs75vsd',
-        model: 'RS75 VSD',
-        powerKw: 75,
-        powerHp: 100,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '13.4 m³/min',
-        flowRateCfm: '473.2 CFM',
-        image: rs75vsd,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '1390 kg',
-        dimensions: '2000 x 1360 x 1650 mm',
-        cooling: 'Air-Cooled'
-      }
+      { id: 'rs7-5vsd-ff', model: 'RS7.5VSD-FF', powerKw: 7.5, outlet: 'G 3/4',   weightKg: '380 kg',  dimensions: '1270x750x1650 mm', image: rs75ff },
+      { id: 'rs11vsd-ff',  model: 'RS11VSD-FF',  powerKw: 11,  outlet: 'G 3/4',   weightKg: '480 kg',  dimensions: '1230x860x1600 mm', image: rs11ff },
+      { id: 'rs15vsd-ff',  model: 'RS15VSD-FF',  powerKw: 15,  outlet: 'G 3/4',   weightKg: '480 kg',  dimensions: '1230x860x1600 mm', image: rs15ff },
+      { id: 'rs22vsd',     model: 'RS22VSD',     powerKw: 22,  outlet: 'G1 1/4', weightKg: '450 kg',  dimensions: '1210x1000x1470 mm', image: rs22vsd },
+      { id: 'rs37vsd',     model: 'RS37VSD',     powerKw: 37,  outlet: 'G1 1/2', weightKg: '700 kg',  dimensions: '1350x1170x1480 mm', image: rs37vsd },
+      { id: 'rs45vsd',     model: 'RS45VSD',     powerKw: 45,  outlet: 'G2',     weightKg: '890 kg',  dimensions: '1600x1150x1530 mm', image: rs45vsd },
+      { id: 'rs55vsd',     model: 'RS55VSD',     powerKw: 55,  outlet: 'G2',     weightKg: '950 kg',  dimensions: '1600x1150x1530 mm', image: rs55vsd },
+      { id: 'rs75vsd',     model: 'RS75VSD',     powerKw: 75,  outlet: 'G2 1/2', weightKg: '1390 kg', dimensions: '2000x1360x1650 mm', image: rs75vsd }
     ]
   },
 
-  // 4. FULL FEATURE INTEGRATED ALL-IN-ONE (RS-VSD-FF)
+  // 4. OIL-FREE COMPRESSORS (RSVT SERIES) — 23 Models (Transcribed from Part 1)
   {
-    id: 'full-feature-all-in-one',
-    name: 'BAOFN Full Feature (FF) All-In-One Compressors',
-    seriesCode: 'RS-VSD-FF Series',
-    category: 'Full Feature All-In-One',
-    categoryTags: ['Full Feature All-In-One', 'Variable Speed (VSD)'],
-    subtitle: 'Integrated Screw Compressor + Refrigerated Dryer + Air Receiver',
+    id: 'oil-free-rsvt',
+    name: 'Oil Free Compressors',
+    seriesCode: 'RSVT Series',
+    category: 'Oil Free Compressors',
+    categoryTags: ['Oil Free Compressors'],
+    subtitle: 'Oil Free · 15 kW to 945 kW',
     description:
-      'The complete all-in-one compressed air center. Integrates a variable speed rotary screw compressor, refrigerated moisture dryer, precision inline coalescing filters, and dual air storage receivers onto a single pre-piped, plug-and-play skid.',
-    badge: 'All-In-One Air Station',
-    badgeColor: '#dc2626',
+      'Official BAOFN specifications for every oil free compressors model — backed by the only OEM warranty on BAOFN units in South Africa.',
+    badge: 'Oil Free',
+    badgeColor: '#10b981',
     keyHighlights: [
-      'Plug & Play Complete Compressed Air System',
-      'Built-In Refrigerated Moisture Dryer',
-      'Dual Integrated Air Receiver Tanks',
-      'Compact Pre-Piped Footprint'
+      'Official BAOFN OEM specifications',
+      'Motor range: 15 kW to 945 kW',
+      'Outlets from G1 1/4 to DN150',
+      'Backed by OEM warranty in South Africa'
     ],
     specsList: [
-      'Variable Speed Rotary Screw Air-End',
-      'Integrated Condensate Water Auto-Drain',
-      'High-Precision 0.01 Micron Filtration',
-      'Instant Hookup: Connect Power & Air Outlet'
+      'Motor: 15 kW to 945 kW',
+      'Outlet: G1 1/4 to DN150',
+      'Weight: 1,030 kg to 22,010 kg',
+      'Dimensions: 1450x870x1220 to 6000x2380x2750 mm'
     ],
-    applications: ['Laser Cutting & Metal Workshops', 'Automotive Spray Booths', 'CNC Machining Centers', 'Food & Bottling Workshops'],
-    defaultVariantIndex: 1, // RS11 VSD FF
+    applications: ['Need a Oil Free Compressors sized for the duty? Tell us pressure, flow and hours. We will match a catalogue model and come back within one working day.'],
+    defaultVariantIndex: 17, // RSVT400
     variants: [
-      {
-        id: 'rs75-vsd-ff',
-        model: 'RS7.5 VSD FF',
-        powerKw: 7.5,
-        powerHp: 10,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '1.1 m³/min',
-        flowRateCfm: '38.8 CFM',
-        image: rs75ff,
-        tankSize: 'Integrated Air Receiver',
-        noiseDb: '62 ± 2 dB(A)',
-        weightKg: '380 kg',
-        dimensions: '1270 x 750 x 1650 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs11-vsd-ff',
-        model: 'RS11 VSD FF',
-        powerKw: 11,
-        powerHp: 15,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '1.7 m³/min',
-        flowRateCfm: '60.0 CFM',
-        image: rs11ff,
-        tankSize: 'Integrated Air Receiver',
-        noiseDb: '62 ± 2 dB(A)',
-        weightKg: '480 kg',
-        dimensions: '1230 x 860 x 1600 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs15-vsd-ff',
-        model: 'RS15 VSD FF',
-        powerKw: 15,
-        powerHp: 20,
-        pressureBar: '8 - 13 Bar',
-        flowRateM3: '2.6 m³/min',
-        flowRateCfm: '91.8 CFM',
-        image: rs15ff,
-        tankSize: 'Integrated Air Receiver',
-        noiseDb: '62 ± 2 dB(A)',
-        weightKg: '480 kg',
-        dimensions: '1230 x 860 x 1600 mm',
-        cooling: 'Air-Cooled'
-      }
+      { id: 'rsvt15', model: 'RSVT15', powerKw: 15, outlet: 'G1 1/4', weightKg: '1030 kg', dimensions: '1450x870x1220 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt22', model: 'RSVT22', powerKw: 22, outlet: 'G1 1/2', weightKg: '1070 kg', dimensions: '1450x970x1340 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt30', model: 'RSVT30', powerKw: 30, outlet: 'G1 1/2', weightKg: '1300 kg', dimensions: '1560x970x1730 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt37', model: 'RSVT37', powerKw: 37, outlet: 'G1 1/2', weightKg: '1355 kg', dimensions: '1560x970x1730 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt45', model: 'RSVT45', powerKw: 45, outlet: 'G2', weightKg: '1390 kg', dimensions: '2150x1140x1520 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt55', model: 'RSVT55', powerKw: 55, outlet: 'G2 1/2', weightKg: '1860 kg', dimensions: '2000x1360x1750 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt75', model: 'RSVT75', powerKw: 75, outlet: 'DN65', weightKg: '1935 kg', dimensions: '1900x1550x1700 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt90', model: 'RSVT90', powerKw: 90, outlet: 'DN80', weightKg: '2000 kg', dimensions: '2380x1750x1900 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt110', model: 'RSVT110', powerKw: 110, outlet: 'DN100', weightKg: '3660 kg', dimensions: '2400x1850x1970 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt132', model: 'RSVT132', powerKw: 132, outlet: 'DN100', weightKg: '3700 kg', dimensions: '2700x1900x2200 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt160', model: 'RSVT160', powerKw: 160, outlet: 'DN100', weightKg: '5300 kg', dimensions: '3050x1900x2430 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt185', model: 'RSVT185', powerKw: 185, outlet: 'DN100', weightKg: '5450 kg', dimensions: '3200x1900x2450 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt200', model: 'RSVT200', powerKw: 200, outlet: 'DN125', weightKg: '5600 kg', dimensions: '3200x1900x2450 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt250', model: 'RSVT250', powerKw: 250, outlet: 'DN125', weightKg: '5850 kg', dimensions: '4000x2200x2400 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt275', model: 'RSVT275', powerKw: 275, outlet: 'DN125', weightKg: '6100 kg', dimensions: '4000x2200x2400 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt315', model: 'RSVT315', powerKw: 315, outlet: 'DN125', weightKg: '6500 kg', dimensions: '4200x2200x2370 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt355', model: 'RSVT355', powerKw: 355, outlet: 'DN150', weightKg: '9050 kg', dimensions: '4200x2200x2370 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt400', model: 'RSVT400', powerKw: 400, outlet: 'DN150', weightKg: '7050 kg', dimensions: '4200x2200x2370 mm', image: rsvt400vsd, isPlaceholderImage: false },
+      { id: 'rsvt450', model: 'RSVT450', powerKw: 450, outlet: 'DN150', weightKg: '8400 kg', dimensions: '4200x2200x2370 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt500', model: 'RSVT500', powerKw: 500, outlet: 'DN150', weightKg: '8400 kg', dimensions: '6000x2380x2750 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsvt630', model: 'RSVT630', powerKw: 630, weightKg: '9125 kg', image: '', isPlaceholderImage: true },
+      { id: 'rsvt750', model: 'RSVT750', powerKw: 750, weightKg: '9225 kg', image: '', isPlaceholderImage: true },
+      { id: 'rsvt945', model: 'RSVT945', powerKw: 945, weightKg: '22010 kg', image: '', isPlaceholderImage: true }
     ]
   },
 
-  // 5. WORKSHOP & COMPACT (SM3HP)
+  // 5. DRILL RIGS (3 Models — Official, Complete from Part 2a)
+  {
+    id: 'drill-rigs',
+    name: 'BAOFN Drill Rigs',
+    seriesCode: 'Drill Rig Series',
+    category: 'Drill Rigs',
+    categoryTags: ['Drill Rigs'],
+    subtitle: 'Dedicated Blast Hole & Exploration Drill Rig Air Delivery',
+    description:
+      'Official BAOFN drill rig air units engineered for open-cast blast holes, geotechnical exploration, quarrying, and harsh outdoor mine environments.',
+    badge: 'Drill Rigs',
+    badgeColor: '#b45309',
+    keyHighlights: [
+      'Heavy-Duty Dust Filtration Pre-Cleaners',
+      'Direct-Coupled Rotary Screw Air-End',
+      'Compact Dimensions for Rig Deck Integration',
+      'Built for Remote Extreme Ambient Climates'
+    ],
+    specsList: [
+      'Discharge Pressure: 8 Bar Constant',
+      'Standard 1/2 NPT Air Discharge Outlet',
+      'High Capacity Oil-Air Cooling Radiator',
+      'Emergency Stop & Safety Interlocks'
+    ],
+    applications: ['Open Cast Mining & Blasting', 'Water Well Drilling', 'Quarry Splitting', 'Geotechnical Exploration'],
+    defaultVariantIndex: 1, // DZ10
+    variants: [
+      { id: 'rs3', model: 'RS3', powerKw: 3, pressureBar: '8 Bar', flowRateM3: '0.42 m³/min', outlet: '1/2 NPT', image: rs3, isPlaceholderImage: false },
+      { id: 'dz10', model: 'DZ10', powerKw: 7.5, pressureBar: '8 Bar', flowRateM3: '1.1 m³/min', outlet: '1/2 NPT', image: dz10, isPlaceholderImage: false },
+      { id: 'dz15', model: 'DZ15', powerKw: 11, pressureBar: '8 Bar', flowRateM3: '1.7 m³/min', outlet: '1/2 NPT', image: '', isPlaceholderImage: true }
+    ]
+  },
+
+  // 6. PORTABLE COMPRESSORS (9 Models — Official, Complete from Part 2b)
+  {
+    id: 'portable-compressors',
+    name: 'BAOFN Portable Diesel Compressors',
+    seriesCode: 'PC Series',
+    category: 'Portable Compressors',
+    categoryTags: ['Portable Compressors'],
+    subtitle: 'Mobile Wheeled Diesel Compressors for Field & Site Duty',
+    description:
+      'Heavy-duty diesel portable compressors with 2-wheel and 4-wheel towable chassis. Built for site work, mobile exploration drilling, sandblasting, and civil construction.',
+    badge: 'Portable Diesel',
+    badgeColor: '#b45309',
+    keyHighlights: [
+      'Heavy-Duty Diesel Engine Driven (58 – 310 kW)',
+      'Towable 2-Wheel and 4-Wheel Heavy Chassis',
+      'High-Pressure Discharge up to 25 Bar',
+      'Integrated Heavy-Duty Dust Pre-Cleaners'
+    ],
+    specsList: [
+      'Flow Rate Output: 8 to 40 m³/min',
+      'Discharge Pressures: 8, 10, 13, and 25 Bar',
+      'Heavy Heavy-Duty Protective Steel Canopy',
+      'High-Ambient Radiator & Cooling System'
+    ],
+    applications: ['Civil Infrastructure & Roadworks', 'Remote Exploration Drilling', 'Quarry Sandblasting', 'Field Pipeline Testing'],
+    defaultVariantIndex: 0, // PC08
+    variants: [
+      { id: 'pc08', model: 'PC08 Two Wheels', pressureBar: '8 Bar', flowRateM3: '8 m³/min', dieselPower: '58 (80)', weightKg: '1550 kg', image: '', isPlaceholderImage: true },
+      { id: 'pc12', model: 'PC12 Four Wheels', pressureBar: '8 Bar', flowRateM3: '12 m³/min', dieselPower: '110 (150)', weightKg: '2480 kg', image: '', isPlaceholderImage: true },
+      { id: 'pc12-10', model: 'PC12-10 Four Wheels', pressureBar: '10 Bar', flowRateM3: '12 m³/min', dieselPower: '110 (150)', weightKg: '2260 kg', image: '', isPlaceholderImage: true },
+      { id: 'pc16-13', model: 'PC16-13 Four Wheels', pressureBar: '13 Bar', flowRateM3: '16 m³/min', dieselPower: '140 (180)', weightKg: '2510 kg', image: '', isPlaceholderImage: true },
+      { id: 'pc20-8', model: 'PC20-8 Four Wheels', pressureBar: '8 Bar', flowRateM3: '20 m³/min', dieselPower: '179 (240)', weightKg: '3800 kg', image: '', isPlaceholderImage: true },
+      { id: 'pc30-8', model: 'PC30-8 Four Wheels', pressureBar: '8 Bar', flowRateM3: '30 m³/min', dieselPower: '250 (340)', weightKg: '4800 kg', image: '', isPlaceholderImage: true },
+      { id: 'pc40-8', model: 'PC40-8 Four Wheels', pressureBar: '8 Bar', flowRateM3: '40 m³/min', dieselPower: '295 (380)', weightKg: '4910 kg', image: '', isPlaceholderImage: true },
+      { id: 'pc26-25', model: 'PC26-25 Four Wheels', pressureBar: '25 Bar', flowRateM3: '26 m³/min', dieselPower: '250 (340)', weightKg: '5680 kg', image: '', isPlaceholderImage: true },
+      { id: 'pc35-25', model: 'PC35-25 Four Wheels', pressureBar: '25 Bar', flowRateM3: '35 m³/min', dieselPower: '310 (410)', weightKg: '7780 kg', image: '', isPlaceholderImage: true }
+    ]
+  },
+
+  // 7. LOW PRESSURE COMPRESSORS (16 Models — Official from Part 5)
+  {
+    id: 'low-pressure-compressors',
+    name: 'BAOFN Low Pressure Compressors',
+    seriesCode: 'RS-L Series',
+    category: 'Low Pressure Compressors',
+    categoryTags: ['Low Pressure Compressors'],
+    subtitle: 'High Flow Low-Pressure Compression (3 Bar / 5 Bar)',
+    description:
+      'Low-pressure rotary screw compressors specifically engineered for pneumatic conveying, wastewater aeration, glass production, and textile manufacturing where standard 8-bar compressors waste extensive energy.',
+    badge: 'Low-Pressure High-CFM',
+    badgeColor: '#059669',
+    keyHighlights: [
+      'Tailored 3 to 5 Bar Low-Pressure Discharge',
+      'Massive Volumetric Flow Delivery',
+      'Direct Coupled IE4 Motor & Airend',
+      'Saves up to 30% Power vs Throttled 8-Bar Units'
+    ],
+    specsList: [
+      'Discharge Pressure: 3 Bar / 5 Bar Optimized',
+      'High-Displacement Rotary Screw Airend',
+      'Oversized Oil-Air Separation Vessel',
+      'Colour Graphic Intelligent PLC Controller'
+    ],
+    applications: ['Pneumatic Cement & Powder Conveying', 'Wastewater Aeration & Fermentation', 'Glass Bottle Moulding', 'Textile Blow-Off & Spinners'],
+    defaultVariantIndex: 0,
+    variants: [
+      { id: 'rs22l3', model: 'RS22L3', powerKw: 22, pressureBar: '3 Bar', outlet: 'G2 1/2', dimensions: '1980x1200x1350 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs37l3', model: 'RS37L3', powerKw: 37, pressureBar: '3 Bar', outlet: 'G2 1/2', dimensions: '2300x1400x1600 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs55l3', model: 'RS55L3', powerKw: 55, pressureBar: '3 Bar', outlet: 'G2 1/2', dimensions: '2600x1650x1850 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs90l3', model: 'RS90L3', powerKw: 90, pressureBar: '3 Bar', outlet: 'DN100', dimensions: '2900x1750x2000 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs132l3', model: 'RS132L3', powerKw: 132, pressureBar: '3 Bar', outlet: 'DN125', dimensions: '3500x2050x2200 mm', image: '', isPlaceholderImage: true },
+      { id: 'rsa160l3', model: 'RSA160L3', powerKw: 160, pressureBar: '3 Bar', outlet: 'DN125', dimensions: '3500x2050x2200 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs200l3', model: 'RS200L3', powerKw: 200, pressureBar: '3 Bar', outlet: 'DN125', dimensions: '4100x2250x2300 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs355l3', model: 'RS355L3', powerKw: 355, pressureBar: '3 Bar', outlet: 'DN125', dimensions: '4100x2250x2300 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs30l5', model: 'RS30L5', powerKw: 30, pressureBar: '5 Bar', outlet: 'G2 1/2', dimensions: '1680x1300x1350 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs45l5', model: 'RS45L5', powerKw: 45, pressureBar: '5 Bar', outlet: 'G2 1/2', dimensions: '2200x1416x1700 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs75l5', model: 'RS75L5', powerKw: 75, pressureBar: '5 Bar', outlet: 'DN80', dimensions: '2560x1490x1820 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs90l5', model: 'RS90L5', powerKw: 90, pressureBar: '5 Bar', outlet: 'DN100', dimensions: '3100x1650x2200 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs110l5', model: 'RS110L5', powerKw: 110, pressureBar: '5 Bar', outlet: 'DN125', dimensions: '3110x1690x2200 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs132l5', model: 'RS132L5', powerKw: 132, pressureBar: '5 Bar', outlet: 'DN125', dimensions: '3600x1750x2200 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs160l5', model: 'RS160L5', powerKw: 160, pressureBar: '5 Bar', outlet: 'DN125', dimensions: '3600x1750x2200 mm', image: '', isPlaceholderImage: true },
+      { id: 'rs250l5', model: 'RS250L5', powerKw: 250, pressureBar: '5 Bar', outlet: 'DN125', dimensions: '4160x2150x2300 mm', image: '', isPlaceholderImage: true }
+    ]
+  },
+
+  // 8. HIGH PRESSURE COMPRESSORS (10 Models — Official from Part 6)
+  {
+    id: 'high-pressure-compressors',
+    name: 'BAOFN High Pressure Compressors',
+    seriesCode: 'RM & RH Series',
+    category: 'High Pressure Compressors',
+    categoryTags: ['High Pressure Compressors'],
+    subtitle: 'RM and RH machines for 17–40 bar duties',
+    description:
+      'High-pressure rotary screw compressors engineered for elevated discharge pressure duties including bottle blowing, hydro testing, exploration, and heavy industrial applications.',
+    badge: 'High-Pressure 17–40 Bar',
+    badgeColor: '#7c3aed',
+    keyHighlights: [
+      'Elevated Discharge Pressures from 17 to 40 Bar',
+      'Heavy-Duty Two-Stage Compression Ratio',
+      'Cast Iron Reinforced Pressure Components',
+      'Robust Industrial Skid Packaging'
+    ],
+    specsList: [
+      'Power Range: 90 kW to 250 kW',
+      'Dual-Stage Reinforced Airend Structure',
+      'High-Pressure Rated Oil Separation System',
+      'Advanced Multi-Parameter Microprocessor PLC'
+    ],
+    applications: ['PET Bottle Blow Moulding', 'Industrial Pressure Testing', 'Gas Pipeline Purging', 'Mining Deep Blast Holes'],
+    defaultVariantIndex: 0,
+    variants: [
+      { id: 'rm90-2s', model: 'RM90-2S', powerKw: 90, weightKg: '3000 kg', dimensions: '2500x1600x1900 mm', image: rs90_2s, isPlaceholderImage: true },
+      { id: 'rm110-2s', model: 'RM110-2S', powerKw: 110, weightKg: '3200 kg', dimensions: '2500x1600x1900 mm', image: rs110_2s, isPlaceholderImage: true },
+      { id: 'rm132-2s', model: 'RM132-2S', powerKw: 132, weightKg: '3400 kg', dimensions: '2500x1600x1900 mm', image: rs132_2s, isPlaceholderImage: true },
+      { id: 'rm160-2s', model: 'RM160-2S', powerKw: 160, weightKg: '3600 kg', dimensions: '2500x1700x2050 mm', image: rs160_2s, isPlaceholderImage: true },
+      { id: 'rm185-2s', model: 'RM185-2S', powerKw: 185, weightKg: '3800 kg', dimensions: '2500x1700x2050 mm', image: rs160_2s, isPlaceholderImage: true },
+      { id: 'rh110-2s', model: 'RH110-2S', powerKw: 110, weightKg: '4500 kg', dimensions: '3650x1950x2060 mm', image: rs110_2s, isPlaceholderImage: true },
+      { id: 'rh132-2s', model: 'RH132-2S', powerKw: 132, weightKg: '4600 kg', dimensions: '3650x1950x2060 mm', image: rs132_2s, isPlaceholderImage: true },
+      { id: 'rh160-2s', model: 'RH160-2S', powerKw: 160, weightKg: '4900 kg', dimensions: '4050x2250x2160 mm', image: rs160_2s, isPlaceholderImage: true },
+      { id: 'rh200-2s', model: 'RH200-2S', powerKw: 200, weightKg: '5100 kg', dimensions: '4050x2250x2160 mm', image: rs200_2s, isPlaceholderImage: true },
+      { id: 'rh250-2s', model: 'RH250-2S', powerKw: 250, weightKg: '5300 kg', dimensions: '4050x2250x2160 mm', image: rs250_2s, isPlaceholderImage: true }
+    ]
+  },
+
+  // 9. OIL FREE BLOWERS (3 Models Only — Official from Part 7)
+  {
+    id: 'oil-free-blowers',
+    name: 'BAOFN Oil Free Blowers',
+    seriesCode: 'BF Series',
+    category: 'Oil Free Blowers',
+    categoryTags: ['Oil Free Blowers'],
+    subtitle: 'Oil-free blowers for 0.5–1.5 bar aeration and conveying',
+    description:
+      'High-efficiency screw blowers providing 100% oil-free low-pressure air for water treatment aeration, pneumatic bulk powder transport, and flotation tanks.',
+    badge: 'Oil-Free Blower',
+    badgeColor: '#0d9488',
+    keyHighlights: [
+      '100% Oil-Free Compression Rotor Chamber',
+      'Optimised for 0.5 to 1.5 Bar Discharge',
+      'Energy-Efficient vs Traditional Roots Blowers',
+      'Low Operating Noise and Pulsation'
+    ],
+    specsList: [
+      'Power Ratings: 55 kW, 132 kW, 200 kW',
+      'Large Discharge Connections: DN200 to DN300',
+      'Direct Drive Integrated Motor-Shaft',
+      'Heavy-Duty Acoustic Sound Enclosure'
+    ],
+    applications: ['Wastewater Aeration Plants', 'Flotation Cells in Mining', 'Pneumatic Powder Transfer', 'Aquaculture Oxygenation'],
+    defaultVariantIndex: 0,
+    variants: [
+      { id: 'bf-1', model: 'BF-1', powerKw: 55, outlet: 'DN200', image: rsvt400vsd, isPlaceholderImage: true },
+      { id: 'bf-2', model: 'BF-2', powerKw: 132, outlet: 'DN250', image: rsvt400vsd, isPlaceholderImage: true },
+      { id: 'bf-03', model: 'BF-03', powerKw: 200, outlet: 'DN300', image: rsvt400vsd, isPlaceholderImage: true }
+    ]
+  },
+
+  // 10. DESICCANT DRYERS (16 Models — Official from Part 3)
+  {
+    id: 'desiccant-dryers',
+    name: 'BAOFN Desiccant Air Dryers',
+    seriesCode: 'PE Series',
+    category: 'Desiccant Dryers',
+    categoryTags: ['Desiccant Dryers', 'Air Dryers & Treatment'],
+    subtitle: 'Twin-Tower Heatless Desiccant Dryers (-40°C Dew Point)',
+    description:
+      'Twin-tower heatless adsorption desiccant air dryers engineered for critical applications requiring ultra-dry compressed air with pressure dew points down to -40°C.',
+    badge: '-40°C Pressure Dew Point',
+    badgeColor: '#0284c7',
+    keyHighlights: [
+      'Guaranteed -40°C Pressure Dew Point',
+      'High-Performance Activated Alumina Desiccant',
+      'Twin-Tower Continuous Regeneration Cycle',
+      'Heavy-Duty Pneumatic Switching Valves'
+    ],
+    specsList: [
+      'Capacities from 3.6 to 207 m³/min Flow',
+      'Flanged Connections: DN25 to DN200',
+      'Electronic Cycle Controller Interface',
+      'Integrated Tower Pressure Gauges'
+    ],
+    applications: ['Pharmaceutical & Cleanroom Plants', 'Electronics & Chip Assembly', 'Automotive Spray Paint Lines', 'Outdoor Freezing Ambient Lines'],
+    defaultVariantIndex: 0,
+    variants: [
+      { id: 'pe125', model: 'PE125', flowRateM3: '3.6 m³/min', connection: 'DN25', powerKw: 2, weightKg: '379 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe200', model: 'PE200', flowRateM3: '5.4 m³/min', connection: 'DN40', powerKw: 3, weightKg: '485 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe275', model: 'PE275', flowRateM3: '7.8 m³/min', connection: 'DN40', powerKw: 4, weightKg: '523 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe380', model: 'PE380', flowRateM3: '10.8 m³/min', connection: 'DN40', powerKw: 5, weightKg: '650 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe465', model: 'PE465', flowRateM3: '13.2 m³/min', connection: 'DN40', powerKw: 6, weightKg: '748 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe635', model: 'PE635', flowRateM3: '18 m³/min', connection: 'DN50', powerKw: 8, weightKg: '855 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe760', model: 'PE760', flowRateM3: '21.6 m³/min', connection: 'DN80', powerKw: 12, weightKg: '1130 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe1020', model: 'PE1020', flowRateM3: '28.8 m³/min', connection: 'DN80', powerKw: 12, weightKg: '1130 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe1330', model: 'PE1330', flowRateM3: '37.8 m³/min', connection: 'DN80', powerKw: 16, weightKg: '1410 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe1690', model: 'PE1690', flowRateM3: '48 m³/min', connection: 'DN100', powerKw: 21, weightKg: '2280 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe2060', model: 'PE2060', flowRateM3: '58.2 m³/min', connection: 'DN100', powerKw: 27, weightKg: '2280 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe2670', model: 'PE2670', flowRateM3: '75.6 m³/min', connection: 'DN100', powerKw: 36, weightKg: '2750 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe3390', model: 'PE3390', flowRateM3: '96 m³/min', connection: 'DN150', powerKw: 42, weightKg: '3560 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe4400', model: 'PE4400', flowRateM3: '124.2 m³/min', connection: 'DN150', powerKw: 52, weightKg: '4700 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe5360', model: 'PE5360', flowRateM3: '151.8 m³/min', connection: 'DN150', powerKw: 69, weightKg: '5650 kg', image: airDryerImg, isPlaceholderImage: true },
+      { id: 'pe7300', model: 'PE7300', flowRateM3: '207 m³/min', connection: 'DN200', powerKw: 90, weightKg: '7700 kg', image: airDryerImg, isPlaceholderImage: true }
+    ]
+  },
+
+  // 11. REFRIGERANT DRYERS (18 Models — Official from Part 4)
+  {
+    id: 'refrigerant-dryers',
+    name: 'BAOFN Refrigerant Air Dryers',
+    seriesCode: 'AD2 & AD2S Series',
+    category: 'Refrigerant Dryers',
+    categoryTags: ['Refrigerant Dryers', 'Air Dryers & Treatment'],
+    subtitle: 'Industrial Refrigerated Compressed Air Dryers (1.5 – 100 Nm³/min)',
+    description:
+      'High-efficiency refrigerated air dryers designed to eliminate moisture condensation in plant piping, protect pneumatic tools, and maintain air quality down to +3°C pressure dew point.',
+    badge: 'Refrigerated Drying',
+    badgeColor: '#0284c7',
+    keyHighlights: [
+      'Pressure Dewpoint of +3°C to +5°C',
+      'Low Pressure Drop Aluminum Heat Exchanger',
+      'Eco-Friendly R134a / R410A / R407C Refrigerant',
+      'Automatic Timed / Electronic Condensate Drain'
+    ],
+    specsList: [
+      'Flow Capacities: 1.5 to 100 Nm³/min',
+      'Power Consumption: 360 W to 14.4 kW',
+      'Thread & Flange Connections: G3/4" to DN150',
+      'Digital Dewpoint Display Controller'
+    ],
+    applications: ['General Industrial Manufacturing', 'Pneumatic Control Systems', 'Commercial Spray Painting', 'Packaging Automation'],
+    defaultVariantIndex: 0,
+    variants: [
+      { id: 'ad2-15', model: 'AD2-15', flowRateNm3: '1.5 Nm³/min', powerW: 360, connection: 'G3/4"', gas: 'R134a', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2-21', model: 'AD2-21', flowRateNm3: '2.1 Nm³/min', powerW: 364, connection: 'G3/4"', gas: 'R134a', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2-35', model: 'AD2-35', flowRateNm3: '3.5 Nm³/min', powerW: 951, connection: 'G1.5"', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2-45', model: 'AD2-45', flowRateNm3: '4.5 Nm³/min', powerW: 988, connection: 'G1.5"', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2-60', model: 'AD2-60', flowRateNm3: '6 Nm³/min', powerW: 1000, connection: 'G2"', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2-75', model: 'AD2-75', flowRateNm3: '7.5 Nm³/min', powerW: 1125, connection: 'G2"', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2-90', model: 'AD2-90', flowRateNm3: '9 Nm³/min', powerW: 1674, connection: 'G2"', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2-115', model: 'AD2-115', flowRateNm3: '11.5 Nm³/min', powerW: 1700, connection: 'G2.5"', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2-150', model: 'AD2-150', flowRateNm3: '15 Nm³/min', powerW: 1900, connection: 'G2.5"', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2-175', model: 'AD2-175', flowRateNm3: '17.5 Nm³/min', powerW: 2220, connection: 'G2.5"', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2-225', model: 'AD2-225', flowRateNm3: '22.5 Nm³/min', powerW: 2610, connection: 'G2.5"', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2s-250a', model: 'AD2S-250A', flowRateNm3: '25 Nm³/min', powerW: 2950, connection: 'G2.5"', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2s-350a', model: 'AD2S-350A', flowRateNm3: '35 Nm³/min', powerW: 4600, connection: 'DN100', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2s-450a', model: 'AD2S-450A', flowRateNm3: '45 Nm³/min', powerW: 4200, connection: 'DN100', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2s-500a', model: 'AD2S-500A', flowRateNm3: '50 Nm³/min', powerW: 5433, connection: 'DN100', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2s-600a', model: 'AD2S-600A', flowRateNm3: '60 Nm³/min', powerW: 7871, connection: 'DN150', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2s-750a', model: 'AD2S-750A', flowRateNm3: '75 Nm³/min', powerW: 8769, connection: 'DN150', gas: 'R410A', image: airDryerImg, isPlaceholderImage: false },
+      { id: 'ad2s-1000a', model: 'AD2S-1000A', flowRateNm3: '100 Nm³/min', powerW: 14398, connection: 'DN150', gas: 'R407C', image: airDryerImg, isPlaceholderImage: false }
+    ]
+  },
+
+  // 12. INLINE FILTERS (18 Real PRIMAK Models — Official from Part 8)
+  {
+    id: 'inline-filters',
+    name: 'BAOFN PRIMAK Inline Filters',
+    seriesCode: 'PF & W Series',
+    category: 'Inline Filters',
+    categoryTags: ['Inline Filters', 'Air Dryers & Treatment'],
+    subtitle: 'Particulate, coalescing and water-separation stages ahead of dryers and sensitive equipment',
+    description:
+      'High-efficiency inline threaded and flanged filtration elements designed to remove particulates, water droplets, oil aerosols, and hydrocarbon vapours from industrial air pipelines.',
+    badge: 'Coalescing & Particulate',
+    badgeColor: '#0284c7',
+    keyHighlights: [
+      'Low Differential Pressure Drop (85–120 / 85–140 mbar)',
+      'Threaded Port Sizes: 3/4" to 3"',
+      'Flanged Port Sizes: 3" (DN80) to 8" (DN200)',
+      'Extends Life of Desiccant & Refrigerant Dryers'
+    ],
+    specsList: [
+      'Flow Rate Range: 0.9 to 216 m³/min',
+      'Thread Filters: PRIMAK PF9 to PF490',
+      'Flange Filters: PRIMAK W420 to W2380',
+      'Die-Cast Aluminium & Welded Carbon Steel Housings'
+    ],
+    applications: ['Prefiltration for Desiccant Dryers', 'Food Packaging Lines', 'Automotive Spray Booths', 'High-Purity Instrument Air'],
+    defaultVariantIndex: 0,
+    variants: [
+      { id: 'pf9', model: 'PRIMAK PF9', type: 'Thread Filter', flowRateM3: '0.9 m³/min', connection: '3/4"', pressureDrop: '85-120 mbar', image: inlineFiltersImg, isPlaceholderImage: false },
+      { id: 'pf18', model: 'PRIMAK PF18', type: 'Thread Filter', flowRateM3: '1.8 m³/min', connection: '3/4"', pressureDrop: '85-120 mbar', image: inlineFiltersImg, isPlaceholderImage: false },
+      { id: 'pf25', model: 'PRIMAK PF25', type: 'Thread Filter', flowRateM3: '2.5 m³/min', connection: '3/4"', pressureDrop: '85-120 mbar', image: inlineFiltersImg, isPlaceholderImage: false },
+      { id: 'pf35', model: 'PRIMAK PF35', type: 'Thread Filter', flowRateM3: '3.5 m³/min', connection: '1"', pressureDrop: '85-120 mbar', image: inlineFiltersImg, isPlaceholderImage: false },
+      { id: 'pf60', model: 'PRIMAK PF60', type: 'Thread Filter', flowRateM3: '6 m³/min', connection: '1½"', pressureDrop: '85-120 mbar', image: inlineFiltersImg, isPlaceholderImage: false },
+      { id: 'pf105', model: 'PRIMAK PF105', type: 'Thread Filter', flowRateM3: '10.5 m³/min', connection: '2"', pressureDrop: '85-120 mbar', image: inlineFiltersImg, isPlaceholderImage: false },
+      { id: 'pf140', model: 'PRIMAK PF140', type: 'Thread Filter', flowRateM3: '14 m³/min', connection: '2"', pressureDrop: '85-120 mbar', image: inlineFiltersImg, isPlaceholderImage: false },
+      { id: 'pf175', model: 'PRIMAK PF175', type: 'Thread Filter', flowRateM3: '17.5 m³/min', connection: '2"', pressureDrop: '85-120 mbar', image: inlineFiltersImg, isPlaceholderImage: false },
+      { id: 'pf260', model: 'PRIMAK PF260', type: 'Thread Filter', flowRateM3: '26 m³/min', connection: '2½"', pressureDrop: '85-120 mbar', image: inlineFiltersImg, isPlaceholderImage: false },
+      { id: 'pf380', model: 'PRIMAK PF380', type: 'Thread Filter', flowRateM3: '38 m³/min', connection: '3"', pressureDrop: '85-120 mbar', image: inlineFiltersImg, isPlaceholderImage: false },
+      { id: 'pf490', model: 'PRIMAK PF490', type: 'Thread Filter', flowRateM3: '49 m³/min', connection: '3"', pressureDrop: '85-120 mbar', image: inlineFiltersImg, isPlaceholderImage: false },
+      { id: 'w420', model: 'PRIMAK W420', type: 'Flange Filter', flowRateM3: '37.8 m³/min', connection: '3" (DN80)', pressureDrop: '85-140 mbar', image: inlineFiltersImg, isPlaceholderImage: true },
+      { id: 'w640', model: 'PRIMAK W640', type: 'Flange Filter', flowRateM3: '58.2 m³/min', connection: '4" (DN100)', pressureDrop: '85-140 mbar', image: inlineFiltersImg, isPlaceholderImage: true },
+      { id: 'w830', model: 'PRIMAK W830', type: 'Flange Filter', flowRateM3: '75.6 m³/min', connection: '4" (DN100)', pressureDrop: '85-140 mbar', image: inlineFiltersImg, isPlaceholderImage: true },
+      { id: 'w1060', model: 'PRIMAK W1060', type: 'Flange Filter', flowRateM3: '96 m³/min', connection: '6" (DN150)', pressureDrop: '85-140 mbar', image: inlineFiltersImg, isPlaceholderImage: true },
+      { id: 'w1450', model: 'PRIMAK W1450', type: 'Flange Filter', flowRateM3: '132 m³/min', connection: '6" (DN150)', pressureDrop: '85-140 mbar', image: inlineFiltersImg, isPlaceholderImage: true },
+      { id: 'w1580', model: 'PRIMAK W1580', type: 'Flange Filter', flowRateM3: '144 m³/min', connection: '6" (DN150)', image: inlineFiltersImg, isPlaceholderImage: true },
+      { id: 'w2380', model: 'PRIMAK W2380', type: 'Flange Filter', flowRateM3: '216 m³/min', connection: '8" (DN200)', image: inlineFiltersImg, isPlaceholderImage: true }
+    ]
+  },
+
+  // 13. WORKSHOP & COMPACT (SM 3HP) — 1 Model
   {
     id: 'sm3hp-compact',
     name: 'BAOFN SM 3HP Workshop Screw Compressor',
@@ -830,646 +676,7 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
     ]
   },
 
-  // 6. DRILL RIGS & PORTABLE (DZ10 & RS3)
-  {
-    id: 'mining-drill-rigs',
-    name: 'BAOFN Portable High-Pressure & Drill Rig Compressors',
-    seriesCode: 'Mining & Drill Rig Series',
-    category: 'Drill Rigs & Workshop',
-    categoryTags: ['Drill Rigs & Workshop'],
-    subtitle: 'High-Pressure Blast Hole & Exploration Air Delivery',
-    description:
-      'Heavy-duty diesel and electric high-pressure compressors engineered for extreme drilling rigs, open-cast blast holes, geotechnical exploration, quarrying, and harsh outdoor desert and mine environments.',
-    badge: 'Mining & Exploration',
-    badgeColor: '#b45309',
-    keyHighlights: [
-      'High-Pressure Discharge up to 25+ Bar',
-      'Reinforced Skid & Protective Steel Canopy',
-      'Heavy-Duty Dust Filtration Pre-Cleaners',
-      'Built for Remote Extreme Ambient Climates'
-    ],
-    specsList: [
-      'High CFM Volume Output for Deep Blast Holes',
-      'Vibration-Damped Heavy Frame Chassis',
-      'High Capacity Oil-Air Cooling Radiator',
-      'Emergency Stop & Safety Interlocks'
-    ],
-    applications: ['Open Cast Mining & Blasting', 'Water Well & Geotechnical Drilling', 'Quarry Splitting', 'Civil Infrastructure'],
-    defaultVariantIndex: 0,
-    variants: [
-      {
-        id: 'rs3',
-        model: 'RS3 Drill Rig',
-        powerKw: 3,
-        powerHp: 4,
-        pressureBar: '8 Bar',
-        flowRateM3: '0.42 m³/min',
-        flowRateCfm: '14.8 CFM',
-        image: rs3,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '110 kg',
-        dimensions: '675 x 500 x 520 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'dz10',
-        model: 'DZ10 Drill Rig',
-        powerKw: 7.5,
-        powerHp: 10,
-        pressureBar: '8 Bar',
-        flowRateM3: '1.1 m³/min',
-        flowRateCfm: '38.8 CFM',
-        image: dz10,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '110 kg',
-        dimensions: '800 x 680 x 550 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'dz15',
-        model: 'DZ15 Drill Rig',
-        powerKw: 11,
-        powerHp: 15,
-        pressureBar: '8 Bar',
-        flowRateM3: '1.7 m³/min',
-        flowRateCfm: '60.0 CFM',
-        image: dz10,
-        noiseDb: '70 ± 2 dB(A)',
-        weightKg: '190 kg',
-        dimensions: '850 x 710 x 500 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'pc08-portable',
-        model: 'PC08 Two Wheels',
-        powerKw: 58,
-        powerHp: 80,
-        pressureBar: '8 Bar',
-        flowRateM3: '8.0 m³/min',
-        flowRateCfm: '282.5 CFM',
-        image: dz10,
-        noiseDb: '74 ± 2 dB(A)',
-        weightKg: '1550 kg',
-        dimensions: '3140 x 1740 x 1900 mm',
-        cooling: 'High-Ambient Radiator System'
-      },
-      {
-        id: 'pc12-portable',
-        model: 'PC12 Four Wheels',
-        powerKw: 110,
-        powerHp: 150,
-        pressureBar: '8 Bar',
-        flowRateM3: '12.0 m³/min',
-        flowRateCfm: '423.8 CFM',
-        image: dz10,
-        noiseDb: '75 ± 2 dB(A)',
-        weightKg: '2480 kg',
-        dimensions: '3120 x 1630 x 2290 mm',
-        cooling: 'High-Ambient Radiator System'
-      },
-      {
-        id: 'pc16-13-portable',
-        model: 'PC16-13 Four Wheels',
-        powerKw: 140,
-        powerHp: 180,
-        pressureBar: '13 Bar',
-        flowRateM3: '16.0 m³/min',
-        flowRateCfm: '565.0 CFM',
-        image: dz10,
-        noiseDb: '76 ± 2 dB(A)',
-        weightKg: '2510 kg',
-        dimensions: '3650 x 1700 x 2040 mm',
-        cooling: 'High-Ambient Radiator System'
-      },
-      {
-        id: 'pc20-8-portable',
-        model: 'PC20-8 Four Wheels',
-        powerKw: 179,
-        powerHp: 240,
-        pressureBar: '8 Bar',
-        flowRateM3: '20.0 m³/min',
-        flowRateCfm: '706.0 CFM',
-        image: dz10,
-        noiseDb: '76 ± 2 dB(A)',
-        weightKg: '3800 kg',
-        dimensions: '3720 x 1970 x 2250 mm',
-        cooling: 'High-Ambient Radiator System'
-      },
-      {
-        id: 'pc26-25-portable',
-        model: 'PC26-25 Four Wheels',
-        powerKw: 250,
-        powerHp: 340,
-        pressureBar: '25 Bar',
-        flowRateM3: '26.0 m³/min',
-        flowRateCfm: '918.0 CFM',
-        image: dz10,
-        noiseDb: '78 ± 2 dB(A)',
-        weightKg: '5680 kg',
-        dimensions: '4150 x 2000 x 2900 mm',
-        cooling: 'Heavy-Duty Industrial Cooling'
-      },
-      {
-        id: 'pc30-8-portable',
-        model: 'PC30-8 Four Wheels',
-        powerKw: 250,
-        powerHp: 340,
-        pressureBar: '8 Bar',
-        flowRateM3: '30.0 m³/min',
-        flowRateCfm: '1059.0 CFM',
-        image: dz10,
-        noiseDb: '78 ± 2 dB(A)',
-        weightKg: '4800 kg',
-        dimensions: '3810 x 2000 x 2900 mm',
-        cooling: 'High-Ambient Radiator System'
-      },
-      {
-        id: 'pc35-25-portable',
-        model: 'PC35-25 Four Wheels',
-        powerKw: 310,
-        powerHp: 410,
-        pressureBar: '25 Bar',
-        flowRateM3: '35.0 m³/min',
-        flowRateCfm: '1236.0 CFM',
-        image: dz10,
-        noiseDb: '80 ± 2 dB(A)',
-        weightKg: '7780 kg',
-        dimensions: '6150 x 2000 x 2900 mm',
-        cooling: 'Heavy-Duty Industrial Cooling'
-      },
-      {
-        id: 'pc40-8-portable',
-        model: 'PC40-8 Four Wheels',
-        powerKw: 295,
-        powerHp: 380,
-        pressureBar: '8 Bar',
-        flowRateM3: '40.0 m³/min',
-        flowRateCfm: '1412.0 CFM',
-        image: dz10,
-        noiseDb: '79 ± 2 dB(A)',
-        weightKg: '4910 kg',
-        dimensions: '4150 x 2000 x 2900 mm',
-        cooling: 'High-Ambient Radiator System'
-      }
-    ]
-  },
-
-  // 7. OIL FREE CLASS 0 (RSVT 400 VSD)
-  {
-    id: 'oil-free-rsvt',
-    name: 'BAOFN Oil-Free Rotary Screw Compressors',
-    seriesCode: 'RSVT Series',
-    category: 'Variable Speed (VSD)',
-    categoryTags: ['Variable Speed (VSD)'],
-    subtitle: 'Oil-Free Rotary Screw Air Compression',
-    description:
-      'Dry oil-free rotary screw compression paired with Variable Speed Drive technology. Built for processing applications requiring oil-free air delivery without lubricating oil in the compression chamber.',
-    badge: 'Oil-Free Design',
-    badgeColor: '#10b981',
-    keyHighlights: [
-      'Dry Screw Compression Chamber',
-      'Anti-Corrosion Coated Rotors',
-      'Direct Drive Inverter Speed Control',
-      'Compatible with Sensitive Packaging Processes'
-    ],
-    specsList: [
-      'Dual-Chamber Oil-Free Sealing System',
-      'Stainless Steel Air Piping & Intercoolers',
-      'Wide-Range Inverter Speed Control',
-      'Advanced Touchscreen Health Monitoring'
-    ],
-    applications: ['Pharmaceutical Manufacturing', 'Food & Dairy Processing', 'Electronics & Semiconductor Cleanrooms', 'Hospital & Medical Air'],
-    defaultVariantIndex: 5,
-    variants: [
-      {
-        id: 'rsvt15',
-        model: 'RSVT15',
-        powerKw: 15,
-        powerHp: 20,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '2.4 m³/min',
-        flowRateCfm: '84.8 CFM',
-        image: rsvt400vsd,
-        noiseDb: '62 ± 2 dB(A)',
-        weightKg: '1030 kg',
-        dimensions: '1450 x 870 x 1220 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rsvt22',
-        model: 'RSVT22',
-        powerKw: 22,
-        powerHp: 30,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '3.7 m³/min',
-        flowRateCfm: '130.7 CFM',
-        image: rsvt400vsd,
-        noiseDb: '63 ± 2 dB(A)',
-        weightKg: '1070 kg',
-        dimensions: '1450 x 970 x 1340 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rsvt30',
-        model: 'RSVT30',
-        powerKw: 30,
-        powerHp: 40,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '4.8 m³/min',
-        flowRateCfm: '169.5 CFM',
-        image: rsvt400vsd,
-        noiseDb: '63 ± 2 dB(A)',
-        weightKg: '1300 kg',
-        dimensions: '1560 x 970 x 1730 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rsvt37',
-        model: 'RSVT37',
-        powerKw: 37,
-        powerHp: 50,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '5.9 m³/min',
-        flowRateCfm: '208.4 CFM',
-        image: rsvt400vsd,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '1355 kg',
-        dimensions: '1560 x 970 x 1730 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rsvt45',
-        model: 'RSVT45',
-        powerKw: 45,
-        powerHp: 60,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '6.5 m³/min',
-        flowRateCfm: '229.5 CFM',
-        image: rsvt400vsd,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '1390 kg',
-        dimensions: '2150 x 1140 x 1520 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rsvt55',
-        model: 'RSVT55',
-        powerKw: 55,
-        powerHp: 75,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '8.5 m³/min',
-        flowRateCfm: '300.2 CFM',
-        image: rsvt400vsd,
-        noiseDb: '65 ± 2 dB(A)',
-        weightKg: '1860 kg',
-        dimensions: '2000 x 1360 x 1750 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rsvt75',
-        model: 'RSVT75',
-        powerKw: 75,
-        powerHp: 100,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '12.0 m³/min',
-        flowRateCfm: '423.8 CFM',
-        image: rsvt400vsd,
-        noiseDb: '66 ± 2 dB(A)',
-        weightKg: '2000 kg',
-        dimensions: '1900 x 1550 x 1700 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rsvt90',
-        model: 'RSVT90',
-        powerKw: 90,
-        powerHp: 120,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '15.0 m³/min',
-        flowRateCfm: '529.7 CFM',
-        image: rsvt400vsd,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '2400 kg',
-        dimensions: '2380 x 1750 x 1900 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rsvt110',
-        model: 'RSVT110',
-        powerKw: 110,
-        powerHp: 150,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '18.5 m³/min',
-        flowRateCfm: '653.3 CFM',
-        image: rsvt400vsd,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '3300 kg',
-        dimensions: '2400 x 1850 x 1970 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rsvt132',
-        model: 'RSVT132',
-        powerKw: 132,
-        powerHp: 175,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '22.0 m³/min',
-        flowRateCfm: '776.9 CFM',
-        image: rsvt400vsd,
-        noiseDb: '72 ± 2 dB(A)',
-        weightKg: '4300 kg',
-        dimensions: '2700 x 1900 x 2200 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rsvt160',
-        model: 'RSVT160',
-        powerKw: 160,
-        powerHp: 215,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '27.5 m³/min',
-        flowRateCfm: '971.2 CFM',
-        image: rsvt400vsd,
-        noiseDb: '72 ± 2 dB(A)',
-        weightKg: '4500 kg',
-        dimensions: '3050 x 1900 x 2430 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rsvt200',
-        model: 'RSVT200',
-        powerKw: 200,
-        powerHp: 270,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '34.0 m³/min',
-        flowRateCfm: '1200.7 CFM',
-        image: rsvt400vsd,
-        noiseDb: '76 ± 2 dB(A)',
-        weightKg: '6000 kg',
-        dimensions: '3200 x 1900 x 2450 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rsvt250',
-        model: 'RSVT250',
-        powerKw: 250,
-        powerHp: 335,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '43.5 m³/min',
-        flowRateCfm: '1536.2 CFM',
-        image: rsvt400vsd,
-        noiseDb: '78 ± 2 dB(A)',
-        weightKg: '8000 kg',
-        dimensions: '4000 x 2200 x 2400 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rsvt315',
-        model: 'RSVT315',
-        powerKw: 315,
-        powerHp: 420,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '54.0 m³/min',
-        flowRateCfm: '1907.0 CFM',
-        image: rsvt400vsd,
-        noiseDb: '80 ± 2 dB(A)',
-        weightKg: '9150 kg',
-        dimensions: '4200 x 2200 x 2370 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      },
-      {
-        id: 'rsvt400',
-        model: 'RSVT400',
-        powerKw: 400,
-        powerHp: 536,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '67.5 m³/min',
-        flowRateCfm: '2383.7 CFM',
-        image: rsvt400vsd,
-        noiseDb: '82 ± 2 dB(A)',
-        weightKg: '7050 kg',
-        dimensions: '4200 x 2200 x 2370 mm',
-        cooling: 'Water-Cooled / Air-Cooled'
-      },
-      {
-        id: 'rsvt500',
-        model: 'RSVT500',
-        powerKw: 500,
-        powerHp: 670,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '85.0 m³/min',
-        flowRateCfm: '3001.7 CFM',
-        image: rsvt400vsd,
-        noiseDb: '84 ± 2 dB(A)',
-        weightKg: '10500 kg',
-        dimensions: '5500 x 2300 x 2500 mm',
-        cooling: 'Water-Cooled / Air-Cooled'
-      },
-      {
-        id: 'rsvt630',
-        model: 'RSVT630',
-        powerKw: 630,
-        powerHp: 845,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '105.0 m³/min',
-        flowRateCfm: '3708.0 CFM',
-        image: rsvt400vsd,
-        noiseDb: '85 ± 2 dB(A)',
-        weightKg: '12000 kg',
-        dimensions: '6000 x 2400 x 2700 mm',
-        cooling: 'Water-Cooled'
-      },
-      {
-        id: 'rsvt750',
-        model: 'RSVT750',
-        powerKw: 750,
-        powerHp: 1005,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '125.0 m³/min',
-        flowRateCfm: '4414.3 CFM',
-        image: rsvt400vsd,
-        noiseDb: '86 ± 2 dB(A)',
-        weightKg: '13500 kg',
-        dimensions: '6500 x 2400 x 2700 mm',
-        cooling: 'Water-Cooled'
-      },
-      {
-        id: 'rsvt945',
-        model: 'RSVT945',
-        powerKw: 945,
-        powerHp: 1267,
-        pressureBar: '7 - 10 Bar',
-        flowRateM3: '158.0 m³/min',
-        flowRateCfm: '5579.7 CFM',
-        image: rsvt400vsd,
-        noiseDb: '88 ± 2 dB(A)',
-        weightKg: '15000 kg',
-        dimensions: '7000 x 2500 x 2800 mm',
-        cooling: 'Water-Cooled'
-      }
-    ]
-  },
-
-  // 8. LOW-PRESSURE SCREW COMPRESSORS (RS-L SERIES)
-  {
-    id: 'low-pressure-compressors',
-    name: 'BAOFN Low-Pressure Industrial Screw Compressors',
-    seriesCode: 'RS-L Series',
-    category: 'Two-Stage Rotary Screw',
-    categoryTags: ['Two-Stage Rotary Screw'],
-    subtitle: 'High Flow Low-Pressure Compression (3 – 5 Bar)',
-    description:
-      'Low-pressure rotary screw compressors specifically engineered for pneumatic conveying, wastewater aeration, glass production, and textile manufacturing where standard 8-bar compressors waste extensive energy.',
-    badge: 'Low-Pressure High-CFM',
-    badgeColor: '#059669',
-    keyHighlights: [
-      'Tailored 3 to 5 Bar Low-Pressure Discharge',
-      'Massive Volumetric Flow Delivery',
-      'Direct Coupled IE4 Motor & Airend',
-      'Saves up to 30% Power vs Throttled 8-Bar Units'
-    ],
-    specsList: [
-      'Discharge Pressure: 3 Bar / 5 Bar Optimized',
-      'High-Displacement Rotary Screw Airend',
-      'Oversized Oil-Air Separation Vessel',
-      'Colour Graphic Intelligent PLC Controller'
-    ],
-    applications: ['Pneumatic Cement & Powder Conveying', 'Wastewater Aeration & Fermentation', 'Glass Bottle Moulding', 'Textile Blow-Off & Spinners'],
-    defaultVariantIndex: 0,
-    variants: [
-      {
-        id: 'rs22l3',
-        model: 'RS22L3',
-        powerKw: 22,
-        powerHp: 30,
-        pressureBar: '3 Bar',
-        flowRateM3: '6.55 m³/min',
-        flowRateCfm: '231.3 CFM',
-        image: rs22_2s,
-        noiseDb: '69 ± 2 dB(A)',
-        dimensions: '1980 x 1200 x 1350 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs30l5',
-        model: 'RS30L5',
-        powerKw: 30,
-        powerHp: 40,
-        pressureBar: '5 Bar',
-        flowRateM3: '6.55 m³/min',
-        flowRateCfm: '231.3 CFM',
-        image: rs37_2s,
-        noiseDb: '69 ± 2 dB(A)',
-        dimensions: '1680 x 1300 x 1350 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs37l3',
-        model: 'RS37L3',
-        powerKw: 37,
-        powerHp: 50,
-        pressureBar: '3 Bar',
-        flowRateM3: '10.7 m³/min',
-        flowRateCfm: '377.9 CFM',
-        image: rs37_2s,
-        noiseDb: '70 ± 2 dB(A)',
-        dimensions: '2300 x 1400 x 1600 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs45l5',
-        model: 'RS45L5',
-        powerKw: 45,
-        powerHp: 60,
-        pressureBar: '5 Bar',
-        flowRateM3: '10.7 m³/min',
-        flowRateCfm: '377.9 CFM',
-        image: rs45_2s,
-        noiseDb: '70 ± 2 dB(A)',
-        dimensions: '2200 x 1416 x 1700 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs55l3',
-        model: 'RS55L3',
-        powerKw: 55,
-        powerHp: 75,
-        pressureBar: '3 Bar',
-        flowRateM3: '17.49 m³/min',
-        flowRateCfm: '617.7 CFM',
-        image: rs55_2s,
-        noiseDb: '72 ± 2 dB(A)',
-        dimensions: '2600 x 1650 x 1850 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs75l5',
-        model: 'RS75L5',
-        powerKw: 75,
-        powerHp: 100,
-        pressureBar: '5 Bar',
-        flowRateM3: '17.49 m³/min',
-        flowRateCfm: '617.7 CFM',
-        image: rs75_2s,
-        noiseDb: '72 ± 2 dB(A)',
-        dimensions: '2560 x 1490 x 1820 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs110l5',
-        model: 'RS110L5',
-        powerKw: 110,
-        powerHp: 150,
-        pressureBar: '5 Bar',
-        flowRateM3: '27.0 m³/min',
-        flowRateCfm: '953.5 CFM',
-        image: rs110_2s,
-        noiseDb: '74 ± 2 dB(A)',
-        dimensions: '2800 x 1800 x 2000 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs160l5',
-        model: 'RS160L5',
-        powerKw: 160,
-        powerHp: 215,
-        pressureBar: '5 Bar',
-        flowRateM3: '39.5 m³/min',
-        flowRateCfm: '1395.0 CFM',
-        image: rs160_2s,
-        noiseDb: '76 ± 2 dB(A)',
-        dimensions: '3300 x 2000 x 2400 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs250l5',
-        model: 'RS250L5',
-        powerKw: 250,
-        powerHp: 335,
-        pressureBar: '5 Bar',
-        flowRateM3: '63.5 m³/min',
-        flowRateCfm: '2242.5 CFM',
-        image: rs250_2s,
-        noiseDb: '78 ± 2 dB(A)',
-        dimensions: '4200 x 2200 x 2400 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'rs355l3',
-        model: 'RS355L3',
-        powerKw: 355,
-        powerHp: 475,
-        pressureBar: '3 Bar',
-        flowRateM3: '96.0 m³/min',
-        flowRateCfm: '3390.0 CFM',
-        image: rs315_2s,
-        noiseDb: '80 ± 2 dB(A)',
-        dimensions: '4500 x 2300 x 2500 mm',
-        cooling: 'Air-Cooled / Water-Cooled'
-      }
-    ]
-  },
-  // 8. CERTIFIED AIR RECEIVERS & PRESSURE VESSELS
+  // 14. CERTIFIED AIR RECEIVERS & PRESSURE VESSELS — 3 Models
   {
     id: 'certified-air-receivers',
     name: 'Certified Industrial Air Receivers & Pressure Vessels',
@@ -1539,204 +746,6 @@ export const PRODUCT_FAMILIES: ProductFamily[] = [
         cooling: 'Natural Thermal Radiation'
       }
     ]
-  },
-
-  // 9. AIR DRYERS & FILTRATION TREATMENT
-  {
-    id: 'air-dryers-treatment',
-    name: 'Industrial Refrigerated Air Dryers & Inline Filtration',
-    seriesCode: 'Air Treatment Range',
-    category: 'Air Dryers & Treatment',
-    categoryTags: ['Air Dryers & Treatment'],
-    subtitle: 'Moisture Removal, Coalescing Filtration & Downstream Protection',
-    description:
-      'Complete air treatment range including high-efficiency refrigerated air dryers, desiccant dryers, and multi-stage particulate/oil removal filters. Protects pneumatic instruments, spray lines, and machinery from moisture corrosion and oil contamination.',
-    badge: 'Air Purity & Treatment',
-    badgeColor: '#0284c7',
-    keyHighlights: [
-      'Refrigerated Dryers from 1.2 to 65 m³/min Flow',
-      'Pressure Dewpoint of +3°C to +5°C',
-      'Inline Filters with 0.01 Micron Particulate Rating',
-      'Residual Oil Down to 0.003 mg/m³'
-    ],
-    specsList: [
-      'Eco-Friendly R410a / R134a High-Efficiency Refrigerant',
-      'Low Pressure Drop Aluminum Heat Exchangers',
-      'Automatic Electronic Condensate Drain Valves',
-      'Differential Pressure Filter Saturation Gauges'
-    ],
-    applications: ['CNC Tooling & Robotics', 'Pharmaceutical & Cleanroom Plants', 'Spray Paint Booths', 'Food Packaging Lines'],
-    defaultVariantIndex: 0,
-    variants: [
-      {
-        id: 'ad2-15',
-        model: 'AD2-15 Refrigerant Dryer',
-        powerKw: 0.36,
-        powerHp: 0.5,
-        pressureBar: '16 Bar Max',
-        flowRateM3: '1.5 m³/min',
-        flowRateCfm: '53.0 CFM',
-        image: airDryerImg,
-        noiseDb: '55 ± 2 dB(A)',
-        weightKg: '32 kg',
-        dimensions: '550 x 370 x 800 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'ad2-35',
-        model: 'AD2-35 Refrigerant Dryer',
-        powerKw: 0.72,
-        powerHp: 1.0,
-        pressureBar: '16 Bar Max',
-        flowRateM3: '3.5 m³/min',
-        flowRateCfm: '123.6 CFM',
-        image: airDryerImg,
-        noiseDb: '58 ± 2 dB(A)',
-        weightKg: '48 kg',
-        dimensions: '650 x 420 x 860 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'ad2-60',
-        model: 'AD2-60 Refrigerant Dryer',
-        powerKw: 1.2,
-        powerHp: 1.6,
-        pressureBar: '16 Bar Max',
-        flowRateM3: '6.0 m³/min',
-        flowRateCfm: '211.9 CFM',
-        image: airDryerImg,
-        noiseDb: '60 ± 2 dB(A)',
-        weightKg: '72 kg',
-        dimensions: '750 x 500 x 980 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'ad2-115',
-        model: 'AD2-115 Refrigerant Dryer',
-        powerKw: 2.2,
-        powerHp: 3.0,
-        pressureBar: '16 Bar Max',
-        flowRateM3: '11.5 m³/min',
-        flowRateCfm: '406.1 CFM',
-        image: airDryerImg,
-        noiseDb: '62 ± 2 dB(A)',
-        weightKg: '120 kg',
-        dimensions: '950 x 600 x 1100 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'ad2-150',
-        model: 'AD2-150 Refrigerant Dryer',
-        powerKw: 2.8,
-        powerHp: 3.8,
-        pressureBar: '16 Bar Max',
-        flowRateM3: '15.0 m³/min',
-        flowRateCfm: '529.7 CFM',
-        image: airDryerImg,
-        noiseDb: '64 ± 2 dB(A)',
-        weightKg: '150 kg',
-        dimensions: '1050 x 650 x 1200 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'ad2s-250a',
-        model: 'AD2S-250A Industrial Dryer',
-        powerKw: 4.5,
-        powerHp: 6.0,
-        pressureBar: '16 Bar Max',
-        flowRateM3: '25.0 m³/min',
-        flowRateCfm: '882.9 CFM',
-        image: airDryerImg,
-        noiseDb: '66 ± 2 dB(A)',
-        weightKg: '240 kg',
-        dimensions: '1200 x 750 x 1400 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'ad2s-500a',
-        model: 'AD2S-500A Industrial Dryer',
-        powerKw: 8.5,
-        powerHp: 11.5,
-        pressureBar: '16 Bar Max',
-        flowRateM3: '50.0 m³/min',
-        flowRateCfm: '1765.7 CFM',
-        image: airDryerImg,
-        noiseDb: '68 ± 2 dB(A)',
-        weightKg: '420 kg',
-        dimensions: '1600 x 950 x 1700 mm',
-        cooling: 'Air-Cooled'
-      },
-      {
-        id: 'pe125',
-        model: 'PE125 Desiccant Dryer (-40°C)',
-        powerKw: 0.1,
-        powerHp: 0.13,
-        pressureBar: '10 Bar Max',
-        flowRateM3: '12.5 m³/min',
-        flowRateCfm: '441.4 CFM',
-        image: airDryerImg,
-        noiseDb: 'Silent (Purge Cycle)',
-        weightKg: '420 kg',
-        dimensions: 'Twin Tower Desiccant Vessel',
-        cooling: 'Heatless Adsorption'
-      },
-      {
-        id: 'pe200',
-        model: 'PE200 Desiccant Dryer (-40°C)',
-        powerKw: 0.1,
-        powerHp: 0.13,
-        pressureBar: '10 Bar Max',
-        flowRateM3: '20.0 m³/min',
-        flowRateCfm: '706.3 CFM',
-        image: airDryerImg,
-        noiseDb: 'Silent (Purge Cycle)',
-        weightKg: '650 kg',
-        dimensions: 'Twin Tower Desiccant Vessel',
-        cooling: 'Heatless Adsorption'
-      },
-      {
-        id: 'pe380',
-        model: 'PE380 Desiccant Dryer (-40°C)',
-        powerKw: 0.15,
-        powerHp: 0.2,
-        pressureBar: '10 Bar Max',
-        flowRateM3: '38.0 m³/min',
-        flowRateCfm: '1342.0 CFM',
-        image: airDryerImg,
-        noiseDb: 'Silent (Purge Cycle)',
-        weightKg: '1100 kg',
-        dimensions: 'Twin Tower Desiccant Vessel',
-        cooling: 'Heatless Adsorption'
-      },
-      {
-        id: 'pe760',
-        model: 'PE760 Desiccant Dryer (-40°C)',
-        powerKw: 0.2,
-        powerHp: 0.27,
-        pressureBar: '10 Bar Max',
-        flowRateM3: '76.0 m³/min',
-        flowRateCfm: '2683.9 CFM',
-        image: airDryerImg,
-        noiseDb: 'Silent (Purge Cycle)',
-        weightKg: '1850 kg',
-        dimensions: 'Twin Tower Desiccant Vessel',
-        cooling: 'Heatless Adsorption'
-      },
-      {
-        id: 'inline-filtration-pack',
-        model: 'Multi-Stage Precision Inline Filtration Pack',
-        powerKw: 0,
-        powerHp: 0,
-        pressureBar: 'Up to 16 Bar',
-        flowRateM3: '1.0 - 75.0 m³/min',
-        flowRateCfm: '35 - 2,650 CFM',
-        image: inlineFiltersImg,
-        noiseDb: 'Silent',
-        weightKg: '5 - 35 kg per unit',
-        dimensions: 'Inline NPT / Flanged Ports',
-        cooling: 'Passive'
-      }
-    ]
   }
 ];
 
@@ -1750,6 +759,9 @@ export interface FlatModelRow {
   model: string;
   powerKw: number;
   powerHp: number;
+  outlet?: string;
+  weightKg?: string;
+  dimensions?: string;
   pressureBar: string;
   flowRateM3: string;
   flowRateCfm: string;
@@ -1759,6 +771,7 @@ export interface FlatModelRow {
   image: string;
   badge: string;
   badgeColor: string;
+  isPlaceholderImage?: boolean;
 }
 
 export const ALL_MODELS_FLAT: FlatModelRow[] = PRODUCT_FAMILIES.flatMap((fam) =>
@@ -1769,16 +782,20 @@ export const ALL_MODELS_FLAT: FlatModelRow[] = PRODUCT_FAMILIES.flatMap((fam) =>
     seriesCode: fam.seriesCode,
     category: fam.category,
     model: v.model,
-    powerKw: v.powerKw,
-    powerHp: v.powerHp,
-    pressureBar: v.pressureBar,
-    flowRateM3: v.flowRateM3,
-    flowRateCfm: v.flowRateCfm,
+    powerKw: v.powerKw ?? 0,
+    powerHp: v.powerHp ?? 0,
+    outlet: v.outlet,
+    weightKg: v.weightKg,
+    dimensions: v.dimensions,
+    pressureBar: v.pressureBar ?? '',
+    flowRateM3: v.flowRateM3 ?? (v.flowRateNm3 ? `${v.flowRateNm3}` : ''),
+    flowRateCfm: v.flowRateCfm ?? '',
     tankSize: v.tankSize,
     cooling: v.cooling,
     noiseDb: v.noiseDb,
     image: v.image || fam.variants[0]?.image || '',
     badge: fam.badge,
-    badgeColor: fam.badgeColor
+    badgeColor: fam.badgeColor,
+    isPlaceholderImage: v.isPlaceholderImage ?? false
   }))
 );

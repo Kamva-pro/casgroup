@@ -2,3 +2,6 @@ node_modules
 .env
 
 dist.zip
+src/assets/product-images.zip
+*.zip
+!src/assets/webfonts_Limo-Regular.zip

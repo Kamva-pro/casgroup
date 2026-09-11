@@ -35,80 +35,101 @@ interface ProductsProps {
 // Spotlight showcase series configurations — verified against baofn.co.za
 const SPOTLIGHT_SERIES = [
   {
-    id: 'two-stage-vsd',
-    name: 'RS-2S-VSD Series',
-    fullName: 'BAOFN Two-Stage Variable Speed Drive',
-    powerRange: '22 – 315 kW',
-    driveType: 'Variable Speed Drive',
-    modelCount: 12,
-    pressureRange: '8 – 13 Bar',
-    description: 'Dual-stage efficiency coupled with VSD technology. Modulates motor speed to match actual plant air demand and reduce unloaded idle running.',
-    familyId: 'two-stage-vsd'
-  },
-  {
     id: 'two-stage-fixed-speed',
-    name: 'RS-2S Series',
-    fullName: 'BAOFN Two-Stage Fixed Speed Heavy Duty',
-    powerRange: '15 – 550 kW',
-    driveType: 'Fixed Speed Direct Drive',
-    modelCount: 17,
-    pressureRange: '8 – 13 Bar',
-    description: 'Two-stage compression designed for continuous baseload industrial operations. Dual independent airends divide the compression ratio across two stages to reduce mechanical stress.',
+    name: 'Two Stage Fixed Speed',
+    fullName: 'Two Stage Fixed Speed Compressors',
+    subtitle: 'Screw Compressors · 15 kW to 550 kW',
+    description: 'Official BAOFN specifications for every two stage fixed speed compressors model — backed by the only OEM warranty on BAOFN units in South Africa.',
+    stat1Label: 'Motor Range',
+    stat1Value: '15 – 550 kW',
+    stat2Label: 'Outlet Range',
+    stat2Value: 'G1 1/4 – DN150',
+    stat3Label: 'Max Weight',
+    stat3Value: '12,000 kg',
     familyId: 'two-stage-fixed-speed'
   },
   {
+    id: 'two-stage-vsd',
+    name: 'Two Stage VSD',
+    fullName: 'Two Stage VSD Compressors',
+    subtitle: 'Screw Compressors · 22 kW to 315 kW',
+    description: 'Official BAOFN specifications for every two stage vsd compressors model — backed by the only OEM warranty on BAOFN units in South Africa.',
+    stat1Label: 'Motor Range',
+    stat1Value: '22 – 315 kW',
+    stat2Label: 'Outlet Range',
+    stat2Value: 'G1 1/2 – DN125',
+    stat3Label: 'Max Weight',
+    stat3Value: '9,150 kg',
+    familyId: 'two-stage-vsd'
+  },
+  {
     id: 'single-stage-vsd',
-    name: 'RS-VSD Series',
-    fullName: 'BAOFN Single-Stage VSD',
-    powerRange: '7.5 – 75 kW',
-    driveType: 'Variable Speed (VSD)',
-    modelCount: 8,
-    pressureRange: '8 – 13 Bar',
-    description: 'Single-stage rotary screw compressor with variable speed control. Eliminates unloaded idle energy waste and maintains line pressure within ±0.1 bar.',
+    name: 'Single Stage VSD',
+    fullName: 'Single Stage VSD Compressors',
+    subtitle: 'Screw Compressors · 7.5 kW to 75 kW',
+    description: 'Official BAOFN specifications for every single stage vsd compressors model — backed by the only OEM warranty on BAOFN units in South Africa.',
+    stat1Label: 'Motor Range',
+    stat1Value: '7.5 – 75 kW',
+    stat2Label: 'Outlet Range',
+    stat2Value: 'G 3/4 – G2 1/2',
+    stat3Label: 'Max Weight',
+    stat3Value: '1,390 kg',
     familyId: 'single-stage-vsd'
   },
   {
     id: 'oil-free',
-    name: 'Oil-Free Series',
-    fullName: 'BAOFN Oil-Free Rotary Screw',
-    powerRange: '15 – 945 kW',
-    driveType: 'Class 0 Oil-Free',
-    modelCount: 23,
-    pressureRange: '7 – 10 Bar',
-    description: 'Class 0 100% oil-free rotary screw compression engineered for pharmaceutical, food processing, electronics, and high-purity clean air operations.',
+    name: 'Oil Free Compressors',
+    fullName: 'Oil Free Compressors',
+    subtitle: 'Oil Free · 15 kW to 945 kW',
+    description: 'Official BAOFN specifications for every oil free compressors model — backed by the only OEM warranty on BAOFN units in South Africa.',
+    stat1Label: 'Motor Range',
+    stat1Value: '15 – 945 kW',
+    stat2Label: 'Outlet Range',
+    stat2Value: 'G1 1/4 – DN150',
+    stat3Label: 'Max Weight',
+    stat3Value: '22,010 kg',
     familyId: 'oil-free-rsvt'
   },
   {
-    id: 'full-feature-all-in-one',
-    name: 'RS-VSD-FF Series',
-    fullName: 'BAOFN All-In-One Tank-Mounted Screw Compressor',
-    powerRange: '7.5 – 15 kW',
-    driveType: 'Integrated 3-in-1 Station',
-    modelCount: 3,
-    pressureRange: '8 – 13 Bar',
-    description: 'Complete plug-and-play station combining rotary screw compressor, air receiver tank, and refrigerated air dryer in a single compact footprint.',
-    familyId: 'full-feature-all-in-one'
+    id: 'portable-compressors',
+    name: 'Portable Compressors',
+    fullName: 'Portable Compressors',
+    subtitle: 'Portable · 8 to 25 Bar · 58 (80) to 310 (410) Diesel Power',
+    description: 'Official BAOFN specifications for every portable compressors model — backed by the only OEM warranty on BAOFN units in South Africa.',
+    stat1Label: 'Diesel Power',
+    stat1Value: '58 – 310 kW',
+    stat2Label: 'Pressure Range',
+    stat2Value: '8 – 25 Bar',
+    stat3Label: 'FAD Range',
+    stat3Value: '8 – 40 m³/min',
+    familyId: 'portable-compressors'
   },
   {
-    id: 'drill-rigs-workshop',
-    name: 'Drill Rigs & Portable',
-    fullName: 'BAOFN Drill Rigs & Portable Compressors',
-    powerRange: '3 – 310 kW',
-    driveType: 'High Pressure / Mobile',
-    modelCount: 12,
-    pressureRange: '8 – 25 Bar',
-    description: 'High-pressure skid and wheeled diesel compressors engineered for exploration drill rigs, open-cast blast holes, and remote field operations.',
-    familyId: 'mining-drill-rigs'
+    id: 'drill-rigs',
+    name: 'Drill Rigs',
+    fullName: 'Drill Rigs',
+    subtitle: 'Drill Rigs · 3 kW to 11 kW · 8 Bar',
+    description: 'Official BAOFN specifications for every drill rigs model — backed by the only OEM warranty on BAOFN units in South Africa.',
+    stat1Label: 'Motor Power',
+    stat1Value: '3 – 11 kW',
+    stat2Label: 'Working Pressure',
+    stat2Value: '8 Bar',
+    stat3Label: 'Air Volume',
+    stat3Value: '0.42 – 1.7 m³/min',
+    familyId: 'drill-rigs'
   },
   {
     id: 'air-receivers',
     name: 'Air Receivers & Vessels',
     fullName: 'Industrial Air Pressure Vessels',
-    powerRange: '500L – 10,000L+',
-    driveType: 'Vertical / Horizontal',
-    modelCount: 3,
-    pressureRange: '11 – 40 Bar',
-    description: 'Vertical, horizontal, and bulk industrial air receivers manufactured to SANS 347 pressure vessel standards for volume buffering and moisture separation.',
+    subtitle: 'ASME / SANS 347 Certified Pressure Vessels (500L – 10,000L+)',
+    description: 'Certified industrial pressure vessels designed to SANS 347 pressure vessel standards for volume buffering and moisture separation.',
+    stat1Label: 'Capacity Range',
+    stat1Value: '500L – 10,000L+',
+    stat2Label: 'Pressure Rating',
+    stat2Value: '11 – 40 Bar',
+    stat3Label: 'Certification',
+    stat3Value: 'SANS 347 / ASME',
     familyId: 'certified-air-receivers'
   }
 ];
@@ -139,6 +160,7 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
     const heroVariant = family.variants[family.defaultVariantIndex] || family.variants[0];
     return {
       ...s,
+      modelCount: family.variants.length,
       image: heroVariant?.image,
       modelName: heroVariant?.model,
       family
@@ -263,7 +285,7 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
               {/* Right Details & Big Specs */}
               <div>
                 <p className="text-xs font-bold uppercase tracking-wider text-[#dc2626]">
-                  Series Spotlight · {currentSpotlight.pressureRange}
+                  {currentSpotlight.subtitle}
                 </p>
                 <h3 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-black text-[#0a1628] leading-tight">
                   {currentSpotlight.fullName}
@@ -276,26 +298,26 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
                 <div className="mt-8 grid grid-cols-3 gap-4 border-y border-slate-200/80 py-6">
                   <div>
                     <p className="text-2xl sm:text-3xl font-black text-[#dc2626] tracking-tight">
-                      {currentSpotlight.powerRange}
+                      {currentSpotlight.stat1Value}
                     </p>
                     <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
-                      Power Range
+                      {currentSpotlight.stat1Label}
                     </p>
                   </div>
                   <div>
                     <p className="text-2xl sm:text-3xl font-black text-[#dc2626] tracking-tight">
-                      {currentSpotlight.pressureRange}
+                      {currentSpotlight.stat2Value}
                     </p>
                     <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
-                      Pressure Rating
+                      {currentSpotlight.stat2Label}
                     </p>
                   </div>
                   <div>
                     <p className="text-2xl sm:text-3xl font-black text-[#dc2626] tracking-tight">
-                      {currentSpotlight.modelCount}
+                      {currentSpotlight.stat3Value}
                     </p>
                     <p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">
-                      Models Available
+                      {currentSpotlight.stat3Label}
                     </p>
                   </div>
                 </div>
@@ -431,25 +453,93 @@ export function Products({ activeCategory, onCategoryChange }: ProductsProps) {
 
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                      Technical Parameters
+                      Official BAOFN Specifications
                     </h4>
                     <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm">
-                      <div className="bg-slate-50 p-3 rounded-xl">
-                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Motor Power</span>
-                        <span className="font-bold text-[#0a1628]">{modalModel.variant.powerKw} kW ({modalModel.variant.powerHp} HP)</span>
-                      </div>
-                      <div className="bg-slate-50 p-3 rounded-xl">
-                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Operating Pressure</span>
-                        <span className="font-bold text-[#0a1628]">{modalModel.variant.pressureBar}</span>
-                      </div>
-                      <div className="bg-slate-50 p-3 rounded-xl">
-                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Drive Type</span>
-                        <span className="font-bold text-[#0a1628]">{modalModel.family.name}</span>
-                      </div>
-                      <div className="bg-slate-50 p-3 rounded-xl">
-                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Cooling Method</span>
-                        <span className="font-bold text-[#0a1628]">{modalModel.variant.cooling || 'Air-Cooled'}</span>
-                      </div>
+                      {modalModel.variant.powerKw !== undefined && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Motor</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.powerKw} kW</span>
+                        </div>
+                      )}
+                      {modalModel.variant.dieselPower && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Diesel Power</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.dieselPower} kW (HP)</span>
+                        </div>
+                      )}
+                      {modalModel.variant.powerW !== undefined && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Power</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.powerW} W</span>
+                        </div>
+                      )}
+                      {modalModel.variant.outlet && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Outlet</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.outlet}</span>
+                        </div>
+                      )}
+                      {modalModel.variant.connection && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Connection</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.connection}</span>
+                        </div>
+                      )}
+                      {modalModel.variant.weightKg && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Weight</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.weightKg}</span>
+                        </div>
+                      )}
+                      {modalModel.variant.dimensions && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Dimensions</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.dimensions}</span>
+                        </div>
+                      )}
+                      {modalModel.variant.pressureBar && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Pressure</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.pressureBar}</span>
+                        </div>
+                      )}
+                      {modalModel.variant.flowRateM3 && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Volume / FAD</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.flowRateM3}</span>
+                        </div>
+                      )}
+                      {modalModel.variant.flowRateNm3 && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">FAD</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.flowRateNm3}</span>
+                        </div>
+                      )}
+                      {modalModel.variant.gas && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Refrigerant Gas</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.gas}</span>
+                        </div>
+                      )}
+                      {modalModel.variant.pressureDrop && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Pressure Drop</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.pressureDrop}</span>
+                        </div>
+                      )}
+                      {modalModel.variant.type && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Type</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.type}</span>
+                        </div>
+                      )}
+                      {modalModel.variant.tankSize && (
+                        <div className="bg-slate-50 p-3 rounded-xl">
+                          <span className="text-slate-400 block text-[10px] uppercase font-bold">Storage Tank</span>
+                          <span className="font-bold text-[#0a1628]">{modalModel.variant.tankSize}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
